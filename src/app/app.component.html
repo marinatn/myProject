@@ -2,8 +2,6 @@
   <ion-router-outlet>
  </ion-router-outlet>
 
-
-  <ion-app>
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar color="tertiary">
@@ -11,40 +9,76 @@
         </ion-toolbar>
       </ion-header>
       <ion-content color="light">
+
         <ion-list [inset]="true">
           <ion-item>
-            <ion-label>Работа с расписанием</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/mp-timetable32.png'">
+              </ion-img>
+              расписание
+            </ion-label>
           </ion-item>
+
           <ion-item>
-            <ion-label>Настройка проб и контейнеров</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/testtubes32.png'">
+              </ion-img>
+              Пункты забора
+            </ion-label>
           </ion-item>
+
           <ion-item>
-            <ion-label>Пункты забора</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/lab-service32.png'">
+              </ion-img>
+              Настройки проб и контейнеров
+            </ion-label>
           </ion-item>
+
           <ion-item>
-            <ion-label>Журнал уведомлений</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/book32.png'">
+              </ion-img>
+              Справочники
+            </ion-label>
           </ion-item>
+
           <ion-item>
-            <ion-label>Контроль качества (список в списке)</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/report32.png'">
+              </ion-img>
+              Отчеты
+            </ion-label>
           </ion-item>
+
           <ion-item>
-            <ion-label>Отчеты</ion-label>
+            <ion-label>
+              <ion-img
+                [src] = "'assets/icon/technocard-icon.svg'">
+              </ion-img>
+              Технологические карты
+            </ion-label>
           </ion-item>
-          <ion-item>
-            <ion-label>Справочники</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Журнал уведомлений</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Шаблоны документов</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Журнал направлений и записей</ion-label>
-          </ion-item>
+
         </ion-list>
+
       </ion-content>
+
     </ion-menu>
+
+  <ion-segment value="default">
+    <ion-segment-button value="default">
+      <ion-label>Default</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-label>Segment</ion-label>
+    </ion-segment-button>
+  </ion-segment>
     <div class="ion-page" id="main-content">
       <ion-header>
         <ion-toolbar>
@@ -55,8 +89,24 @@
           <ion-title>АРМ Лаборанта</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-    </div>
-  </ion-app>
+      <ion-content class="ion-padding">
 
+        <ion-grid>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+      </ion-content>
+
+    </div>
+
+
+  </ion-app>
 
