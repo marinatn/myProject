@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  public activeTab: string = 'test';
   constructor() {}
+
+  change(activeTab: string) {
+    this.activeTab =  activeTab;
+  }
 }
