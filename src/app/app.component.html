@@ -91,8 +91,8 @@
       </ion-header>
       <ion-content class="ion-padding">
 
-        <ion-button (click)="change('orders')" [routerLink]="['']" [disabled]="activeTab==='orders'">Profile</ion-button>
-        <ion-button (click)="change('test')" [routerLink]="'main'"  [disabled]="activeTab==='test'">ПРОБЫ</ion-button>
+        <ion-button (click)="change(APP_ROUTES.main_page)" [disabled]="activeTab===APP_ROUTES.main_page">Main</ion-button>
+        <ion-button (click)="change(APP_ROUTES.profile_page)" [disabled]="activeTab===APP_ROUTES.profile_page">Profile</ion-button>
 
         <ion-grid>
           <ion-row>
@@ -105,16 +105,17 @@
             <ion-col>Взял пробу</ion-col>
             <ion-col>Пункт забора</ion-col>
             <ion-col>Тесты</ion-col>
-            <ion-col>ШОдобрил результат</ion-col>
+            <ion-col>Одобрил результат</ion-col>
             <ion-col>Штрихкод</ion-col>
             <ion-col>№ напр.</ion-col>
             <ion-col>Медицинская организация</ion-col>
             <ion-col>Фамилия врача</ion-col>
             <ion-col>Регистрационный номер</ion-col>
             <ion-col>Услуга (Исследование)</ion-col>
-            <ion-col>Штрихкод</ion-col>
           </ion-row>
         </ion-grid>
+
+
 
 
       </ion-content>

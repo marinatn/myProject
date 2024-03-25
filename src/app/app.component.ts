@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {APP_ROUTES} from "./app-routing.module";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public activeTab: string = 'test';
-  constructor() {}
+  constructor(private router: Router) {}
 
-  change(activeTab: string) {
+  async change(activeTab: string) {
     this.activeTab =  activeTab;
+    this.router.navigate([activeTab]);
   }
+
+  protected readonly APP_ROUTES = APP_ROUTES;
 }
