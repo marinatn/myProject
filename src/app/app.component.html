@@ -1,127 +1,120 @@
 <ion-app>
-  <ion-router-outlet>
- </ion-router-outlet>
-
-    <ion-menu contentId="main-content">
-      <ion-header>
+  <!--Menu-->
+  <ion-menu contentId="main-content">
+    <!--Header menu-->
+    <ion-header>
+      <ion-menu-toggle>
         <ion-toolbar color="tertiary">
-          <ion-title>Подтянуть ФИО</ion-title>
+          <ion-title [routerLink]="[APP_ROUTES.profile_page]">Подтянуть ФИО</ion-title>
         </ion-toolbar>
-      </ion-header>
-      <ion-content color="light">
+      </ion-menu-toggle>
+    </ion-header>
+    <!--Content menu-->
+    <ion-content color="light">
+      <ion-list [inset]="true">
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/mp-timetable32.png'">
+            </ion-img>
+            расписание
+          </ion-label>
+        </ion-menu-toggle>
 
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/mp-timetable32.png'">
-              </ion-img>
-              расписание
-            </ion-label>
-          </ion-item>
+        <ion-menu-toggle>
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/testtubes32.png'">
+            </ion-img>
+            Пункты забора
+          </ion-label>
+        </ion-menu-toggle>
 
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/testtubes32.png'">
-              </ion-img>
-              Пункты забора
-            </ion-label>
-          </ion-item>
+        <ion-menu-toggle>
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/lab-service32.png'">
+            </ion-img>
+            Настройки проб и контейнеров
+          </ion-label>
+        </ion-menu-toggle>
 
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/lab-service32.png'">
-              </ion-img>
-              Настройки проб и контейнеров
-            </ion-label>
-          </ion-item>
+        <ion-menu-toggle>
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/book32.png'">
+            </ion-img>
+            Справочники
+          </ion-label>
+        </ion-menu-toggle>
 
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/book32.png'">
-              </ion-img>
-              Справочники
-            </ion-label>
-          </ion-item>
+        <ion-menu-toggle>
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/report32.png'">
+            </ion-img>
+            Отчеты
+          </ion-label>
+        </ion-menu-toggle>
 
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/report32.png'">
-              </ion-img>
-              Отчеты
-            </ion-label>
-          </ion-item>
+        <ion-menu-toggle>
+          <ion-label>
+            <ion-img
+              [src]="'assets/icon/technocard-icon.svg'">
+            </ion-img>
+            Технологические карты
+          </ion-label>
+        </ion-menu-toggle>
 
-          <ion-item>
-            <ion-label>
-              <ion-img
-                [src] = "'assets/icon/technocard-icon.svg'">
-              </ion-img>
-              Технологические карты
-            </ion-label>
-          </ion-item>
+      </ion-list>
 
-        </ion-list>
+    </ion-content>
 
-      </ion-content>
+  </ion-menu>
+  <!--Page-->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>АРМ Лаборанта</ion-title>
+        </ion-menu-toggle>
+      </ion-toolbar>
+    </ion-header>
+    <!--Content-->
+    <ion-content class="ion-padding">
+      <ion-router-outlet>
+      </ion-router-outlet>
 
-    </ion-menu>
-
-  <ion-segment value="default">
-    <ion-segment-button value="default">
-      <ion-label>Default</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="segment">
-      <ion-label>Segment</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-    <div class="ion-page" id="main-content">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button>
-            </ion-menu-button>
-          </ion-buttons>
-          <ion-title>АРМ Лаборанта</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-
-        <ion-button (click)="change(APP_ROUTES.main_page)" [disabled]="activeTab===APP_ROUTES.main_page">Main</ion-button>
-        <ion-button (click)="change(APP_ROUTES.profile_page)" [disabled]="activeTab===APP_ROUTES.profile_page">Profile</ion-button>
-
-        <ion-grid>
-          <ion-row>
-            <ion-col>ID Пациента</ion-col>
-            <ion-col>№ пробы</ion-col>
-            <ion-col>Статус</ion-col>
-            <ion-col>Cito!</ion-col>
-            <ion-col>Биоматериал</ion-col>
-            <ion-col>Штрихкод</ion-col>
-            <ion-col>Взял пробу</ion-col>
-            <ion-col>Пункт забора</ion-col>
-            <ion-col>Тесты</ion-col>
-            <ion-col>Одобрил результат</ion-col>
-            <ion-col>Штрихкод</ion-col>
-            <ion-col>№ напр.</ion-col>
-            <ion-col>Медицинская организация</ion-col>
-            <ion-col>Фамилия врача</ion-col>
-            <ion-col>Регистрационный номер</ion-col>
-            <ion-col>Услуга (Исследование)</ion-col>
-          </ion-row>
-        </ion-grid>
+      <!--
+      <ion-grid>
+        <ion-row>
+          <ion-col>ID Пациента</ion-col>
+          <ion-col>№ пробы</ion-col>
+          <ion-col>Статус</ion-col>
+          <ion-col>Cito!</ion-col>
+          <ion-col>Биоматериал</ion-col>
+          <ion-col>Штрихкод</ion-col>
+          <ion-col>Взял пробу</ion-col>
+          <ion-col>Пункт забора</ion-col>
+          <ion-col>Тесты</ion-col>
+          <ion-col>Одобрил результат</ion-col>
+          <ion-col>Штрихкод</ion-col>
+          <ion-col>№ напр.</ion-col>
+          <ion-col>Медицинская организация</ion-col>
+          <ion-col>Фамилия врача</ion-col>
+          <ion-col>Регистрационный номер</ion-col>
+          <ion-col>Услуга (Исследование)</ion-col>
+        </ion-row>
+      </ion-grid>-->
 
 
+    </ion-content>
+
+  </div>
 
 
-      </ion-content>
-
-    </div>
-
-
-  </ion-app>
+</ion-app>
 
