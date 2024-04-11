@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {BCPPageRoutingModule} from "./pages/bcp/bcp-routing.module";
 // import {MainPageScreenComponent} from "./main-page-screen/main-page-screen.component";
 
 export const APP_ROUTES = {
@@ -7,6 +8,7 @@ export const APP_ROUTES = {
   'main_page': 'main',
   'profile_page': 'profile',
   'schedule_page': 'schedule',
+  'bcp_page': 'bcp',
   'tabs_page': 'tabs'
 }
 
@@ -30,6 +32,10 @@ const routes: Routes = [
   {
     path: APP_ROUTES.schedule_page,
     loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule)
+  },
+  {
+    path: APP_ROUTES.bcp_page,
+    loadChildren: () => import('./pages/bcp/bcp.module').then( m => m.BCPPageModule)
   },
 
   // {
