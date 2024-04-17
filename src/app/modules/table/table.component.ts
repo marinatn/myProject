@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {Column, GridOption} from "angular-slickgrid"; // Column Definition Type Interface
 @Component({
   selector: 'app-table',
@@ -12,4 +12,26 @@ export class TableComponent {
   @Input() columns: Column[] = [];
   @Input() options: GridOption = {};
   @Input() data: any[] = [];
+  @Output() onRowCountChanged = new EventEmitter<any>();
+  @Output() onBeforeGridDestroy = new EventEmitter<any>();
+  @Output() onAngularGridCreated = new EventEmitter<any>();
+  @Output() onGridStateChanged = new EventEmitter<any>();
+
+  angularGridCreated($event: any) {
+    this.onAngularGridCreated.emit($event);
+  }
+
+  gridStateChanged($event: any) {
+    this.onGridStateChanged.emit($event);
+  }
+
+
+  beforeGridDestroy() {
+    this.onBeforeGridDestroy.emit();
+  }
+
+
+  rowCountChanged($event: any) {
+    this.onRowCountChanged.emit($event);
+  }
 }

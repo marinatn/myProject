@@ -1,4 +1,14 @@
-<app-table [columns]="gridColumns" [options]="gridOptions" [data]="gridData"></app-table>
+<div id="table-container">
+  <app-table
+    [columns]="gridColumns"
+    [options]="gridOptions"
+    [data]="gridData"
+    (onAngularGridCreated)="scheduleViews.angularGridReady($event.detail)"
+    (onGridStateChanged)="scheduleViews.gridStateChanged($event.detail)"
+    (onBeforeGridDestroy)="scheduleViews.saveCurrentGridState()"
+    (onRowCountChanged)="scheduleViews.refreshMetrics($event.detail.eventData, $event.detail.args)">
+  ></app-table>
+</div>
 
 
 <!--<ion-header [translucent]="true">-->
