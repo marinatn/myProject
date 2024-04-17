@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {TableComponent} from "./table.component";
-import { AgGridAngular } from 'ag-grid-angular'; // AG Grid Component
-import { ColDef } from 'ag-grid-community'; // Column Definition Type Interface
+
+
+import {AngularSlickgridModule} from "angular-slickgrid"; // Column Definition Type Interface
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ColDef } from 'ag-grid-community'; // Column Definition Type Interface
   ],
   imports: [
     CommonModule,
-    AgGridAngular
+    AngularSlickgridModule
   ]
 })
-export class TableModule { }
+export class TableModule {
+}

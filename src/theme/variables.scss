@@ -1,6 +1,13 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+/* for example, let's change the mouse hover color */
+$cell-odd-background-color: lightyellow;
+$row-mouse-hover-color: lightgreen;
+
+/* make sure to add the @import the SlickGrid Bootstrap Theme AFTER the variables changes */
+@import '@slickgrid-universal/common/dist/styles/sass/slickgrid-theme-bootstrap.scss';
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -236,7 +243,7 @@
 }
 
 html {
-  /* 
+  /*
    * For more information on dynamic font scaling, visit the documentation:
    * https://ionicframework.com/docs/layout/dynamic-font-scaling
    */
