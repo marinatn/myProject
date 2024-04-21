@@ -8,11 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AngularSlickgridModule} from "angular-slickgrid";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {LOCATION_INITIALIZED} from "@angular/common";
 
 import 'flatpickr/dist/l10n/ru';
+import {BasicAuthInterceptor, ErrorInterceptor, fakeBackendProvider} from "./helpers";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -68,7 +69,12 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
       deps: [TranslateService, Injector],
       multi: true
     },
-    HttpClient
+    HttpClient,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent],
 })

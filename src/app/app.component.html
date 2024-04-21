@@ -3,14 +3,27 @@
   <ion-menu contentId="main-content">
     <!--Header menu-->
     <ion-header>
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="authService.isLoggedIn()">
         <ion-toolbar color="tertiary">
-          <ion-title [routerLink]="[APP_ROUTES.profile_page]">Подтянуть ФИО</ion-title>
+          <ion-title [routerLink]="[APP_ROUTES.profile_page]">
+            Подтянуть ФИО
+            <p><a [routerLink]="['/login']">Logout</a></p>
+          </ion-title>
         </ion-toolbar>
       </ion-menu-toggle>
+
+      <ion-menu-toggle *ngIf="!authService.isLoggedIn()">
+        <ion-toolbar color="tertiary">
+          <ion-title>
+            Авторизуйся, блеатьь!!!
+          </ion-title>
+        </ion-toolbar>
+      </ion-menu-toggle>
+
+
     </ion-header>
     <!--Content menu-->
-    <ion-content color="light">
+    <ion-content color="light" *ngIf="authService.isLoggedIn()">
       <ion-list [inset]="true">
         <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
           <ion-label>
@@ -79,7 +92,8 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>АРМ Лаборанта</ion-title>
+        <ion-title  *ngIf="authService.isLoggedIn()">АРМ Лаборанта</ion-title>
+          <ion-title  *ngIf="!authService.isLoggedIn()">Авторизуйся, блеать!</ion-title>
         </ion-menu-toggle>
       </ion-toolbar>
     </ion-header>

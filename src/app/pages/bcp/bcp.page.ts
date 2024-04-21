@@ -12,3 +12,4 @@ export class BcpPage implements OnInit {
   }
 
 }
+
