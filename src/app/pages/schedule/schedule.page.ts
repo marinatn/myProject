@@ -12,6 +12,7 @@ export class SchedulePage {
   gridOptions: GridOption = {};
   gridData: any[] = [];
 
+
   constructor(public scheduleViews: ScheduleViews) {
 
   }

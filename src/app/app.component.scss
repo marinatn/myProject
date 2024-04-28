@@ -15,6 +15,21 @@ ion-label {
   font-weight: bold;
   text-transform: uppercase;
 }
+
+.mat-icon.mat-ligature-font[fontIcon]::before {
+  content: attr(fontIcon);
+}
+
+.mat-icon {
+  height: 24px;
+  width: 24px;
+
+}
+
+//.example-spacer {
+//  flex: 1 0 auto;
+//}
+
 /*.image-radius {
   border-radius: 10px;  !* Скругление углов изображения *!
   border: 5px solid #fff; !* Цвет и ширину рамки *!

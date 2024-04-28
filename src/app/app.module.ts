@@ -2,6 +2,8 @@ import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
+
+
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +16,10 @@ import {LOCATION_INITIALIZED} from "@angular/common";
 
 import 'flatpickr/dist/l10n/ru';
 import {BasicAuthInterceptor, ErrorInterceptor, fakeBackendProvider} from "./helpers";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -43,6 +49,8 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     IonicModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
+    MatSlideToggleModule,
+    MatToolbarModule, MatButtonModule, MatIconModule,
     // TabsModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {APP_ROUTES} from "./app-routing.module";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./services";
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +13,12 @@ import {AuthenticationService} from "./services";
   styleUrls: [
     'app.component.scss'
   ],
+  // standalone: true,
+  // imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
+
+
+
 export class AppComponent {
   public activeTab: string = 'test';
   constructor(private router: Router, protected authService: AuthenticationService) {}

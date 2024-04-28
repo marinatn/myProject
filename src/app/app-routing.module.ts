@@ -15,6 +15,7 @@ export const APP_ROUTES = {
 }
 
 const routes: Routes = [
+
   {
     path: '',
     pathMatch: 'full',
@@ -32,12 +33,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: async () => (await import('./pages/main/main.module')).MainPageModule
   },
-  {
-    path: APP_ROUTES.profile_page,
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: async () => (await import('./pages/profile/profile.module')).ProfilePageModule
-  },
+  // {
+  //   path: APP_ROUTES.profile_page,
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: async () => (await import('./pages/profile/profile.module')).ProfilePageModule
+  // },
   {
     path: APP_ROUTES.schedule_page,
     canActivate: [AuthGuard],

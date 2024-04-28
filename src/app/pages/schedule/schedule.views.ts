@@ -27,14 +27,17 @@ export class ScheduleViews implements ViewInterface {
   metrics!: Metrics;
   constructor(private http: HttpClient, private translate: TranslateService) { }
   getTableColumns(): Column[] {
+
     // @ts-ignore
     return [
+
+
       {
-        id: 'title', name: 'Title', field: 'title', sortable: true, minWidth: 55,
+        id: 'title', name: '', field: 'title', sortable: true, minWidth: 10,
         type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
       },
       {
-        id: 'description', name: 'Description', field: 'description', filterable: true, sortable: true, minWidth: 80,
+        id: 'description', name: 'ID Пациента', field: 'description', filterable: true, sortable: true, minWidth: 80,
         type: FieldType.string,
         filter: {
           model: CustomInputFilter, // create a new instance to make each Filter independent from each other
@@ -42,7 +45,7 @@ export class ScheduleViews implements ViewInterface {
         }
       },
       {
-        id: 'duration', name: 'Duration (days)', field: 'duration', sortable: true, type: FieldType.number, exportCsvForceToKeepAsString: true,
+        id: 'duration', name: 'Фамилия И.О.', field: 'duration', sortable: true, type: FieldType.number, exportCsvForceToKeepAsString: true,
         minWidth: 55,
         filterable: true,
         filter: {
@@ -87,15 +90,15 @@ export class ScheduleViews implements ViewInterface {
         }
       },
       {
-        id: 'complete', name: '% Complete', field: 'percentComplete', formatter: Formatters.percentCompleteBar, minWidth: 70, type: FieldType.number, sortable: true,
+        id: 'complete', name: 'Дата рождения', field: 'percentComplete', formatter: Formatters.percentCompleteBar, minWidth: 70, type: FieldType.number, sortable: true,
         filterable: true, filter: { model: Filters.compoundInputNumber }
       },
       {
-        id: 'start', name: 'Start', field: 'start', formatter: Formatters.dateIso, sortable: true, minWidth: 75,
+        id: 'Услуга (исследование)', name: 'Услуга (исследование)', field: 'start', formatter: Formatters.dateIso, sortable: true, minWidth: 75,
         type: FieldType.date, filterable: true, filter: { model: Filters.compoundDate }
       },
       {
-        id: 'usDateShort', name: 'US Date Short', field: 'usDateShort', sortable: true, minWidth: 70, width: 70,
+        id: 'usDateShort', name: 'Запись', field: 'usDateShort', sortable: true, minWidth: 70, width: 70,
         type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
       },
       // {
@@ -109,7 +112,7 @@ export class ScheduleViews implements ViewInterface {
       //   }
       // },
       {
-        id: 'effort-driven', name: 'Effort Driven', field: 'effortDriven.isEffort', minWidth: 85, maxWidth: 85,
+        id: 'effort-driven', name: 'Cito!', field: 'effortDriven.isEffort', minWidth: 85, maxWidth: 85,
         type: FieldType.boolean,
         sortable: true,
         exportCustomFormatter: Formatters.complexObject,
@@ -136,11 +139,42 @@ export class ScheduleViews implements ViewInterface {
           // we could add certain option(s) to the "multiple-select" plugin
           filterOptions: { autoAdjustDropHeight: true } as MultipleSelectOption,
         }
-      }
+
+      },
+      // {
+      //   id: 'title', name: 'Услуга (исследование)', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      //
+      // {
+      //   id: 'title', name: 'Статус', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Тара', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Отклонение', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Штрихкод', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Пункт забора', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Дата направления', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // }
     ];
   }
 
   getTableOptions(): GridOption {
+
     return {
       autoResize: {
         container: '#table-container',
@@ -175,6 +209,7 @@ export class ScheduleViews implements ViewInterface {
     return this.mockData(NB_ITEMS);
   }
 
+
   mockData(itemCount: number, startingIndex = 0): any[] {
     // mock a dataset
     const tempDataset = [];
@@ -192,7 +227,9 @@ export class ScheduleViews implements ViewInterface {
       const randomIsEffort = (i % 3 === 0);
 
       tempDataset.push({
+
         id: i,
+
         title: 'Task ' + i,
         description: (i % 5) ? 'desc ' + i : null, // also add some random to test NULL field
         duration: randomDuration,
