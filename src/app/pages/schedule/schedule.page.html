@@ -1,5 +1,23 @@
-<div id="table-container">
-  <ion-checkbox></ion-checkbox>
+
+
+
+
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" >
+
+    <ion-tab-button tab="calendar" href="./applications-page.component.html">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>ЗАЯВКИ</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="information-circle">
+      <ion-icon name="information-circle" aria-hidden="true"></ion-icon>
+      ПРОБЫ
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+<!--  <ion-checkbox></ion-checkbox>-->
   <app-table
 
 
@@ -11,7 +29,6 @@
     (onBeforeGridDestroy)="scheduleViews.saveCurrentGridState()"
     (onRowCountChanged)="scheduleViews.refreshMetrics($event.detail.eventData, $event.detail.args)">
   ></app-table>
-</div>
 
 
 <!--<ion-header [translucent]="true">-->

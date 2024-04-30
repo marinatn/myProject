@@ -1,12 +1,12 @@
 import {ViewInterface} from "../../interfaces/view.interface";
 import {
   AngularGridInstance,
-  Column, FieldType, Formatter,
+  Column, FieldType, Filters, Formatter,
   FormatterResultWithHtml,
   FormatterResultWithText,
   GridOption,
   GridStateChange,
-  Metrics,
+  Metrics, MultipleSelectOption, OperatorType,
   SlickGrid
 } from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
@@ -44,22 +44,65 @@ export class ScheduleViews implements ViewInterface {
 
   getTableColumns(): Column<DataItem>[] {
     return [
+
+      // table parameters
+
+
+      // selection line
       {
-        id: 'completed', name: 'Completed', field: 'completed', type: FieldType.number, sortable: true, minWidth: 20,
-        maxWidth: 200,
+        id: 'completed', name: ' ', field: 'completed', type: FieldType.number, sortable: true, minWidth: 20,
+        maxWidth: 50,
         formatter: customEnableButtonFormatter,
         onCellClick: (e, args) => {
           this.toggleCompletedProperty(args && args.dataContext);
         }
       },
+
+
       {
-        id: 'description', name: 'ID Пациента', field: 'description', filterable: true, sortable: true, minWidth: 80,
+        id: 'description', name: 'ID Пациента', field: 'description', filterable: true, sortable: true, minWidth: 80, maxWidth: 80,
         type: FieldType.string,
         filter: {
           model: CustomInputFilter, // create a new instance to make each Filter independent from each other
           enableTrimWhiteSpace: true // or use global "enableFilterTrimWhiteSpace" to trim on all Filters
         }
       },
+
+      {
+        id: 'title', name: 'Фамилия И.О.', field: 'title', sortable: true, minWidth: 55, maxWidth: 200,
+        type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      },
+
+      // {
+      //   id: 'title', name: 'Статус', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Услуга (исследование)', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      //
+      //
+      // {
+      //   id: 'title', name: 'Тара', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Отклонение', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Штрихкод', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Пункт забора', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
+      // {
+      //   id: 'title', name: 'Дата направления', field: 'title', sortable: true, minWidth: 55,
+      //   type: FieldType.string, filterable: true, filter: { model: Filters.compoundInputText }
+      // },
     ];
 
 
