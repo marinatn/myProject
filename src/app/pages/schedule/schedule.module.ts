@@ -8,7 +8,7 @@ import { SchedulePageRoutingModule } from './schedule-routing.module';
 
 import { SchedulePage } from './schedule.page';
 import {TableModule} from "../../modules/table/table.module";
-import {ScheduleViews} from "./schedule.views";
+import {ScheduleTableService} from "./schedule-table.service";
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import {ScheduleViews} from "./schedule.views";
   ],
   declarations: [SchedulePage],
   providers: [
-    ScheduleViews
+    ScheduleTableService
   ]
 })
 export class SchedulePageModule {}

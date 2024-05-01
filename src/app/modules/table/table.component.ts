@@ -16,10 +16,12 @@ export class TableComponent {
   @Output() onBeforeGridDestroy = new EventEmitter<any>();
   @Output() onAngularGridCreated = new EventEmitter<any>();
   @Output() onGridStateChanged = new EventEmitter<any>();
+  @Output() onSelectedRowsChanged: EventEmitter<any> = new EventEmitter<any>();
 
   angularGridCreated($event: any) {
     this.onAngularGridCreated.emit($event);
   }
+
 
   gridStateChanged($event: any) {
     this.onGridStateChanged.emit($event);
@@ -33,5 +35,9 @@ export class TableComponent {
 
   rowCountChanged($event: any) {
     this.onRowCountChanged.emit($event);
+  }
+
+  selectedRowsChanged($event: any) {
+    this.onSelectedRowsChanged.emit($event);
   }
 }

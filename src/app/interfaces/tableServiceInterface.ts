@@ -1,6 +1,6 @@
 import {Column, GridOption} from "angular-slickgrid";
 
-export interface ViewInterface {
+export interface TableServiceInterface {
   getTableColumns(): Column[];
   getTableOptions(): GridOption
   getTableData(): any[]
