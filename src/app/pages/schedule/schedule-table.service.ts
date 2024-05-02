@@ -70,7 +70,7 @@ export class ScheduleTableService extends BaseTableService implements TableServi
         filter: {model: Filters.compoundInputText}
       },
       {
-        id: 'tape', name: 'yt nf', field: 'tape', sortable: true, minWidth: 55,
+        id: 'tape', name: ' ', field: 'tape', sortable: true, minWidth: 55,
         type: FieldType.string, filterable: true, filter: {model: Filters.compoundInputText}
       },
       {

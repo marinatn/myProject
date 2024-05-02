@@ -32,6 +32,14 @@ export interface ScheduleDataView {
   bcp_name: string;
   date_direction: string;
   completed: string;
+  direction_number: string;
+  direction_date: string;
+  doctor_fio: string;
+  comment: string;
+  date_birth: string;
+  snils: string;
+  policy_series: string;
+  policy_number: string;
 }
 
 function randomBetween(min: number, max: number) {

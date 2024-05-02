@@ -31,6 +31,14 @@ export class SchedulePage implements OnInit {
     deviation: '',
     patient_id: '',
     date_direction: '',
+    direction_number: '',
+    direction_date: '',
+    doctor_fio: '',
+    comment: '',
+    date_birth: '',
+    snils: '',
+    policy_series: '',
+    policy_number: ''
   }
 
   constructor(public tableService: ScheduleTableService) {
