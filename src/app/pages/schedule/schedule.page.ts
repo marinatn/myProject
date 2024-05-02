@@ -18,7 +18,7 @@ export class SchedulePage implements OnInit {
   gridData: any[] = [];
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
-
+  @ViewChild('investigationModal') investigationModal: IonModal | any;
   protected newItem: ScheduleDataView = {
     id: 0,
     patient_fio: ' ',
@@ -69,8 +69,8 @@ export class SchedulePage implements OnInit {
     }
     if (mode === 'edit') {
       this.editModal.dismiss(opts, 'confirm');
-    } else if (mode === 'delete') {
-
+    } else if (mode === 'update') {
+      this.investigationModal.dismiss(opts, 'confirm');
     } else if (mode === 'new') {
       this.newModal.dismiss(opts, 'confirm');
     }
@@ -84,7 +84,7 @@ export class SchedulePage implements OnInit {
       if (ev.detail.role === 'confirm') {
         if (mode === 'new') {
           this.tableService.addItem({data: item, refresh: true});
-        } else if (mode === 'edit') {
+        } else if (mode === 'edit' || mode === 'update') {
           this.tableService.updateItem({data: item, refresh: true});
         }
       }
@@ -93,5 +93,16 @@ export class SchedulePage implements OnInit {
 
   async deleteAlert() {
     await this.tableService.deleteAlert()
+  }
+
+  openInvestigationModal() {
+    this.investigationModal.showModal();
+  }
+
+  updateField(field: string, value: string) {
+    if (field) {
+      // @ts-ignore
+      this.tableService.selectedItem[field as any] = value;
+    }
   }
 }

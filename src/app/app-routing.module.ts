@@ -11,7 +11,8 @@ export const APP_ROUTES = {
   'profile_page': 'profile',
   'schedule_page': 'schedule',
   'bcp_page': 'bcp',
-  'tabs_page': 'tabs'
+  'tabs_page': 'tabs',
+  'timing_page': 'timing'
 }
 
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
     path: APP_ROUTES.bcp_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/bcp/bcp.module').then( m => m.BCPPageModule)
+  },
+  {
+    path: APP_ROUTES.timing_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/timing/timing.module').then( m => m.TimingModule)
   },
 
   // {

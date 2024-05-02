@@ -14,7 +14,7 @@ import {
 } from "angular-slickgrid";
 
 
-export type TableRowCRUDMode = 'new' | 'edit' | 'delete';
+export type TableRowCRUDMode = 'new' | 'edit' | 'update' | 'delete';
 export type TableRowOpts = {
   item: ScheduleDataView,
   mode: TableRowCRUDMode

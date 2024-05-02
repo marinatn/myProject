@@ -48,10 +48,10 @@
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle>
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
             <ion-img
-              [src]="'assets/icon/lab-service32.png'">
+              [src]="'assets/icon/lab-service32.png'" >
             </ion-img>
             Настройки проб и контейнеров
           </ion-label>
@@ -116,28 +116,6 @@
       <ion-router-outlet>
 
       </ion-router-outlet>
-
-      <!--
-      <ion-grid>
-        <ion-row>
-          <ion-col>ID Пациента</ion-col>
-          <ion-col>№ пробы</ion-col>
-          <ion-col>Статус</ion-col>
-          <ion-col>Cito!</ion-col>
-          <ion-col>Биоматериал</ion-col>
-          <ion-col>Штрихкод</ion-col>
-          <ion-col>Взял пробу</ion-col>
-          <ion-col>Пункт забора</ion-col>
-          <ion-col>Тесты</ion-col>
-          <ion-col>Одобрил результат</ion-col>
-          <ion-col>Штрихкод</ion-col>
-          <ion-col>№ напр.</ion-col>
-          <ion-col>Медицинская организация</ion-col>
-          <ion-col>Фамилия врача</ion-col>
-          <ion-col>Регистрационный номер</ion-col>
-          <ion-col>Услуга (Исследование)</ion-col>
-        </ion-row>
-      </ion-grid>-->
 
 
     </ion-content>
