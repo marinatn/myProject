@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-timing',
+  selector: 'app-qr',
   templateUrl: './timing.component.html',
   styleUrls: ['./timing.component.scss'],
 })
