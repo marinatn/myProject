@@ -1,0 +1,11 @@
+<IonButton expand="full" onClick={startScan}>Start Scanning</IonButton>
+<IonList>
+  <IonItem>
+    <IonLabel>Continuous Scan</IonLabel>
+    <IonCheckbox slot="end" value="Continuous Scan" checked={continuousScan} onIonChange={(e)=> handleOption(e)&#125;/>
+  </IonItem>
+  <IonItem>
+    <IonLabel>Scan QR Code Only</IonLabel>
+    <IonCheckbox slot="end" value="Scan QR Code Only" checked={QRcodeOnly} onIonChange={(e)=> handleOption(e)&#125;/>
+  </IonItem>
+</IonList>
