@@ -1,13 +1,13 @@
 import {TableServiceInterface} from "../../interfaces/tableServiceInterface";
 import {
   AngularGridInstance,
-  Column,
+  Column, CompoundInputFilter,
   FieldType,
   Filters,
-  Formatter,
+  Formatter, FormatterResultWithHtml, FormatterResultWithText,
   GridOption,
   GridStateChange,
-  Metrics
+  Metrics, SlickGrid
 } from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
@@ -24,8 +24,13 @@ export class ScheduleTableService extends BaseTableService implements TableServi
     protected override alertController: AlertController) {
     super(http, translate, alertController);
   }
+  protected override _selectedItem: ScheduleDataView | null = null;
+  override get selectedItem(): ScheduleDataView | null {
+    return this._selectedItem;
+  }
 
-  override getTableColumns(): Column<ScheduleDataView>[] {
+
+  override getTableColumns():Column[] {
     return [
       {
         id: 'completed', name: ' ', field: 'completed', type: FieldType.number, sortable: true, minWidth: 20,

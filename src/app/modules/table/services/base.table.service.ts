@@ -4,19 +4,20 @@ import {TranslateService} from "@ngx-translate/core";
 import {AlertController} from "@ionic/angular";
 import {
   AngularGridInstance,
-  Column,
+  Column, CompoundInputFilter,
   FieldType,
   Filters,
-  Formatter,
+  Formatter, FormatterResultWithHtml, FormatterResultWithText,
   GridOption,
   GridStateChange,
-  Metrics
+  Metrics, SlickGrid
 } from "angular-slickgrid";
+import {CustomInputFilter} from "../filters/custom.input/custom.input";
 
 
 export type TableRowCRUDMode = 'new' | 'edit' | 'update' | 'delete';
 export type TableRowOpts = {
-  item: ScheduleDataView,
+  item: any,
   mode: TableRowCRUDMode
 }
 
@@ -42,6 +43,13 @@ export interface ScheduleDataView {
   policy_number: string;
 }
 
+export interface TimingDataView {
+  id: number;
+  code: string;
+  name: string;
+  refer: string;
+}
+
 function randomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -52,9 +60,6 @@ export class BaseTableService implements TableServiceInterface {
   constructor(protected  http: HttpClient, protected  translate: TranslateService, protected  alertController: AlertController) {
   }
 
-  get selectedItem(): ScheduleDataView | null {
-    return this._selectedItem;
-  }
 
   angularGrid!: AngularGridInstance;
   metrics!: Metrics;
@@ -145,8 +150,11 @@ export class BaseTableService implements TableServiceInterface {
     return tempDataset;
   }
 
-  private _selectedItem: ScheduleDataView | null = null;
+  protected _selectedItem: any | null = null;
 
+  get selectedItem(): any | null {
+    return this._selectedItem;
+  }
   angularGridReady(angularGrid: AngularGridInstance) {
     this.angularGrid = angularGrid;
   }
