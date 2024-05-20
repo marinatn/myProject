@@ -4,13 +4,31 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
-import {BCPPageRoutingModule} from './bcp-routing.module';
 import {BcpPage} from "./bcp.page";
 import {QrModule} from "../../modules/qr/qr.module";
+import {TableModule} from "../../modules/table/table.module";
+import {RouterModule, Routes} from "@angular/router";
+import {TimingComponent} from "../timing/timing.component";
 
+const routes: Routes = [
+  {
+    path: '',
+    component: BcpPage
+  }
+];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, IonicModule, BCPPageRoutingModule, QrModule], declarations: [BcpPage]
+  declarations: [BcpPage],
+
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RouterModule.forChild(routes),
+    // QrModule,
+    TableModule
+  ],
+  exports: [RouterModule],
 })
 export class BCPPageModule {
 }

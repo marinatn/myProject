@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {BCPPageRoutingModule} from "./pages/bcp/bcp-routing.module";
+
 import {AuthGuard} from "./guards";
-import {LoginPage} from "./pages/login/login.page";
 // import {MainPageScreenComponent} from "./main-page-screen/main-page-screen.component";
 
 export const APP_ROUTES = {
