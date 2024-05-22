@@ -15,6 +15,8 @@ import {Injectable} from "@angular/core";
 import {CustomInputFilter} from "../../modules/table/filters/custom.input/custom.input";
 import {AlertController} from "@ionic/angular";
 import {BaseTableService, ScheduleDataView} from "../../modules/table/services/base.table.service";
+import {map} from "rxjs/operators";
+import {Observable, Observer, Subscription} from "rxjs";
 
 
 
@@ -75,6 +77,7 @@ export class TimingTableService extends BaseTableService implements TableService
       filter: {model: Filters.compoundInputText}
     },
   ];
+
 
 }
 

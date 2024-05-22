@@ -35,7 +35,9 @@ export class BcpPage implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.gridData = this.tableService.getTableData()
+    this.tableService.updateData('http://localhost:8000/api/research').subscribe((data: any) => {
+      this.gridData = data;
+    });
   }
 
   cancel() {

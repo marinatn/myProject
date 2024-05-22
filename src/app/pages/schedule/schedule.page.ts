@@ -52,7 +52,9 @@ export class SchedulePage implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.gridData = this.tableService.getTableData()
+    this.tableService.updateData('http://localhost:8000/api/tests').subscribe((data: any) => {
+      this.gridData = data;
+    });
   }
 
   cancel() {

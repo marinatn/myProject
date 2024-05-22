@@ -13,6 +13,7 @@ import {
   Metrics, SlickGrid
 } from "angular-slickgrid";
 import {CustomInputFilter} from "../filters/custom.input/custom.input";
+import {Observable} from "rxjs";
 
 
 export type TableRowCRUDMode = 'new' | 'edit' | 'update' | 'delete';
@@ -43,12 +44,12 @@ export interface ScheduleDataView {
   policy_number: string;
 }
 
-export interface TimingDataView {
-  id: number;
-  code: string;
-  name: string;
-  refer: string;
-}
+// export interface TimingDataView {
+//   id: number;
+//   code: string;
+//   name: string;
+//   refer: string;
+// }
 
 
 function randomBetween(min: number, max: number) {
@@ -108,11 +109,17 @@ export class BaseTableService implements TableServiceInterface {
     };
   }
 
-  private _dataset: ScheduleDataView[] = [];
+  protected _dataset: any[] = [];
 
-  getTableData(): any[] {
-    this._dataset = this.mockData(NB_ITEMS);
-    return this._dataset;
+  updateData(url: string): Observable<Object> {
+    return new Observable((observer) => {
+      return this.http.get(url).subscribe((data: any) => {
+        this._dataset = data;
+        this.angularGrid.slickGrid.invalidate();
+        this.angularGrid.gridService.renderGrid();
+        observer.next([...data]);
+      })
+    })
   }
 
   mockData(itemCount: number, startingIndex = 0): ScheduleDataView[] {
@@ -230,7 +237,7 @@ export class BaseTableService implements TableServiceInterface {
           startTime: new Date(),
           endTime: new Date(),
           itemCount: args && args.current || 0,
-          totalItemCount: this.getTableData().length || 0
+          totalItemCount: this._dataset.length || 0
         };
       });
     }
