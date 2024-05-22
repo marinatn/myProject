@@ -11,7 +11,8 @@ export const APP_ROUTES = {
   'schedule_page': 'schedule',
   'bcp_page': 'bcp',
   'tabs_page': 'tabs',
-  'timing_page': 'timing'
+  'timing_page': 'timing',
+  'analizators_page': 'analizators'
 }
 
 const routes: Routes = [
@@ -54,6 +55,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/timing/timing.module').then( m => m.TimingModule)
   },
+
+  {
+    path: APP_ROUTES.analizators_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/analizators/analizators.module').then( m => m.AnalizatorsModule)
+  },
+
 
   // {
   //   path: APP_ROUTES.tabs_page,
