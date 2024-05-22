@@ -1,0 +1,44 @@
+ion-col {
+  background-color: #135d54;
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: center;
+}
+
+b {
+  width: 50%;
+}
+
+.ripple-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid #ddd;
+
+  user-select: none;
+}
+
+.rounded-rectangle {
+  width: 200px;
+  height: 30px;
+  border-radius: 0px;
+}
+
+.circle {
+  width: 30px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.title-form {
+  font-size: medium;
+}

@@ -11,12 +11,12 @@ import {Injectable} from "@angular/core";
 import {AlertController} from "@ionic/angular";
 import {BaseTableService} from "../../modules/table/services/base.table.service";
 
-export interface TimingDataView {
+export interface AnalizatorsDataView{
   id: number,
   name: string,
   short_name: string,
-  type_interaction: object,
-  type_equipment: object,
+  type_interaction: string, //data is taken from the table type_interaction
+  type_equipment: string, //data is taken from the table type_equipment
 }
 @Injectable({providedIn: 'root'})
 export class AnalizatorsTableService extends BaseTableService implements TableServiceInterface {
@@ -26,28 +26,16 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
     protected override alertController: AlertController) {
     super(http, translate, alertController);
   }
-  protected override _selectedItem: TimingDataView | null = null;
-  override get selectedItem(): TimingDataView | null {
+  protected override _selectedItem: AnalizatorsDataView | null = null;
+  override get selectedItem(): AnalizatorsDataView | null {
     return this._selectedItem;
   }
 
   override getTableColumns = (): Column[] => [
 
     {
-      id: 1,
-      name: 'Код теста',
-      field: 'code',
-      sortable: true,
-      minWidth: 55,
-      maxWidth: 75,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
-    },
-
-    {
-      id: 2,
-      name: 'Наименование теста',
+      id: 0,
+      name: 'Идентификатор',
       field: 'name',
       sortable: true,
       minWidth: 55,
@@ -59,8 +47,32 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
 
     {
       id: 1,
-      name: 'Референсные значения',
-      field: 'refer',
+      name: 'Наименование анализатора',
+      field: 'name',
+      sortable: true,
+      minWidth: 55,
+      maxWidth: 200,
+      type: FieldType.number,
+      filterable: true,
+      filter: {model: Filters.compoundInputText}
+    },
+
+    {
+      id: 2,
+      name: 'Тип оборудования',
+      field: 'type_interaction',
+      sortable: true,
+      minWidth: 55,
+      maxWidth: 200,
+      type: FieldType.number,
+      filterable: true,
+      filter: {model: Filters.compoundInputText}
+    },
+
+    {
+      id: 3,
+      name: 'Тип взаимодействия',
+      field: 'type_equipment',
       sortable: true,
       minWidth: 55,
       maxWidth: 200,
@@ -74,7 +86,7 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
 }
 
 
-const customEnableButtonFormatter: Formatter<TimingDataView> = (_row: number, _cell: number, value: any) => {
+const customEnableButtonFormatter: Formatter<AnalizatorsDataView> = (_row: number, _cell: number, value: any) => {
   return `<span style="margin-left: 5px">
       <button class="btn btn-xs btn-default">
         <i class="fa ${value ? 'fa-check-circle' : 'fa-circle-thin'} fa-lg" style="color: ${value ? 'black' : 'lavender'}"></i>

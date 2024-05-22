@@ -1,74 +1,93 @@
 
 
-<!--<div class="container-buttons">-->
-<!--  <ion-button id="open-create-modal" expand="block">Добавить</ion-button>-->
-<!--  <ion-button id="open-edit-modal" expand="block" [disabled]="!tableService.selectedItem">Изменить</ion-button>-->
-<!--  <ion-button id="open-viewing-modal" expand="block" [disabled]="!tableService.selectedItem">Просмотреть</ion-button>-->
-<!--  <ion-button (click)="deleteAlert()" expand="block" [disabled]="!tableService.selectedItem">Удалить</ion-button>-->
+<div class="container-buttons">
+  <ion-button id="open-create-modal" expand="block">Добавить</ion-button>
+  <ion-button id="open-edit-modal" expand="block" [disabled]="!tableService.selectedItem">Изменить</ion-button>
+  <ion-button id="open-viewing-modal" expand="block" [disabled]="!tableService.selectedItem">Просмотреть</ion-button>
+  <ion-button (click)="deleteAlert()" expand="block" [disabled]="!tableService.selectedItem">Удалить</ion-button>
 
-<!--</div>-->
+</div>
 
-<!--<app-table-->
-<!--  [columns]="gridColumns"-->
-<!--  [options]="gridOptions"-->
-<!--  [data]="gridData"-->
-<!--  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"-->
-<!--  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"-->
-<!--  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"-->
-<!--  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"-->
-<!--  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"-->
-<!--&gt;-->
-<!--</app-table>-->
+<app-table
+  [columns]="gridColumns"
+  [options]="gridOptions"
+  [data]="gridData"
+  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+>
+</app-table>
 
-<!--&lt;!&ndash;Create testing&ndash;&gt;-->
-<!--<ion-modal trigger="open-create-modal" #investigationModal (willDismiss)="onWillDismiss($event)">-->
-<!--  <ng-template>-->
-<!--    <ion-header>-->
-<!--      <ion-toolbar>-->
-<!--        <ion-buttons slot="start">-->
-<!--        </ion-buttons>-->
-<!--        <ion-title>Тест анализатора: добавление</ion-title>-->
-<!--        <ion-buttons slot="end">-->
-<!--          <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Сохранить</ion-button>-->
-<!--        </ion-buttons>-->
-<!--      </ion-toolbar>-->
-<!--    </ion-header>-->
+<!--Create testing-->
+<ion-modal trigger="open-create-modal" #investigationModal (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+        </ion-buttons>
+        <ion-title>Модель анализатора: добавление</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Сохранить</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
-<!--    <ion-content class="ion-padding">-->
+    <ion-content class="ion-padding">
 
-<!--      <ion-item>-->
-<!--        <ion-input-->
-<!--          label="Код услуги"-->
-<!--          labelPlacement="stacked"-->
-<!--          type="string"-->
-<!--          placeholder="Код услуги"-->
-<!--          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.code"-->
-<!--        ></ion-input>-->
-<!--      </ion-item>-->
+      <ion-item>
+        <ion-input
+          label="Наименование анализатора"
+          labelPlacement="stacked"
+          type="string"
+          placeholder=""
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.name"
+        ></ion-input>
+      </ion-item>
 
-<!--      <ion-item>-->
-<!--        <ion-input-->
-<!--          label="Наименование"-->
-<!--          labelPlacement="stacked"-->
-<!--          type="string"-->
-<!--          placeholder="Наименование"-->
-<!--          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.name"-->
-<!--        ></ion-input>-->
-<!--      </ion-item>-->
+      <ion-item>
+        <ion-input
+          label="Краткое наименование"
+          labelPlacement="stacked"
+          type="string"
+          placeholder=""
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.short_name"
+        ></ion-input>
+      </ion-item>
 
-<!--      <ion-item>-->
-<!--        <ion-input-->
-<!--          label="Референсные значения"-->
-<!--          labelPlacement="stacked"-->
-<!--          type="string"-->
-<!--          placeholder="Референсные значения"-->
-<!--          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.refer"-->
-<!--        ></ion-input>-->
-<!--      </ion-item>-->
+      <ion-item>
+        <ion-select
+          label="Тип оборудования"
+          labelPlacement="stacked"
+          type="string"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.type_interaction"
+          (ngModelChange)="updateField('policy_number', $event)"
+          label-placement="stacked">
+          <ion-select-option value="type1">Тип оборудования №1</ion-select-option>
+          <ion-select-option value="type2">Тип оборудования №2</ion-select-option>
+          <ion-select-option value="type3">Тип оборудования №3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+        <ion-item>
+          <ion-select
+            label="Тип взаимодейсвтия"
+            labelPlacement="stacked"
+            type="string"
+            [(ngModel)]="tableService.selectedItem && tableService.selectedItem.type_equipment"
+            (ngModelChange)="updateField('policy_number', $event)"
+            label-placement="stacked">
+            <ion-select-option value="type1">Автоматический</ion-select-option>
+            <ion-select-option value="type2">Полуавтоматический</ion-select-option>
+            <ion-select-option value="type3">Ручной</ion-select-option>
+            <ion-select-option value="type4">Двусторонний обмен</ion-select-option>
+          ></ion-select>
+        </ion-item>
 
 
-<!--    </ion-content>-->
-<!--  </ng-template>-->
-<!--</ion-modal>-->
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 
