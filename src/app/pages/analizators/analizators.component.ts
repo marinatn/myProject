@@ -35,10 +35,14 @@ export class AnalizatorsComponent  implements OnInit {
   }
 
   prepareGrid() {
+
     this.gridColumns = this.tableService.getTableColumns();
+
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.updateData('http://localhost:8000/api/analizator').subscribe((data: any) => {
+    this.tableService.updateData('http://localhost:8000/api/analizators').subscribe((data: any) => {
+      debugger
       this.gridData = data;
+
     });
   }
 

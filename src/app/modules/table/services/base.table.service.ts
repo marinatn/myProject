@@ -114,6 +114,7 @@ export class BaseTableService implements TableServiceInterface {
   updateData(url: string): Observable<Object> {
     return new Observable((observer) => {
       return this.http.get(url).subscribe((data: any) => {
+        debugger
         this._dataset = data;
         this.angularGrid.slickGrid.invalidate();
         this.angularGrid.gridService.renderGrid();
