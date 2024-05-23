@@ -15,7 +15,8 @@ export const APP_ROUTES = {
   'timing_page': 'timing',
   'analizators_page': 'analizators',
   'type_interaction_page': 'type-interaction',
-  'doctors_page': 'doctors'
+  'doctors_page': 'doctors',
+  'equipment_page': 'equipment'
 }
 
 const routes: Routes = [
@@ -75,6 +76,13 @@ const routes: Routes = [
     path: APP_ROUTES.doctors_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/doctors/doctors.module').then( m => m.DoctorsModule)
+  },
+
+
+  {
+    path: APP_ROUTES.equipment_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentModule)
   },
 
 

@@ -3,28 +3,28 @@ import {Column, GridOption} from "angular-slickgrid";
 import {IonModal} from "@ionic/angular";
 import {ScheduleDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {OverlayEventDetail} from "@ionic/core/components";
-import {TypeInteractionDataView, TypeInteractionTableService} from "./type-interaction-table.service";
+import {EquipmentDataView, EquipmentTableService} from "./equipment-table.service";
 
 
 
 @Component({
   selector: 'app-qr',
-  templateUrl: 'type-interaction.component.html',
-  styleUrls: ['./type-interaction.component.scss'],
+  templateUrl: 'equipment.component.html',
+  styleUrls: ['./equipment.component.scss'],
 })
-export class TypeInteractionComponent  implements OnInit {
+export class EquipmentComponent  implements OnInit {
   gridColumns: Column[] = [];
   gridOptions: GridOption = {};
   gridData: any[] = [];
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
   @ViewChild('investigationModal') investigationModal: IonModal | any;
-  protected newItem: TypeInteractionDataView = {
+  protected newItem: EquipmentDataView = {
     id: 1,
     name: '',
   }
 
-  constructor(public tableService: TypeInteractionTableService) {
+  constructor(public tableService: EquipmentTableService) {
 
   }
 
@@ -35,7 +35,7 @@ export class TypeInteractionComponent  implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.updateData('http://localhost:8000/api/interactions').subscribe((data: any) => {
+    this.tableService.updateData('http://localhost:8000/api/equipments').subscribe((data: any) => {
       this.gridData = data;
     });
   }
@@ -45,7 +45,7 @@ export class TypeInteractionComponent  implements OnInit {
     this.newModal.dismiss(null, 'cancel');
   }
 
-  confirm(item: TypeInteractionDataView | null, mode: TableRowCRUDMode) {
+  confirm(item: EquipmentDataView | null, mode: TableRowCRUDMode) {
     if (!item) {
       return;
     }
