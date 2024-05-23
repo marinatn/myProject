@@ -66,7 +66,7 @@ export class DoctorsTableService extends BaseTableService implements TableServic
       sortable: true,
       minWidth: 350,
       maxWidth: 500,
-      type: FieldType.number,
+      type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     },

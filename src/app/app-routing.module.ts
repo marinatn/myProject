@@ -14,7 +14,7 @@ export const APP_ROUTES = {
   'tabs_page': 'tabs',
   'timing_page': 'timing',
   'analizators_page': 'analizators',
-  'type_interaction_page': 'type-interaction',
+  'type_interaction_page': 'interaction',
   'doctors_page': 'doctors',
   'equipment_page': 'equipment'
 }
