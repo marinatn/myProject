@@ -14,20 +14,22 @@ import {BaseTableService} from "../../modules/table/services/base.table.service"
 
 
 
-export interface TypeInteractionDataView {
+export interface DoctorsDataView {
   id: number,
-  name: string,
+  fio: string,
+  post: string,
+  snils: string,
 }
 @Injectable({providedIn: 'root'})
-export class TypeInteractionTableService extends BaseTableService implements TableServiceInterface {
+export class DoctorsTableService extends BaseTableService implements TableServiceInterface {
   constructor(
     override http: HttpClient,
     protected override translate: TranslateService,
     protected override alertController: AlertController) {
     super(http, translate, alertController);
   }
-  protected override _selectedItem: TypeInteractionDataView | null = null;
-  override get selectedItem(): TypeInteractionDataView | null {
+  protected override _selectedItem: DoctorsDataView | null = null;
+  override get selectedItem(): DoctorsDataView | null {
     return this._selectedItem;
   }
 
@@ -38,8 +40,8 @@ export class TypeInteractionTableService extends BaseTableService implements Tab
       name: 'Идентификатор',
       field: 'id',
       sortable: true,
-      minWidth: 150,
-      maxWidth: 250,
+      minWidth: 100,
+      maxWidth: 150,
       type: FieldType.number,
       filterable: true,
       filter: {model: Filters.compoundInputText}
@@ -47,11 +49,35 @@ export class TypeInteractionTableService extends BaseTableService implements Tab
 
     {
       id: 1,
-      name: 'Тип взаимодейсвтия анализатора',
-      field: 'name',
+      name: 'ФИО специалиста',
+      field: 'fio',
       sortable: true,
-      minWidth: 250,
-      maxWidth: 400,
+      minWidth: 350,
+      maxWidth: 500,
+      type: FieldType.number,
+      filterable: true,
+      filter: {model: Filters.compoundInputText}
+    },
+
+    {
+      id: 2,
+      name: 'Должность работника',
+      field: 'post',
+      sortable: true,
+      minWidth: 350,
+      maxWidth: 500,
+      type: FieldType.number,
+      filterable: true,
+      filter: {model: Filters.compoundInputText}
+    },
+
+    {
+      id: 3,
+      name: 'СНИЛС',
+      field: 'snils',
+      sortable: true,
+      minWidth: 150,
+      maxWidth: 150,
       type: FieldType.number,
       filterable: true,
       filter: {model: Filters.compoundInputText}
@@ -63,7 +89,7 @@ export class TypeInteractionTableService extends BaseTableService implements Tab
 }
 
 
-const customEnableButtonFormatter: Formatter<TypeInteractionDataView> = (_row: number, _cell: number, value: any) => {
+const customEnableButtonFormatter: Formatter<DoctorsDataView> = (_row: number, _cell: number, value: any) => {
   return `<span style="margin-left: 5px">
       <button class="btn btn-xs btn-default">
         <i class="fa ${value ? 'fa-check-circle' : 'fa-circle-thin'} fa-lg" style="color: ${value ? 'black' : 'lavender'}"></i>
