@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import {AuthGuard} from "./guards";
+import {TypeInteractionModule} from "./pages/type-interaction/type-interaction.module";
 // import {MainPageScreenComponent} from "./main-page-screen/main-page-screen.component";
 
 export const APP_ROUTES = {
@@ -12,7 +13,8 @@ export const APP_ROUTES = {
   'bcp_page': 'bcp',
   'tabs_page': 'tabs',
   'timing_page': 'timing',
-  'analizators_page': 'analizators'
+  'analizators_page': 'analizators',
+  'type_interaction_page': 'type-interaction'
 }
 
 const routes: Routes = [
@@ -62,23 +64,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/analizators/analizators.module').then( m => m.AnalizatorsModule)
   },
 
+  {
+    path: APP_ROUTES.type_interaction_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/type-interaction/type-interaction.module').then( m => m.TypeInteractionModule)
+  },
 
-  // {
-  //   path: APP_ROUTES.tabs_page,
-  //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  // },
-  // {
-  //   path: 'main',
-  //   loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
-  // },
+
+
   // {
   //   path: 'login',
   //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   // },
   // {
-  //   path: 'profile',
-  //   loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-  // }
 
 ];
 @NgModule({
