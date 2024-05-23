@@ -33,6 +33,7 @@ export class EquipmentComponent  implements OnInit {
   }
 
   prepareGrid() {
+    debugger
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
     this.tableService.updateData('http://localhost:8000/api/equipments').subscribe((data: any) => {
