@@ -1,0 +1,65 @@
+
+<ion-content>
+
+  <ion-grid class="grid1">
+
+    <ion-row class="row1">
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row2">
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-slide>
+    <div class="contaier-login">
+      <ion-row class="row1">
+        <ion-col class="img-container">
+        </ion-col>
+      </ion-row>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h1>Мобильный АРМ <br> сотрудника лаборатории</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+
+              <ion-item>
+                <ion-icon name="person" class="icon-login"></ion-icon>
+                <ion-input name="user" type="text" required placeholder="Логин"></ion-input>
+              </ion-item>
+              <br />
+              <ion-item>
+                <ion-icon name="block" class="icon-login"></ion-icon>
+                <ion-input name="lock" type="password" required placeholder="Пароль">
+                  <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"></ion-input>
+                  <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+                </ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" fill="solid" expand="full">
+              ВОЙТИ
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-slide>
+</ion-content>
+
+
