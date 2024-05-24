@@ -40,8 +40,8 @@
               </ion-item>
               <br />
               <ion-item>
-                <ion-icon name="block" class="icon-login"></ion-icon>
-                <ion-input name="lock" type="password" required placeholder="Пароль">
+                <ion-icon name="lock" class="icon-login"></ion-icon>
+                <ion-input name="password" type="password" required placeholder="Пароль">
                   <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"></ion-input>
                   <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
                 </ion-input>
