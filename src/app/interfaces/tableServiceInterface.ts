@@ -13,5 +13,5 @@ import {Observable} from "rxjs";
 export interface TableServiceInterface {
   getTableColumns(): Column[];
   getTableOptions(): GridOption
-  updateData(url:string):  Observable<Object>;
+  getTableData(url:string):  Observable<Object>;
 }

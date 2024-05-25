@@ -111,10 +111,9 @@ export class BaseTableService implements TableServiceInterface {
 
   protected _dataset: any[] = [];
 
-  updateData(url: string): Observable<Object> {
+  getTableData(url: string): Observable<any[]> {
     return new Observable((observer) => {
       return this.http.get(url).subscribe((data: any) => {
-        debugger
         this._dataset = data;
         this.angularGrid.slickGrid.invalidate();
         this.angularGrid.gridService.renderGrid();
@@ -171,7 +170,7 @@ export class BaseTableService implements TableServiceInterface {
   onSelectedRowsChanged($event: any) {
     const rows = $event.detail.args.rows;
     this._selectedItem = this.angularGrid.gridService.getDataItemByRowNumber(rows[0]);
-    debugger;
+
   }
 
   /** Dispatched event of a Grid State Changed event */

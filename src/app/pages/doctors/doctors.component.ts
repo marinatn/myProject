@@ -6,13 +6,12 @@ import {OverlayEventDetail} from "@ionic/core/components";
 import {DoctorsDataView, DoctorsTableService} from "./doctors-table.service";
 
 
-
 @Component({
   selector: 'app-qr',
   templateUrl: 'doctors.component.html',
   styleUrls: ['./doctors.component.scss'],
 })
-export class DoctorsComponent  implements OnInit {
+export class DoctorsComponent implements OnInit {
   gridColumns: Column[] = [];
   gridOptions: GridOption = {};
   gridData: any[] = [];
@@ -27,7 +26,6 @@ export class DoctorsComponent  implements OnInit {
   }
 
   constructor(public tableService: DoctorsTableService) {
-
   }
 
   ngOnInit() {
@@ -37,7 +35,7 @@ export class DoctorsComponent  implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.updateData('http://localhost:8000/api/doctors').subscribe((data: any) => {
+    this.tableService.getTableData('http://localhost:8000/api/doctors').subscribe((data: any[]) => {
       this.gridData = data;
     });
   }

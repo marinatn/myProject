@@ -29,6 +29,11 @@ const routes: Routes = [
     loadChildren: async () => (await import('./pages/main/main.module')).MainPageModule
   },
   {
+    path: APP_ROUTES.login_page,
+    pathMatch: 'full',
+    loadChildren: async () => (await import('./pages/login/login.module')).LoginPageModule
+  },
+  {
     path: APP_ROUTES.login_page2,
     pathMatch: 'full',
     loadChildren: async () => (await import('./pages/login2/login2.module')).Login2Module
