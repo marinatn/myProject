@@ -1,5 +1,12 @@
 
+
 <ion-content>
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Авторизация пользователя</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
   <ion-grid class="grid1">
 
@@ -35,12 +42,12 @@
             <ion-list>
 
               <ion-item>
-                <ion-icon name="person" class="icon-login"></ion-icon>
+                <ion-icon name="person-outline" class="icon-login"></ion-icon>
                 <ion-input name="user" type="text" required placeholder="Логин"></ion-input>
               </ion-item>
               <br />
               <ion-item>
-                <ion-icon name="lock" class="icon-login"></ion-icon>
+                <ion-icon name="lock-closed-outline" class="icon-login"></ion-icon>
                 <ion-input name="password" type="password" required placeholder="Пароль">
                   <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"></ion-input>
                   <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>

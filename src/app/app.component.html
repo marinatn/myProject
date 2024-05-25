@@ -1,6 +1,4 @@
 
-
-
 <ion-app>
 
   <!--Menu-->
@@ -12,7 +10,7 @@
         <ion-toolbar color="tertiary">
           <ion-title [routerLink]="[APP_ROUTES.profile_page]">
             Подтянуть ФИО
-            <p><a [routerLink]="['/login']">Logout</a></p>
+            <p><a [routerLink]="['/login2']">Logout</a></p>
           </ion-title>
         </ion-toolbar>
       </ion-menu-toggle>
@@ -32,56 +30,45 @@
       <ion-list [inset]="true">
         <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
           <ion-label>
-            <ion-img
-              [src]="'assets/icon/mp-timetable32.png'">
-            </ion-img>
-            расписание
+            <ion-icon name="medical-outline"></ion-icon>
+            Настройки проб и контейнеров
           </ion-label>
         </ion-menu-toggle>
 
         <ion-menu-toggle [routerLink]="[APP_ROUTES.bcp_page]">
           <ion-label>
-            <ion-img
-              [src]="'assets/icon/mp-timetable32.png'">
-            </ion-img>
-            Blood Collection Places (BCP)
+            <ion-icon name="eyedrop-outline"></ion-icon>
+            Пункты забора
           </ion-label>
         </ion-menu-toggle>
 
         <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
-            <ion-img
-              [src]="'assets/icon/lab-service32.png'" >
-            </ion-img>
-            Настройки проб и контейнеров
+            <ion-icon name="book-outline"></ion-icon>
+            Жунрал отбраковки
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle>
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
-            <ion-img
-              [src]="'assets/icon/book32.png'">
-            </ion-img>
-            Справочники
-          </ion-label>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle>
-          <ion-label>
-            <ion-img
-              [src]="'assets/icon/report32.png'">
-            </ion-img>
+            <ion-icon name="document-text-outline"></ion-icon>
             Отчеты
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle>
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
-            <ion-img
-              [src]="'assets/icon/technocard-icon.svg'">
-            </ion-img>
-            Технологические карты
+            <ion-icon name="help-buoy-outline"></ion-icon>
+            Отклоненные заявки
           </ion-label>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
+          <ion-label>
+            <ion-icon name="football-outline"></ion-icon>
+            Анализаторы
+          </ion-label>
+
         </ion-menu-toggle>
 
       </ion-list>
@@ -98,9 +85,10 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
 
-            <ion-img
-              [src]="'assets/icon/menu.png'">
-            </ion-img>
+<!--            <ion-img-->
+<!--              [src]="'assets/icon/menu.png'">-->
+<!--            </ion-img>-->
+
 
 
           <ion-title  *ngIf="authService.isLoggedIn()">АРМ Лаборанта</ion-title>

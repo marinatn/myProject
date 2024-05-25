@@ -29,9 +29,9 @@ const routes: Routes = [
     loadChildren: async () => (await import('./pages/main/main.module')).MainPageModule
   },
   {
-    path: APP_ROUTES.login_page,
+    path: APP_ROUTES.login_page2,
     pathMatch: 'full',
-    loadChildren: async () => (await import('./pages/login/login.module')).LoginPageModule
+    loadChildren: async () => (await import('./pages/login2/login2.module')).Login2Module
   },
   {
     path: APP_ROUTES.main_page,
@@ -86,11 +86,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentModule)
   },
 
-  {
-    path: APP_ROUTES.login_page2,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/login2/login2.module').then( m => m.Login2Module)
-  },
+  // {
+  //   path: APP_ROUTES.login_page2,
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/login2/login2.module').then( m => m.Login2Module)
+  // },
 
 
 

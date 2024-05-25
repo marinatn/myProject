@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {APP_ROUTES} from "./app-routing.module";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./services";
 
 
 @Component({
+  encapsulation: ViewEncapsulation.Emulated,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: [
     'app.component.scss'
   ],
-  // standalone: true,
+
+
   // imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
 
@@ -30,3 +29,4 @@ export class AppComponent {
 
   protected readonly APP_ROUTES = APP_ROUTES;
 }
+

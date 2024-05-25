@@ -1,5 +1,5 @@
 //img
-ion-img {
+ion-icon {
   width:35px!important;
   height:35px!important;
   float: left;
@@ -12,7 +12,8 @@ ion-menu-toggle {
 }
 
 ion-label {
-  font-weight: bold;
+  font-family: "Brush Script MT", serif;
+  font-size: 15px;
   text-transform: uppercase;
 }
 
@@ -25,23 +26,28 @@ ion-label {
   width: 24px;
 
 }
+.example-spacer {
+  flex: 1 0 auto;
+}
+image-radius {
+  border-radius: 10px;
 
-//.example-spacer {
-//  flex: 1 0 auto;
-//}
+  border: 5px solid #fff;
 
-/*.image-radius {
-  border-radius: 10px;  !* Скругление углов изображения *!
-  border: 5px solid #fff; !* Цвет и ширину рамки *!
-  box-shadow: 2px 1px 5px #999999; !* Цвет и размер тени *!
-}*/
+  box-shadow: 2px 1px 5px #999999;
 
-/*
+}
+
 ion-grid {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
   border: 3px solid #d2d5d5;
-
 }
-*/
+
+
+ion-header {
+  --background: rgb(27, 126, 219);
+  //color: rgb(27, 126, 219);
+}
+
