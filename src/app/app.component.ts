@@ -1,11 +1,12 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {APP_ROUTES} from "./app-routing.module";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./services";
+import {IonMenu} from "@ionic/angular/directives/proxies";
 
 
 @Component({
-  encapsulation: ViewEncapsulation.Emulated,
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: [
@@ -19,14 +20,34 @@ import {AuthenticationService} from "./services";
 
 
 export class AppComponent {
+  private values: string [] = ['1', '2'];
   public activeTab: string = 'test';
+  @ViewChild('mainMenu') mainMenu: IonMenu | undefined;
   constructor(private router: Router, protected authService: AuthenticationService) {}
+
+  accordionGroupChange = (ev: any) => {
+    const collapsedItems = this.values.filter((value) => value !== ev.detail.value);
+    const selectedValue = ev.detail.value;
+
+    console.log(
+      `Expanded: ${selectedValue === undefined ? 'None' : ev.detail.value} | Collapsed: ${collapsedItems.join(', ')}`
+    );
+  }
 
   async change(activeTab: string) {
     this.activeTab =  activeTab;
-    this.router.navigate([activeTab]);
+    await this.router.navigate([activeTab]);
   }
 
   protected readonly APP_ROUTES = APP_ROUTES;
+
+  async goToPage(ref: string) {
+    await this.router.navigate([ref]);
+    if (this.mainMenu) {
+      await this.mainMenu.close(true);
+    }
+
+
+  }
 }
 

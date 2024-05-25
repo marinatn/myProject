@@ -2,9 +2,9 @@
 <ion-app>
 
   <!--Menu-->
-  <ion-menu contentId="main-content">
+  <ion-menu contentId="main-content" #mainMenu>
     <!--Header menu-->
-    <ion-header class="header">
+    <ion-header class="header" >
 
       <ion-menu-toggle *ngIf="authService.isLoggedIn()">
         <ion-toolbar color="tertiary">
@@ -16,7 +16,7 @@
       </ion-menu-toggle>
 
       <ion-menu-toggle *ngIf="!authService.isLoggedIn()">
-        <ion-toolbar color="tertiary">
+        <ion-toolbar color="green">
           <ion-title>
             Авторизуйся
           </ion-title>
@@ -28,7 +28,7 @@
     <!--Content menu-->
     <ion-content color="light" *ngIf="authService.isLoggedIn()">
       <ion-list [inset]="true">
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.samples_page]">
           <ion-label>
             <ion-icon name="medical-outline"></ion-icon>
             Настройки проб и контейнеров
@@ -49,6 +49,12 @@
           </ion-label>
         </ion-menu-toggle>
 
+<!--        <ion-menu-toggle auto-hide="false" class="mymenu">-->
+<!--          <ion-item [routerDirection]="'root'" [routerLink]="['/home']">-->
+<!--            <ion-label><ion-icon name="home"></ion-icon>&nbsp;&nbsp;&nbsp;Home, About, Contact</ion-label>-->
+<!--          </ion-item>-->
+<!--        </ion-menu-toggle>-->
+
         <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
             <ion-icon name="document-text-outline"></ion-icon>
@@ -68,8 +74,47 @@
             <ion-icon name="football-outline"></ion-icon>
             Анализаторы
           </ion-label>
-
         </ion-menu-toggle>
+
+
+          <ion-accordion-group>
+
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>
+                  <ion-icon name="football-outline"></ion-icon>
+                  <div class="accordion-wrapper">
+                  Анализаторы
+                  </div>
+                </ion-label>
+              </ion-item>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.bcp_page)" [routerLink]="[APP_ROUTES.bcp_page]">           First Content</div>
+              <div class="" slot="content" >First Content</div>
+              <div class="" slot="content">First Content</div>
+              <!--          <ion-menu-toggle>
+
+                        </ion-menu-toggle>-->
+            </ion-accordion>
+          </ion-accordion-group>
+
+
+
+<!--        <ion-menu [routerLink]="[APP_ROUTES.timing_page]">
+          <ion-label>
+            <ion-accordion-group #accordionGroup>
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>First Accordion</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">First Content</div>
+            </ion-accordion>
+            </ion-accordion-group>
+
+&lt;!&ndash;            <ion-icon name="library-outline"></ion-icon>&ndash;&gt;
+&lt;!&ndash;            Справочники системы&ndash;&gt;
+          </ion-label>
+
+        </ion-menu>-->
 
       </ion-list>
 
