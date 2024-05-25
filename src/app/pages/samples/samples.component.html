@@ -1,3 +1,13 @@
-<p>
-  samples works!
-</p>
+<ion-title class="title">
+  Медицинские специалисты клинической лаборатории </ion-title>
+<app-table
+  [columns]="gridColumns"
+  [options]="gridOptions"
+  [data]="gridData"
+  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+>
+</app-table>
