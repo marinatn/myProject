@@ -8,7 +8,7 @@ import {DoctorsDataView, DoctorsTableService} from "./doctors-table.service";
 
 
 @Component({
-  selector: 'app-qr',
+  selector: 'app-doctors',
   templateUrl: 'doctors.component.html',
   styleUrls: ['./doctors.component.scss'],
 })

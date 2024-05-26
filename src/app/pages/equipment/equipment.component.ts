@@ -8,7 +8,7 @@ import {EquipmentDataView, EquipmentTableService} from "./equipment-table.servic
 
 
 @Component({
-  selector: 'app-qr',
+  selector: 'app-equipment',
   templateUrl: 'equipment.component.html',
   styleUrls: ['./equipment.component.scss'],
 })
