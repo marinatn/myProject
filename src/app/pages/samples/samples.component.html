@@ -1,5 +1,10 @@
+<div class="container-buttons">
+  <ion-button id="open-edit-modal" expand="block" [disabled]="!tableService.selectedItem">Редактировать</ion-button>
+
+</div>
+
 <ion-title class="title">
-  Медицинские специалисты клинической лаборатории </ion-title>
+ Настройка проб и контейнеров </ion-title>
 <app-table
   [columns]="gridColumns"
   [options]="gridOptions"
@@ -11,3 +16,46 @@
   (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
 >
 </app-table>
+
+<ion-modal trigger="open-edit-modal" #investigationModal (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+        </ion-buttons>
+        <ion-title>Выбор биоматериала</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Сохранить</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input
+          label="Код услуги"
+          labelPlacement="stacked"
+          type="string"
+          placeholder="Код услуги"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.code"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Биометериал"
+
+          label-placement="stacked">
+          <ion-select-option
+          ></ion-select-option>
+          <ion-select-option value="test 2">Тест 2</ion-select-option>
+          <ion-select-option value="test 3">Тест 3</ion-select-option>
+          <ion-select-option value="test 4">Тест 4</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
