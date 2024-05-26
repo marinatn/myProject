@@ -20,10 +20,10 @@
 <ion-modal trigger="open-edit-modal" #investigationModal (willDismiss)="onWillDismiss($event)">
   <ng-template>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="secondary">
         <ion-buttons slot="start">
         </ion-buttons>
-        <ion-title>Выбор биоматериала</ion-title>
+        <ion-title class="forms">Выбор биоматериала</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Сохранить</ion-button>
         </ion-buttons>
