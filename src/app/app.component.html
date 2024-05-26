@@ -35,17 +35,17 @@
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.bcp_page]">
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
           <ion-label>
             <ion-icon name="eyedrop-outline"></ion-icon>
-            Пункты забора
+            Заявки и исследования
           </ion-label>
         </ion-menu-toggle>
 
         <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
             <ion-icon name="book-outline"></ion-icon>
-            Жунрал отбраковки
+            Журнал отбраковки
           </ion-label>
         </ion-menu-toggle>
 
@@ -76,8 +76,11 @@
                   </div>
                 </ion-label>
               </ion-item>
-              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.bcp_page)" [routerLink]="[APP_ROUTES.bcp_page]">Сотрудники</div>
-              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.bcp_page)" [routerLink]="[APP_ROUTES.bcp_page]">Анализаторы</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.doctors_page)">Сотрудники</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Анализаторы</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.equipment_page)">Типы диагностического оборудования</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.bcp_page)">Тесты анализатора</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Пункты забора</div>
 
             </ion-accordion>
           </ion-accordion-group>
@@ -95,7 +98,7 @@
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar color="secondary">
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+        <ion-menu-toggle>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
