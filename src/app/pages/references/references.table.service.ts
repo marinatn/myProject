@@ -12,9 +12,9 @@ export class ReferencesTableService extends BaseTableService  implements TableSe
     public risks: any[] = [];
     public override item: any = {
       id: -1,
-      fio: '',
-      post: 0,
-      snils: '',
+      name: '',
+      min: 0,
+      max: '',
       risks: []
 
     };
@@ -37,10 +37,10 @@ export class ReferencesTableService extends BaseTableService  implements TableSe
 
       {
         id: 0,
-        name: 'ID',
+        name: 'Идентификатор',
         field: 'id',
         sortable: true,
-        minWidth: 100,
+        minWidth: 150,
         maxWidth: 150,
         type: FieldType.number,
         // filterable: true,
@@ -49,11 +49,11 @@ export class ReferencesTableService extends BaseTableService  implements TableSe
 
       {
         id: 1,
-        name: 'ФИО специалиста',
-        field: 'fio',
+        name: 'Наименование набора',
+        field: 'name',
         sortable: true,
         minWidth: 350,
-        maxWidth: 500,
+        maxWidth: 350,
         type: FieldType.string,
         filterable: true,
         filter: {model: Filters.compoundInputText}
@@ -61,11 +61,11 @@ export class ReferencesTableService extends BaseTableService  implements TableSe
 
       {
         id: 2,
-        name: 'Должность работника',
-        field: 'post',
+        name: 'Минимальное значение',
+        field: 'min',
         sortable: true,
         minWidth: 350,
-        maxWidth: 500,
+        maxWidth: 350,
         // formatter: this.postIdToValueFormatter
         // type: FieldType.string,
         // filterable: true,
@@ -74,11 +74,23 @@ export class ReferencesTableService extends BaseTableService  implements TableSe
 
       {
         id: 3,
-        name: 'СНИЛС',
-        field: 'snils',
+        name: 'Максимальное значение',
+        field: 'max',
         sortable: true,
-        minWidth: 150,
-        maxWidth: 150,
+        minWidth: 300,
+        maxWidth: 350,
+        type: FieldType.string,
+        filterable: true,
+        filter: {model: Filters.compoundInputText}
+      },
+
+      {
+        id: 4,
+        name: 'Группа риска',
+        field: 'risks',
+        sortable: true,
+        minWidth: 300,
+        maxWidth: 350,
         type: FieldType.string,
         filterable: true,
         filter: {model: Filters.compoundInputText}
