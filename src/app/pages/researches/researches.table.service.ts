@@ -42,42 +42,52 @@ export class ResearchesTableService extends BaseTableService  implements TableSe
         // filter: {model: Filters.compoundInputText}
       },
 
-      // {
-      //   id: 1,
-      //   name: 'ФИО специалиста',
-      //   field: 'fio',
-      //   sortable: true,
-      //   minWidth: 350,
-      //   maxWidth: 500,
-      //   type: FieldType.string,
-      //   filterable: true,
-      //   filter: {model: Filters.compoundInputText}
-      // },
-      //
-      // {
-      //   id: 2,
-      //   name: 'Должность работника',
-      //   field: 'post',
-      //   sortable: true,
-      //   minWidth: 350,
-      //   maxWidth: 500,
-      //   // formatter: this.postIdToValueFormatter
-      //   // type: FieldType.string,
-      //   // filterable: true,
-      //   // filter: {model: Filters.compoundInputText}
-      // },
-      //
-      // {
-      //   id: 3,
-      //   name: 'СНИЛС',
-      //   field: 'snils',
-      //   sortable: true,
-      //   minWidth: 150,
-      //   maxWidth: 150,
-      //   type: FieldType.string,
-      //   filterable: true,
-      //   filter: {model: Filters.compoundInputText}
-      // },
+      {
+        id: 1,
+        name: 'Идентификатор',
+        field: 'id',
+        sortable: true,
+        minWidth: 150,
+        maxWidth: 150,
+        type: FieldType.number,
+        // filterable: true,
+        // filter: {model: Filters.compoundInputText}
+      },
 
-    ];
-  }
+      {
+        id: 1,
+        name: 'Исследование',
+        field: 'id',
+        sortable: true,
+        minWidth: 150,
+        maxWidth: 150,
+        type: FieldType.number,
+        // filterable: true,
+        // filter: {model: Filters.compoundInputText}
+      },
+
+      {
+        id: 1,
+        name: 'Состав исследования',
+        field: 'tests',
+        sortable: true,
+        minWidth: 150,
+        maxWidth: 150,
+        type: FieldType.number,
+        // filterable: true,
+        // filter: {model: Filters.compoundInputText}
+      },
+
+      {
+        id: 1,
+        name: 'Штрихкод пробы',
+        field: 'barCode',
+        sortable: true,
+        minWidth: 200,
+        maxWidth: 200,
+        type: FieldType.number,
+        // filterable: true,
+        // filter: {model: Filters.compoundInputText}
+      },
+]
+}
