@@ -1,13 +1,4 @@
-import {
-  Column,
-  CompoundInputFilter,
-  FormatterResultWithHtml,
-  FormatterResultWithText,
-  GridOption,
-  SlickGrid
-} from "angular-slickgrid";
-import {CustomInputFilter} from "../modules/table/filters/custom.input/custom.input";
-import {TimingDataView} from "../pages/timing/timing-table.service";
+import {Column, GridOption,} from "angular-slickgrid";
 import {Observable} from "rxjs";
 
 export interface TableServiceInterface {

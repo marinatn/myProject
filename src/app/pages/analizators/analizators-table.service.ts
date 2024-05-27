@@ -10,6 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
 import {AlertController} from "@ionic/angular";
 import {BaseTableService} from "../../modules/table/services/base.table.service";
+import {VocabularyService} from "src/app/helpers/vocabulary";
 
 export interface AnalizatorsDataView{
   id: number,
@@ -20,13 +21,31 @@ export interface AnalizatorsDataView{
 }
 @Injectable({providedIn: 'root'})
 export class AnalizatorsTableService extends BaseTableService implements TableServiceInterface {
+  override item:any = {
+    id: -1,
+    name: '',
+    short_name: '',
+    type_interaction: 0,
+    type_equipment: 0
+  };
+  type_interactions: any[] = [];
+  type_equipments: any[] = [];
   constructor(
     override http: HttpClient,
     protected override translate: TranslateService,
-    protected override alertController: AlertController) {
+    protected override alertController: AlertController,
+    protected vocabulary: VocabularyService) {
     super(http, translate, alertController);
+    this.type_interactions = this.vocabulary.getTypesInteraction();
+    this.type_equipments = this.vocabulary.getTypeEquipments();
   }
   protected override _selectedItem: AnalizatorsDataView | null = null;
+  protected interactionIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+    return this.type_interactions[value] ? this.type_interactions[value].name || 'Схема взаимодействия не определена':value;
+  };
+  protected equpmentIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+    return this.type_equipments[value] ? this.type_equipments[value].name || 'Оборудование не определена':value;
+  };
   override get selectedItem(): AnalizatorsDataView | null {
     return this._selectedItem;
   }
@@ -36,13 +55,13 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
     {
       id: 0,
       name: 'Идентификатор',
-      field: 'name',
-      sortable: true,
+      field: 'id',
+      // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
+      // type: FieldType.number,
+      // filterable: true,
+      // filter: {model: Filters.compoundInputText}
     },
 
     {
@@ -52,7 +71,7 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
       sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
+      type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     },
@@ -60,25 +79,27 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
     {
       id: 2,
       name: 'Тип оборудования',
-      field: 'type_interaction',
-      sortable: true,
+      field: 'type_equipment',
+      // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
+      formatter: this.equpmentIdToValueFormatter,
+      type: FieldType.string,
+      // filterable: true,
+      // filter: {model: Filters.compoundInputText}
     },
 
     {
       id: 3,
       name: 'Тип взаимодействия',
-      field: 'type_equipment',
-      sortable: true,
+      field: 'type_interaction',
+      // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
+      formatter: this.interactionIdToValueFormatter,
+      type: FieldType.string,
+      // filterable: true,
+      // filter: {model: Filters.compoundInputText}
     },
   ];
 

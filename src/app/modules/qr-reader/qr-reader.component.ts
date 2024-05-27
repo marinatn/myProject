@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Barcode, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
+import {Component, OnInit} from '@angular/core';
+import {BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
 import {AlertController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-qr',
-  templateUrl: './qr.component.html',
-  styleUrls: ['./qr.component.scss'],
+  selector: 'app-qr-reader',
+  templateUrl: './qr-reader.component.html',
+  styleUrls: ['./qr-reader.component.scss'],
 })
-export class QrComponent implements OnInit {
+export class QrReaderComponent implements OnInit {
 
   isSupported = false;
   barcodes: /*Barcode*/any[] = [{format: 'format', rawValue: 'rawValue'}, {format: 'format', rawValue: 'rawValue'}, {format: 'format', rawValue: 'rawValue'}];

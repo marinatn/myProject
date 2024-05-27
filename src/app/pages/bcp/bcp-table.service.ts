@@ -46,7 +46,7 @@ export class BcpTableService extends BaseTableService implements TableServiceInt
       sortable: true,
       minWidth: 55,
       maxWidth: 75,
-      type: FieldType.number,
+      type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     },
@@ -58,7 +58,7 @@ export class BcpTableService extends BaseTableService implements TableServiceInt
       sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
+      type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     },
@@ -67,12 +67,12 @@ export class BcpTableService extends BaseTableService implements TableServiceInt
       id: 1,
       name: 'Референсные значения',
       field: 'refer',
-      sortable: true,
+      // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
+      type: FieldType.string,
+      // filterable: true,
+      // filter: {model: Filters.compoundInputText}
     },
   ];
 

@@ -1,23 +1,11 @@
 import {TableServiceInterface} from "../../interfaces/tableServiceInterface";
-import {
-  AngularGridInstance,
-  Column, CompoundInputFilter,
-  FieldType,
-  Filters,
-  Formatter, FormatterResultWithHtml, FormatterResultWithText,
-  GridOption,
-  GridStateChange,
-  Metrics, SlickGrid
-} from "angular-slickgrid";
+import {Column, FieldType, Filters, Formatter} from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
-import {CustomInputFilter} from "../../modules/table/filters/custom.input/custom.input";
 import {AlertController} from "@ionic/angular";
-import {BaseTableService, ScheduleDataView} from "../../modules/table/services/base.table.service";
-import {map} from "rxjs/operators";
-import {Observable, Observer, Subscription} from "rxjs";
-
+import {BaseTableService} from "../../modules/table/services/base.table.service";
+import {VocabularyService} from "../../helpers/vocabulary";
 
 
 export interface TimingDataView {
@@ -27,20 +15,18 @@ export interface TimingDataView {
   refer: string
 }
 @Injectable({providedIn: 'root'})
-export class TimingTableService extends BaseTableService implements TableServiceInterface {
+export class TestsTableService extends BaseTableService implements TableServiceInterface {
+  references: any[] = [];
   constructor(
     override http: HttpClient,
     protected override translate: TranslateService,
-    protected override alertController: AlertController) {
+    protected override alertController: AlertController,
+    protected vocabularyService: VocabularyService) {
     super(http, translate, alertController);
-  }
-  protected override _selectedItem: TimingDataView | null = null;
-  override get selectedItem(): TimingDataView | null {
-    return this._selectedItem;
+    this.references = this.vocabularyService.getReferences();
   }
 
   override getTableColumns = (): Column[] => [
-
     {
       id: 1,
       name: 'Код теста',
@@ -60,7 +46,7 @@ export class TimingTableService extends BaseTableService implements TableService
       sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
+      type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     },
@@ -69,12 +55,12 @@ export class TimingTableService extends BaseTableService implements TableService
       id: 1,
       name: 'Референсные значения',
       field: 'refer',
-      sortable: true,
+      // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      type: FieldType.number,
-      filterable: true,
-      filter: {model: Filters.compoundInputText}
+      // type: FieldType.number,
+      // filterable: true,
+      // filter: {model: Filters.compoundInputText}
     },
   ];
 

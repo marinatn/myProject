@@ -4,13 +4,13 @@
   "compilerOptions": {
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "noPropertyAccessFromIndexSignature": false,
     "jsx": "react",
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -29,9 +29,9 @@
     "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
-    "strictTemplates": false,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
+    "strictTemplates": false
   }
 }

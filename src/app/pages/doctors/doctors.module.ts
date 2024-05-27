@@ -4,6 +4,7 @@ import {TableModule} from "../../modules/table/table.module";
 import {FormsModule} from "@angular/forms";
 import { NgModule } from '@angular/core'
 import {DoctorsComponent} from "./doctors.component"
+import {NgFor, NgTemplateOutlet} from "@angular/common";
 
 const routes: Routes = [
   {
@@ -22,6 +23,8 @@ const routes: Routes = [
     IonicModule,
     TableModule,
     FormsModule,
+    NgFor,
+    NgTemplateOutlet
   ],
 
   exports: [RouterModule],

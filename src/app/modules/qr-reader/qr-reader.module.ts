@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import {QrComponent} from "./qr.component";
+import {NgModule} from '@angular/core';
+import {QrReaderComponent} from "./qr-reader.component";
 import {RouterModule, Routes} from "@angular/router";
 import {IonicModule} from "@ionic/angular";
 import {NgForOf} from "@angular/common";
@@ -8,20 +8,20 @@ import {NgForOf} from "@angular/common";
 const routes: Routes = [
   {
     path: '',
-    component: QrComponent
+    component: QrReaderComponent
   }
 ];
 
 
 @NgModule({
   declarations: [
-    QrComponent
+    QrReaderComponent
   ],
   imports: [
     RouterModule.forChild(routes),
     IonicModule,
     NgForOf,
   ],
-  exports: [RouterModule, QrComponent],
+  exports: [RouterModule, QrReaderComponent],
 })
-export class QrModule { }
+export class QrReaderModule { }

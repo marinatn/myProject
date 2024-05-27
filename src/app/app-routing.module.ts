@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 import {AuthGuard} from "./guards";
-import {TypeInteractionModule} from "./pages/type-interaction/type-interaction.module";
 // import {MainPageScreenComponent} from "./main-page-screen/main-page-screen.component";
 
 export const APP_ROUTES = {
@@ -12,16 +11,20 @@ export const APP_ROUTES = {
   'schedule_page': 'schedule',
   'bcp_page': 'bcp',
   'tabs_page': 'tabs',
-  'timing_page': 'timing',
   'analizators_page': 'analizators',
   'type_interaction_page': 'interaction',
   'doctors_page': 'doctors',
   'equipment_page': 'equipment',
-  'login_page2': 'login2'
+  'login_page2': 'login2',
+  'apps_page': 'apps',
+
+  'tests_page': 'tests',
+  'references_page': 'references',
+  'researches_page': 'researches',
+  'patients_page': 'patients',
 }
 
 const routes: Routes = [
-
   {
     path: '',
     pathMatch: 'full',
@@ -53,63 +56,80 @@ const routes: Routes = [
   {
     path: APP_ROUTES.schedule_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule)
+    loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.SchedulePageModule)
   },
   {
     path: APP_ROUTES.bcp_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/bcp/bcp.module').then( m => m.BCPPageModule)
-  },
-  {
-    path: APP_ROUTES.timing_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/timing/timing.module').then( m => m.TimingModule)
+    loadChildren: () => import('./pages/bcp/bcp.module').then(m => m.BCPPageModule)
   },
 
   {
     path: APP_ROUTES.analizators_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/analizators/analizators.module').then( m => m.AnalizatorsModule)
+    loadChildren: () => import('./pages/analizators/analizators.module').then(m => m.AnalizatorsModule)
   },
-
   {
     path: APP_ROUTES.type_interaction_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/type-interaction/type-interaction.module').then( m => m.TypeInteractionModule)
+    loadChildren: () => import('./pages/type-interaction/type-interaction.module').then(m => m.TypeInteractionModule)
   },
 
   {
     path: APP_ROUTES.doctors_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/doctors/doctors.module').then( m => m.DoctorsModule)
+    loadChildren: () => import('./pages/doctors/doctors.module').then(m => m.DoctorsModule)
   },
-
-
+  {
+    path: APP_ROUTES.apps_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/applications/applications.module').then(m => m.ApplicationsModule)
+  },
   {
     path: APP_ROUTES.equipment_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentModule)
+    loadChildren: () => import('./pages/equipment/equipment.module').then(m => m.EquipmentModule)
   },
 
+  
+  // references -> tests -> researches -> patients
+  {
+    path: APP_ROUTES.references_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/references/references.module').then(m => m.ReferencesModule)
+  },
+  {
+    path: APP_ROUTES.tests_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/tests/tests.module').then(m => m.TestsModule)
+  },
+  {
+    path: APP_ROUTES.researches_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/researches/researches.module').then(m => m.ResearchesModule)
+  },
+  {
+    path: APP_ROUTES.patients_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/patients/patients.module').then(m => m.PatientsModule)
+  },
   // {
   //   path: APP_ROUTES.login_page2,
   //   canActivate: [AuthGuard],
   //   loadChildren: () => import('./pages/login2/login2.module').then( m => m.Login2Module)
   // },
-
-
-
   // {
   //   path: 'login',
   //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   // },
-  // {
 
 ];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

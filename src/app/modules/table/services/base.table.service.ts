@@ -2,17 +2,8 @@ import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {AlertController} from "@ionic/angular";
-import {
-  AngularGridInstance,
-  Column, CompoundInputFilter,
-  FieldType,
-  Filters,
-  Formatter, FormatterResultWithHtml, FormatterResultWithText,
-  GridOption,
-  GridStateChange,
-  Metrics, SlickGrid
-} from "angular-slickgrid";
-import {CustomInputFilter} from "../filters/custom.input/custom.input";
+import {OverlayEventDetail} from "@ionic/core/components";
+import {AngularGridInstance, Column, GridOption, GridStateChange, Metrics} from "angular-slickgrid";
 import {Observable} from "rxjs";
 
 
@@ -59,6 +50,7 @@ function randomBetween(min: number, max: number) {
 const NB_ITEMS = 1500;
 
 export class BaseTableService implements TableServiceInterface {
+  item: any = {};
   constructor(protected  http: HttpClient, protected  translate: TranslateService, protected  alertController: AlertController) {
   }
 
@@ -122,42 +114,6 @@ export class BaseTableService implements TableServiceInterface {
     })
   }
 
-  mockData(itemCount: number, startingIndex = 0): ScheduleDataView[] {
-    // mock a dataset
-    const tempDataset = [];
-    for (let i = startingIndex; i < (startingIndex + itemCount); i++) {
-      const flag: boolean = !!randomBetween(0, 1);
-      const tape: string = flag ? 'Кастрля' : 'Чемодан';
-      const barCode = Math.round(Math.random() * 100);
-      const bcp_name: string = 'Пункт за'
-      const randomYear = randomBetween(2000, 2035);
-      const randomYearShort = randomBetween(10, 35);
-      const randomMonth = randomBetween(1, 12);
-      const randomMonthStr = (randomMonth < 10) ? `0${randomMonth}` : randomMonth;
-      const randomDay = randomBetween(10, 28);
-      const randomPercent = randomBetween(0, 100);
-      const randomHour = randomBetween(10, 23);
-      const randomTime = randomBetween(10, 59);
-      const randomMilliseconds = `${randomBetween(1, 9)}${randomBetween(10, 99)}`;
-      const randomIsEffort = (i % 3 === 0);
-
-      tempDataset.push(<ScheduleDataView><unknown>{
-        id: i,
-        title: 'Title ' + i,
-        tape: tape,
-        bar_code: barCode,
-        bcp_name: 'Пункт забора крови № ' + (i % 3 === 0) ? 'Ильича ' + i : i,
-        completed: flag,
-        date_direction: `${randomYear}-${randomMonthStr}-${randomDay}T${randomHour}:${randomTime}:${randomTime}.${randomMilliseconds}Z`,
-        investigation_name: 'Исследование ' + (i ? 'мочи' : 'говна') + ' № ' + i,
-        deviation: i ? 'Болеет' : 'Псих',
-        patient_id: 'Пациент № ' + i,
-        status: (i % 3 === 0) ? 'Жить будет' : 'Неизлечим',
-      });
-    }
-    return tempDataset;
-  }
-
   protected _selectedItem: any | null = null;
 
   get selectedItem(): any | null {
@@ -183,32 +139,42 @@ export class BaseTableService implements TableServiceInterface {
     console.log('Client sample, last Grid State:: ', this.angularGrid.gridStateService.getCurrentGridState());
   }
 
-  async deleteAlert() {
-    const item: ScheduleDataView | null = this.selectedItem;
+  async deleteAlert(
+    itemUrl: string = '',
+    header:string = 'Удаление заголовок',
+    subHeader: string = 'Удаление подзаголовок',
+    message:string = 'Удаление сообщение', ) {
+    const item: any | null = this.selectedItem;
     if (item) {
       const alert = await this.alertController.create({
-        header: 'Удаляем чувака по имени ' + (item.patient_fio || '(Нету у него имени)'),
-        subHeader: 'а номер его' + (item.patient_id || '(Нету у него номера)'),
-        message: 'Мочим гада? ',
+        header: header,
+        subHeader: subHeader,
+        message: message,
         buttons: [{
-          text: 'Cancel',
+          text: 'Отмена',
           role: 'cancel',
           handler: () => {
             console.log('Alert canceled');
           },
         },
           {
-            text: 'KILL HIM',
+            text: 'Удалить',
             role: 'confirm',
             handler: () => {
-              if (this.selectedItem) {
-                this.deleteItem({data: this.selectedItem, refresh: true})
+              if (item) {
+                this.deleteItem({data: this.selectedItem, refresh: true}, itemUrl+item.id);
               }
             },
           },],
       });
 
       await alert.present();
+    }
+  }
+
+  updateField(field: string, value: string) {
+    if (field) {
+      this.item[field as any] = value;
     }
   }
 
@@ -230,6 +196,33 @@ export class BaseTableService implements TableServiceInterface {
   //   ]);
   // }
 
+  gridColumns: Column[] = [];
+  gridOptions: GridOption = {};
+  gridData: any[] = [];
+  prepareGrid(url:string) {
+    this.gridColumns = this.getTableColumns();
+    this.gridOptions = this.getTableOptions();
+    this.getTableData(url).subscribe((data: any[]) => {
+      this.gridData = data;
+    });
+  }
+
+  onWillDismiss($event: Event, itemUrl:string) {
+    const ev = $event as CustomEvent<OverlayEventDetail<TableRowOpts>>;
+    if (ev.detail.data) {
+      const mode: TableRowCRUDMode = ev.detail.data.mode;
+      const item = ev.detail.data.item;
+      if (ev.detail.role === 'confirm') {
+        if (mode === 'new') {
+          this.addItem({data: item, refresh: true}, itemUrl);
+        } else if (mode === 'edit' || mode === 'update') {
+          this.updateItem({data: item, refresh: true}, itemUrl + item.id);
+        }
+      }
+    }
+  }
+
+
   refreshMetrics(e: Event, args: any) {
     if (args && args.current >= 0) {
       setTimeout(() => {
@@ -243,35 +236,59 @@ export class BaseTableService implements TableServiceInterface {
     }
   }
 
-  addItem(opts: { data: ScheduleDataView, refresh: boolean }) {
-    const item: ScheduleDataView = {...opts.data};
-    item.id = this._dataset.length + 1;
-    this._dataset.push(item);
-    const rowNumber = this.angularGrid.gridService.addItem(item);
-    this.angularGrid.gridService.renderGrid();
-    if (rowNumber !== undefined) {
-      this.angularGrid.gridService.highlightRow(rowNumber, 2000);
-      this.angularGrid.gridService.setSelectedRow(rowNumber);
-    }
-  }
-
-  updateItem(opts: { data: ScheduleDataView, refresh: boolean }) {
-    const item: ScheduleDataView = {...opts.data};
-    const rowNumber = this.angularGrid.gridService.updateItem(item);
-    if (opts.refresh) {
+  addItem(opts: { data: any, refresh: boolean }, url:string = '') {
+    const item: any = {...opts.data};
+    // item.id = this._dataset.length + 1;
+    // delete item.id;
+    this.http.post(url, item).subscribe((res:any) => {
+      item.id = res.id;
+      this._dataset.push(item);
+      const rowNumber = this.angularGrid.gridService.addItem(item);
       this.angularGrid.gridService.renderGrid();
       if (rowNumber !== undefined) {
         this.angularGrid.gridService.highlightRow(rowNumber, 2000);
-        // this.angularGrid.gridService.setSelectedRow(rowNumber);
+        this.angularGrid.gridService.setSelectedRow(rowNumber);
       }
-    }
+    });
   }
 
-  deleteItem(opts: { data: ScheduleDataView, refresh: boolean }) {
-    this.angularGrid.gridService.deleteItem(opts.data);
-    this._selectedItem = null;
-    if (opts.refresh) {
-      this.angularGrid.gridService.renderGrid();
+  updateItem(opts: { data: any, refresh: boolean }, url: string = '') {
+    const item: any = {...opts.data};
+    this.http.put(url, item).subscribe((res) => {
+      const rowNumber = this.angularGrid.gridService.updateItem(item);
+      if (opts.refresh) {
+        this.angularGrid.gridService.renderGrid();
+        if (rowNumber !== undefined) {
+          this.angularGrid.gridService.highlightRow(rowNumber, 2000);
+          this.angularGrid.gridService.setSelectedRow(rowNumber);
+        }
+      }
+    })
+  }
+
+  deleteItem(opts: { data: any, refresh: boolean }, url: string = '') {
+    this.http.delete(url).subscribe((res) => {
+      this.angularGrid.gridService.deleteItem(opts.data);
+      this._selectedItem = null;
+      if (opts.refresh) {
+        this.angularGrid.gridService.renderGrid();
+      }
+    })
+  }
+
+  confirm(item: any | null, mode: TableRowCRUDMode, modalRef:any) {
+    if (!item) {
+      return;
     }
+    const opts: TableRowOpts = {
+      item: item,
+      mode: mode
+    }
+
+    modalRef.dismiss(opts, 'confirm');
+  }
+
+  cancel(modalRef:any) {
+    modalRef.dismiss('cancel')
   }
 }

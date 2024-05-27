@@ -1,0 +1,87 @@
+<!-- <ion-title class="title">
+  Медицинские специалисты клинической лаборатории
+</ion-title>
+
+<div class="container-buttons">
+  <ion-button id="open-create-modal" expand="block">Добавить</ion-button>
+  <ion-button id="open-edit-modal" expand="block" [disabled]="!tableService.selectedItem">Изменить</ion-button>
+  <ion-button id="open-viewing-modal" expand="block" [disabled]="!tableService.selectedItem">Просмотреть</ion-button>
+  <ion-button (click)="tableService.deleteAlert(itemUrl)" expand="block" [disabled]="!tableService.selectedItem">Удалить</ion-button>
+</div> -->
+
+
+
+<div class="ion-padding">
+    Референсные значения
+
+    <ion-item>
+      <ion-input
+        label="Название значения"
+        labelPlacement="stacked"
+        type="string"
+        placeholder="Название значения"
+        [(ngModel)]="tableService.item && tableService.item.name"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Минимально допустимое"
+        labelPlacement="stacked"
+        type="number"
+        placeholder="Минимально допустимое"
+        [(ngModel)]="tableService.item && tableService.item.minValue"
+      ></ion-input>
+    </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Максимально допустимое"
+      labelPlacement="stacked"
+      type="number"
+      placeholder="Максимально допустимое"
+      [(ngModel)]="tableService.item && tableService.item.maxValue"
+    ></ion-input>
+  </ion-item>
+
+
+  <ion-item [button]="true" [detail]="false" id="select-risks">
+    <ion-label>Группы риска </ion-label>
+    <div slot="end" id="selected-risks">{{ selectedRisksText }}</div>
+  </ion-item>
+
+
+  </div>
+
+
+
+<app-table
+  [columns]="tableService.gridColumns"
+  [options]="tableService.gridOptions"
+  [data]="tableService.gridData"
+  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+>
+</app-table>
+
+<ion-modal trigger="select-risks" #risksModal>
+  <ng-template>
+    <!--     (selectionChange)="fruitSelectionChanged($event)" -->
+    <app-typeahead
+      class="ion-page"
+      title="Риски"
+      [items]="tableService.risks"
+      [selectedItems]="tableService.item.risks"
+      (selectionChange)="onChangeRisks($event)"
+      (selectionCancel)="risksModal.dismiss()"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+
+
+
+

@@ -1,17 +1,16 @@
 import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouteReuseStrategy} from '@angular/router';
 
 
+import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {AngularSlickgridModule} from "angular-slickgrid";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {LOCATION_INITIALIZED} from "@angular/common";
 
 import 'flatpickr/dist/l10n/ru';
@@ -20,6 +19,10 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {VocabularyService} from "src/app/helpers/vocabulary";
+import {TypeaheadModule} from "src/app/modules/typeahead/typeahead.module";
+import {QrCreatorModule} from "./modules/qr-creator/qr-creator.module";
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -67,7 +70,9 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
         container: '#table-container',
         rightPadding: 10
       }
-    })
+    }),
+    TypeaheadModule,
+    QrCreatorModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -82,7 +87,8 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+    VocabularyService
   ],
   bootstrap: [AppComponent],
 })

@@ -8,7 +8,7 @@ import {TypeInteractionDataView, TypeInteractionTableService} from "./type-inter
 
 
 @Component({
-  selector: 'app-qr',
+  selector: 'app-page-interaction',
   templateUrl: 'type-interaction.component.html',
   styleUrls: ['./type-interaction.component.scss'],
 })
