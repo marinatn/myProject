@@ -1,20 +1,22 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-segment value="applications">
 
-      <ion-segment-button value="applicationsl">
-        <ion-label>Заявки</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="samples">
-        <ion-label>Пробы</ion-label>
-      </ion-segment-button>
-
-    </ion-segment>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-  </ion-header>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+
+      <ion-tab-button tab="-table.service">
+        <ion-icon name="calendar-outline"></ion-icon>
+        Заявки
+      </ion-tab-button>
+
+      <ion-tab-button tab="samples">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+        Пробы
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
 
 </ion-content>
