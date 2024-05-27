@@ -22,6 +22,8 @@ export const APP_ROUTES = {
   'references_page': 'references',
   'researches_page': 'researches',
   'patients_page': 'patients',
+
+  'samples_page': 'samples'
 }
 
 const routes: Routes = [
@@ -91,7 +93,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/equipment/equipment.module').then(m => m.EquipmentModule)
   },
 
-  
+  {
+    path: APP_ROUTES.samples_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/samples/samples.module').then( m => m.SamplesModule)
+  },
+
+
   // references -> tests -> researches -> patients
   {
     path: APP_ROUTES.references_page,
@@ -124,7 +132,6 @@ const routes: Routes = [
   // },
 
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})

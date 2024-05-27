@@ -5,6 +5,12 @@ ion-icon {
   float: left;
   display: flex;
 }
+
+ion-title {
+  font-family: "Brush Script MT", serif;
+  font-size: 25px;
+}
+
 ion-menu-toggle {
   float: left;
   white-space: break-spaces;
@@ -16,6 +22,14 @@ ion-label {
   font-size: 15px;
   text-transform: uppercase;
 }
+
+ion-accordion {
+  margin-left: -12px;
+  font-family: "Brush Script MT", serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
 
 .mat-icon.mat-ligature-font[fontIcon]::before {
   content: attr(fontIcon);
@@ -51,3 +65,12 @@ ion-header {
   //color: rgb(27, 126, 219);
 }
 
+.accordion-wrapper {
+  font-family: "Brush Script MT", serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.content {
+  margin-left: 15px;
+}

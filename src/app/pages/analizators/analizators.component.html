@@ -24,7 +24,7 @@
 <ion-modal trigger="open-create-modal" #newModal (willDismiss)="tableService.onWillDismiss($event, itemUrl)">
   <ng-template>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="secondary">
         <ion-buttons slot="start">
           <ion-button (click)="tableService.cancel(newModal)">Закрыть</ion-button>
         </ion-buttons>

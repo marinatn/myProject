@@ -2,12 +2,12 @@
 <ion-app>
 
   <!--Menu-->
-  <ion-menu contentId="main-content">
+  <ion-menu contentId="main-content" #mainMenu>
     <!--Header menu-->
-    <ion-header class="header">
+    <ion-header class="header" >
 
       <ion-menu-toggle *ngIf="authService.isLoggedIn()">
-        <ion-toolbar color="tertiary">
+        <ion-toolbar color="secondary">
           <ion-title [routerLink]="[APP_ROUTES.profile_page]">
             Подтянуть ФИО
             <p><a [routerLink]="['/login2']">Logout</a></p>
@@ -16,7 +16,7 @@
       </ion-menu-toggle>
 
       <ion-menu-toggle *ngIf="!authService.isLoggedIn()">
-        <ion-toolbar color="tertiary">
+        <ion-toolbar color="secondary">
           <ion-title>
             Авторизуйся
           </ion-title>
@@ -28,26 +28,27 @@
     <!--Content menu-->
     <ion-content color="light" *ngIf="authService.isLoggedIn()">
       <ion-list [inset]="true">
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.samples_page]">
           <ion-label>
             <ion-icon name="medical-outline"></ion-icon>
             Настройки проб и контейнеров
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.bcp_page]">
+        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
           <ion-label>
             <ion-icon name="eyedrop-outline"></ion-icon>
-            Пункты забора
+            Заявки и исследования
           </ion-label>
         </ion-menu-toggle>
 
         <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
             <ion-icon name="book-outline"></ion-icon>
-            Жунрал отбраковки
+            Журнал отбраковки
           </ion-label>
         </ion-menu-toggle>
+
 
         <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
           <ion-label>
@@ -63,13 +64,30 @@
           </ion-label>
         </ion-menu-toggle>
 
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
-          <ion-label>
-            <ion-icon name="football-outline"></ion-icon>
-            Анализаторы
-          </ion-label>
 
-        </ion-menu-toggle>
+          <ion-accordion-group>
+
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>
+                  <ion-icon name="library-outline"></ion-icon>
+                  <div class="accordion-wrapper">
+                  Справочники системы
+                  </div>
+                </ion-label>
+              </ion-item>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.doctors_page)">Сотрудники</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Анализаторы</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.equipment_page)">Типы диагностического оборудования</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.bcp_page)">Тесты анализатора</div>
+              <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Пункты забора</div>
+
+            </ion-accordion>
+          </ion-accordion-group>
+
+
+
+
 
       </ion-list>
 
@@ -79,8 +97,8 @@
   <!--Page-->
   <div class="ion-page" id="main-content">
     <ion-header>
-      <ion-toolbar>
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
+      <ion-toolbar color="secondary">
+        <ion-menu-toggle>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -91,7 +109,10 @@
 
 
 
-          <ion-title  *ngIf="authService.isLoggedIn()">АРМ Лаборанта</ion-title>
+          <ion-title  *ngIf="authService.isLoggedIn()">
+            <ion-icon name="menu-outline"></ion-icon>
+              АРМ Лаборанта
+          </ion-title>
           <ion-title  *ngIf="!authService.isLoggedIn()">Авторизация пользователя</ion-title>
         </ion-menu-toggle>
       </ion-toolbar>

@@ -23,7 +23,7 @@
 <ion-modal trigger="open-edit-modal" #editModal (willDismiss)="tableService.onWillDismiss($event, itemUrl)">
   <ng-template>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="secondary">
         <ion-buttons slot="start">
           <ion-button (click)="tableService.cancel(editModal)">Закрыть</ion-button>
         </ion-buttons>
