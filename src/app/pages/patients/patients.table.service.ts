@@ -13,10 +13,10 @@ export class PatientsTableService extends BaseTableService  implements TableServ
     public override item: any = {
       id: -1,
       fio: '',
-      post: 0,
-      snils: '',
+      bith_date: '1970-01-01',
+      snils_code: '',
+      police_code: '',
       risks: []
-
     };
 
 
@@ -30,7 +30,17 @@ export class PatientsTableService extends BaseTableService  implements TableServ
     }
 
     protected riskIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
-      return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
+      let str = '';
+      JSON.parse(value).forEach((k:string) => {
+        let risk = this.risks.find((risk) => {
+          let res = risk.value === k;
+          return res
+        })
+        str = str+risk.text + '; ';
+      })
+
+      return str;
+      // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
     };
 
     override getTableColumns = (): Column[] => [
@@ -61,7 +71,18 @@ export class PatientsTableService extends BaseTableService  implements TableServ
       {
         id: 3,
         name: 'СНИЛС',
-        field: 'snils',
+        field: 'snils_code',
+        sortable: true,
+        minWidth: 150,
+        maxWidth: 150,
+        type: FieldType.string,
+        filterable: true,
+        filter: {model: Filters.compoundInputText}
+      },
+      {
+        id: 4,
+        name: 'police_code',
+        field: 'police_code',
         sortable: true,
         minWidth: 150,
         maxWidth: 150,
@@ -70,5 +91,31 @@ export class PatientsTableService extends BaseTableService  implements TableServ
         filter: {model: Filters.compoundInputText}
       },
 
+      {
+        id: 5,
+        name: 'Группа риска',
+        field: 'risks',
+        sortable: true,
+        minWidth: 300,
+        maxWidth: 350,
+        type: FieldType.string,
+        filterable: true,
+        formatter: this.riskIdToValueFormatter,
+        filter: {model: Filters.compoundInputText}
+      },
+
     ];
-  }
+
+    public addPatient(itemUrl: string = '') {
+      const data = Object.assign({...this.item}, {
+        "snils_code": this.item.snils_code.toString(),
+        "police_code": this.item.police_code.toString(),
+        "risks": JSON.stringify([...this.item.risks])
+      });
+      this.addItem({
+        data: data,
+        refresh: true
+      }, itemUrl);
+    }
+
+}

@@ -288,6 +288,8 @@ export class BaseTableService implements TableServiceInterface {
     modalRef.dismiss(opts, 'confirm');
   }
 
+
+
   cancel(modalRef:any) {
     modalRef.dismiss('cancel')
   }

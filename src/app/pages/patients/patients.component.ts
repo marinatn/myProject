@@ -34,4 +34,6 @@ export class PatientsComponent implements OnInit {
     this.selectedRisksText = this.formatData(risks);
     this.risksModal.dismiss();
   }
+
+  protected readonly confirm = confirm;
 }
