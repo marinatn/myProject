@@ -11,7 +11,7 @@
 
 
 <div class="ion-padding">
-  Референсные значения
+  Пациенты лаборатории
 
   <ion-item>
     <ion-input
@@ -27,11 +27,30 @@
     <ion-select
       label="Пол"
       label-placement="stacked"
-      [(ngModel)]="tableService.item && tableService.item.sex"
-    >
+      [(ngModel)]="tableService.item && tableService.item.sex">
       <ion-select-option value="0">Женский</ion-select-option>
       <ion-select-option value="1">Мужской</ion-select-option>
     </ion-select>
+
+    <ion-item>
+      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>
+    </ion-item>
+
+     
+    <ion-item>
+      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>
+      <ion-input
+        label="Дата рождения"
+        labelPlacement="stacked"
+        type="date"
+        placeholder="Дата приема"
+        [(ngModel)]="tableService.selectedItem && tableService.selectedItem.date_direction"
+      > </ion-input>
+    </ion-item>
+
+
+
+
   </ion-item>
 
   <ion-item>
