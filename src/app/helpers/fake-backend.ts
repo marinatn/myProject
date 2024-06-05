@@ -17,7 +17,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       // authenticate
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
         if (request.body.username === testUser.username && request.body.password === testUser.password) {
-          // if login details are valid return user details
+          // if login123 details are valid return user details
           let body = {
             id: testUser.id,
             username: testUser.username,

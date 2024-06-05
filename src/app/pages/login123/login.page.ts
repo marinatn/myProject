@@ -5,7 +5,7 @@ import {AuthenticationService} from "../../services";
 import {first} from "rxjs";
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-loginasdasd',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required]
     });
 
-    // reset login status
+    // reset login123 status
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'

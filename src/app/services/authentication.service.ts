@@ -13,7 +13,7 @@ export class AuthenticationService {
   login(username: string, password: string) {
     return this.http.post<any>(`/users/authenticate`, { username, password })
       .pipe(map(user => {
-        // login successful if there's a user in the response
+        // login123 successful if there's a user in the response
         if (user) {
           // store user details and basic auth credentials in local storage
           // to keep user logged in between page refreshes

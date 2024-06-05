@@ -43,13 +43,13 @@
 
               <ion-item>
                 <ion-icon name="person-outline" class="icon-login"></ion-icon>
-                <ion-input name="user" type="text" required placeholder="Логин"></ion-input>
+                <ion-input name="username" id="username" type="text" [(ngModel)]="login" required placeholder="Логин">
+                </ion-input>
               </ion-item>
               <br />
               <ion-item>
                 <ion-icon name="lock-closed-outline" class="icon-login"></ion-icon>
-                <ion-input name="password" type="password" required placeholder="Пароль">
-                  <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"></ion-input>
+                <ion-input name="password" type="{{ showPassword ? 'text' : 'password' }}" required placeholder="Пароль" [(ngModel)]="password">
                   <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
                 </ion-input>
               </ion-item>
@@ -59,7 +59,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button type="submit" fill="solid" expand="full">
+            <ion-button type="submit" fill="solid" expand="full" (click)="onSubmit()">
               ВОЙТИ
             </ion-button>
           </ion-col>

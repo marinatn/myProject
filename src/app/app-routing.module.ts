@@ -15,7 +15,6 @@ export const APP_ROUTES = {
   'type_interaction_page': 'interaction',
   'doctors_page': 'doctors',
   'equipment_page': 'equipment',
-  'login_page2': 'login2',
   'apps_page': 'apps',
 
   'tests_page': 'tests',
@@ -36,12 +35,7 @@ const routes: Routes = [
   {
     path: APP_ROUTES.login_page,
     pathMatch: 'full',
-    loadChildren: async () => (await import('./pages/login/login.module')).LoginPageModule
-  },
-  {
-    path: APP_ROUTES.login_page2,
-    pathMatch: 'full',
-    loadChildren: async () => (await import('./pages/login2/login2.module')).Login2Module
+    loadChildren: async () => (await import('./pages/login/login.module')).LoginModule
   },
   {
     path: APP_ROUTES.main_page,
@@ -124,11 +118,11 @@ const routes: Routes = [
   // {
   //   path: APP_ROUTES.login_page2,
   //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./pages/login2/login2.module').then( m => m.Login2Module)
+  //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginModule)
   // },
   // {
-  //   path: 'login',
-  //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  //   path: 'login123',
+  //   loadChildren: () => import('./pages/login123/login123.module').then( m => m.LoginPageModule)
   // },
 
 ];
