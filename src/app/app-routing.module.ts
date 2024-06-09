@@ -9,6 +9,9 @@ export const APP_ROUTES = {
   'patients_page': 'patients',
   'patient_page': 'patient',
 
+  'researches_page': 'researches',
+  'research_page': 'research',
+
   'login_page': 'login',
   'main_page': 'main',
   'profile_page': 'profile',
@@ -23,7 +26,6 @@ export const APP_ROUTES = {
 
   'tests_page': 'tests',
   'references_page': 'references',
-  'researches_page': 'researches',
   // 'patients_page': 'patients',
 
   'samples_page': 'samples'
@@ -109,11 +111,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tests/tests.module').then(m => m.TestsModule)
   },
+
+  // Researches
   {
     path: APP_ROUTES.researches_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/researches/researches.module').then(m => m.ResearchesModule)
+    loadChildren: () => import('./pages/researches/list/researches.module').then(m => m.ResearchesModule)
   },
+  {
+    path: APP_ROUTES.research_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/researches/item/research.module').then(m => m.ResearchModule)
+  },
+
+  // Patients
   {
     path: APP_ROUTES.patients_page,
     canActivate: [AuthGuard],

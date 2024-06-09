@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ResearchesTableService} from "./researches.table.service";
+import {APP_ROUTES} from "../../../app-routing.module";
 
 @Component ({
   selector: 'app-researches-page',
@@ -33,4 +34,6 @@ export class ResearchesComponent implements OnInit {
     this.selectedTestsText = this.formatData(tests);
     this.testsModal.dismiss();
   }
+
+  protected readonly APP_ROUTES = APP_ROUTES;
 }

@@ -1,10 +1,10 @@
-import {TableServiceInterface} from "../../interfaces/tableServiceInterface";
+import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
 import {Column, FieldType, Formatter,} from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
 import {AlertController} from "@ionic/angular";
-import {BaseTableService} from "../../modules/table/services/base.table.service";
+import {BaseTableService} from "../../../modules/table/services/base.table.service";
 import {VocabularyService} from "src/app/helpers/vocabulary";
 
 @Injectable({providedIn: 'root'})
@@ -54,17 +54,17 @@ export class ResearchesTableService extends BaseTableService  implements TableSe
         // filter: {model: Filters.compoundInputText}
       },
 
-      {
-        id: 1,
-        name: 'Исследование',
-        field: 'id',
-        sortable: true,
-        minWidth: 150,
-        maxWidth: 150,
-        type: FieldType.number,
-        // filterable: true,
-        // filter: {model: Filters.compoundInputText}
-      },
+      // {
+      //   id: 1,
+      //   name: 'Исследование',
+      //   field: 'id',
+      //   sortable: true,
+      //   minWidth: 150,
+      //   maxWidth: 150,
+      //   type: FieldType.number,
+      //   // filterable: true,
+      //   // filter: {model: Filters.compoundInputText}
+      // },
 
       {
         id: 1,
