@@ -1,5 +1,6 @@
 <div class="m-auto">
-  <angular-slickgrid gridId="grid1"
+  <angular-slickgrid gridId="grid"
+                     #grid
                      [columnDefinitions]="columns"
                      [gridOptions]="options"
                      (onAngularGridCreated)="angularGridCreated($event)"

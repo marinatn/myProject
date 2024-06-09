@@ -1,16 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PatientsComponent} from './patients.component';
+import {PatientComponent} from './patient.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
-import {TableModule} from "../../modules/table/table.module";
-import {TypeaheadModule} from "../../modules/typeahead/typeahead.module";
+import {TypeaheadModule} from "../../../modules/typeahead/typeahead.module";
 
 const routes: Routes = [
   {
     path: '',
-    component: PatientsComponent
+    component: PatientComponent
   }
 ];
 
@@ -21,9 +20,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     TypeaheadModule,
-    TableModule,
   ],
-  declarations: [PatientsComponent],
-  exports: [PatientsComponent],
+  declarations: [PatientComponent],
+  exports: [PatientComponent],
 })
-export class PatientsModule {}
+export class PatientModule {}

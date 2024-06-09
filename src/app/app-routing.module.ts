@@ -5,6 +5,10 @@ import {AuthGuard} from "./guards";
 // import {MainPageScreenComponent} from "./main-page-screen/main-page-screen.component";
 
 export const APP_ROUTES = {
+  //
+  'patients_page': 'patients',
+  'patient_page': 'patient',
+
   'login_page': 'login',
   'main_page': 'main',
   'profile_page': 'profile',
@@ -20,7 +24,7 @@ export const APP_ROUTES = {
   'tests_page': 'tests',
   'references_page': 'references',
   'researches_page': 'researches',
-  'patients_page': 'patients',
+  // 'patients_page': 'patients',
 
   'samples_page': 'samples'
 }
@@ -113,7 +117,13 @@ const routes: Routes = [
   {
     path: APP_ROUTES.patients_page,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/patients/patients.module').then(m => m.PatientsModule)
+    loadChildren: () => import('./pages/patients/list/patients.module').then(m => m.PatientsModule)
+  },
+  {
+    path: APP_ROUTES.patient_page,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/patients/item/patient.module').then(m => m.PatientModule)
   },
   // {
   //   path: APP_ROUTES.login_page2,

@@ -3,7 +3,8 @@ import {CommonModule} from '@angular/common';
 import {TableComponent} from "./table.component";
 
 
-import {AngularSlickgridModule} from "angular-slickgrid"; // Column Definition Type Interface
+import {AngularSlickgridModule} from "angular-slickgrid";
+import {BaseTableService} from "./services/base.table.service"; // Column Definition Type Interface
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {AngularSlickgridModule} from "angular-slickgrid"; // Column Definition T
   imports: [
     CommonModule,
     AngularSlickgridModule
-  ]
+  ],
 })
 export class TableModule {
 }

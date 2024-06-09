@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {AlertController} from "@ionic/angular";
 import {OverlayEventDetail} from "@ionic/core/components";
-import {AngularGridInstance, Column, GridOption, GridStateChange, Metrics} from "angular-slickgrid";
+import {AngularGridInstance, Column, GridOption, GridStateChange, Metrics, RowDetailView} from "angular-slickgrid";
 import {Observable} from "rxjs";
 
 
@@ -43,11 +43,6 @@ export interface ScheduleDataView {
 // }
 
 
-function randomBetween(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-const NB_ITEMS = 1500;
 
 export class BaseTableService implements TableServiceInterface {
   item: any = {};
@@ -83,6 +78,7 @@ export class BaseTableService implements TableServiceInterface {
       enableCheckboxSelector: true,
       enableRowSelection: true,
       multiSelect: false,
+      rowHeight: 85,
       rowSelectionOptions: {
         // True (Single Selection), False (Multiple Selections)
         selectActiveRow: true,
@@ -121,6 +117,15 @@ export class BaseTableService implements TableServiceInterface {
   }
   angularGridReady(angularGrid: AngularGridInstance) {
     this.angularGrid = angularGrid;
+    this.angularGrid.slickGrid.onClick.subscribe((e, args: any) => {
+      const item = this.angularGrid.gridService.getDataItemByRowNumber(args.row);
+      this.onRowClick(item);
+      e.stopPropagation();
+    });
+  }
+
+  onRowClick(item: any) {
+    // should be overridden
   }
 
   onSelectedRowsChanged($event: any) {
