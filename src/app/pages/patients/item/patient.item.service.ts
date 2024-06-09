@@ -17,6 +17,7 @@ export class PatientItemService extends BaseItemService {
     risks: [],
   };
 
+
   constructor(
     protected override route: ActivatedRoute,
     protected override httpClient: HttpClient,

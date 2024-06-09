@@ -14,7 +14,7 @@
 
 <div class="ion-padding">
   Пациенты лаборатории
-  <ion-item [button]="true" *ngIf="itemService.item.id > 0">
+  <ion-item [button]="true" *ngIf="itemService?.id > 0">
     <ion-button
       class="btn btn-danger"
       (click)="itemService.deleteAlert(APP_ROUTES.patients_page)">
@@ -22,7 +22,7 @@
     </ion-button>
   </ion-item>
 
-  <ion-item [button]="true" *ngIf="itemService.item.id > 0">
+  <ion-item [button]="true">
     <ion-button
       class="btn btn-link"
       [routerLink]="['/' + APP_ROUTES.patients_page]">

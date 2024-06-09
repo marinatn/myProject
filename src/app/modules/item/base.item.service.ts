@@ -4,8 +4,9 @@ import {Inject} from "@angular/core";
 import {AlertController} from "@ionic/angular";
 
 export class BaseItemService {
-  id: string;
+  id: number = 0;
   item: any = {};
+  defaultItem:any = {};
   toastMsg: string = '';
   isOpenToast: boolean = false;
   protected itemUrl: string = 'http://localhost:8000/api/item/';
@@ -16,11 +17,20 @@ export class BaseItemService {
     protected router: Router,
     protected alertController: AlertController,
   ) {
+
   }
 
   initItem(url: string, path: string) {
     this.itemUrl = url;
-    this.route.queryParams.subscribe((params: Params) => this.id = params['id']);
+    this.defaultItem = {...this.item};
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['id'] > 0) {
+        this.id = params['id']
+      } else {
+        this.id = 0;
+        this.item = {...this.defaultItem};
+      }
+    });
     if (this.id) {
       this.itemUrl = this.itemUrl + this.id;
       this.httpClient.get(this.itemUrl).subscribe((res: any) => {
@@ -35,7 +45,7 @@ export class BaseItemService {
     const preparedItem = this.prepareToSave({...this.item});
     // item.id = this._dataset.length + 1;
     // delete item.id;
-    if (!this.id) {
+    if (!preparedItem.id || preparedItem.id <= 0) {
       this.httpClient.post(this.itemUrl, preparedItem).subscribe((res: any) => {
         this.router.navigate([redirectPath], {queryParams: {id: res.id}});
         this.id = res.id;
