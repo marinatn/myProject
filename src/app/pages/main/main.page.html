@@ -1,22 +1,349 @@
-<ion-header [translucent]="true">
 
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
+<div class="container-buttons">
+  <ion-button id="open-create-modal" expand="block">Добавить</ion-button>
+  <ion-button id="open-edit-modal" expand="block" [disabled]="!tableService.selectedItem">Изменить</ion-button>
+  <ion-button id="open-viewing-modal" expand="block" [disabled]="!tableService.selectedItem">Просмотреть</ion-button>
+  <ion-button (click)="deleteAlert()" expand="block" [disabled]="!tableService.selectedItem">Удалить</ion-button>
+  <ion-button id="open-test-modal" expand="block">Исследование</ion-button>
 
-      <ion-tab-button tab="-table.service">
-        <ion-icon name="calendar-outline"></ion-icon>
-        Заявки
-      </ion-tab-button>
+</div>
 
-      <ion-tab-button tab="samples">
-        <ion-icon name="trash-bin-outline"></ion-icon>
-        Пробы
-      </ion-tab-button>
+<app-table
+  [columns]="gridColumns"
+  [options]="gridOptions"
+  [data]="gridData"
+  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+>
+</app-table>
 
-    </ion-tab-bar>
-  </ion-tabs>
+<!--Create modal-->
+<ion-modal trigger="open-create-modal" #newModal (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Закрыть</ion-button>
+        </ion-buttons>
+        <ion-title>Человек: поиск </ion-title>
+        <ion-buttons slot="end">
 
-</ion-content>
+          <ion-button (click)="confirm(newItem, 'new')" [strong]="true">Выбрать</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      Пациент
+
+
+
+      <ion-item>
+        <ion-input
+          label="Фамилия И.О.: "
+          labelPlacement="stacked"
+          type="text"
+          placeholder="ФИО Пациеинта"
+          [(ngModel)]="newItem.patient_fio"
+        ></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Дата рождения"
+          labelPlacement="stacked"
+          type="date"
+          placeholder="Дата рождения"
+          [(ngModel)]="newItem.date_birth"
+        ></ion-input>
+
+        <ion-input
+          label="ИД Пациента"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Статус"
+          [(ngModel)]="newItem.patient_id"
+        ></ion-input>
+
+        <ion-input
+          label="СНИЛС"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="СНИЛС"
+          [(ngModel)]="newItem.snils"
+        ></ion-input>
+      </ion-item>
+      Полис
+      <ion-item>
+
+
+        <ion-input
+          label="Серия"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="серия"
+          [(ngModel)]="newItem.policy_series"
+        ></ion-input>
+
+        <ion-input
+          label="Номер"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Отклонение"
+          [(ngModel)]="newItem.policy_number"
+        ></ion-input>
+      </ion-item>
+
+
+
+      <!--      <ion-item>-->
+      <!--        <ion-select label="Stacked label" label-placement="stacked">-->
+      <!--          <ion-select-option value="apple">Apple</ion-select-option>-->
+      <!--          <ion-select-option value="banana">Banana</ion-select-option>-->
+      <!--          <ion-select-option value="orange">Orange</ion-select-option>-->
+      <!--        </ion-select>-->
+      <!--      </ion-item>-->
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+<!--Edit modal-->
+<ion-modal trigger="open-edit-modal" #editModal (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Отменить</ion-button>
+        </ion-buttons>
+        <ion-title>Редактирование пациента</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Изменить</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input
+          label="ФИО Пациента"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="ФИО Пациеинта"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.patient_fio"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Исследование"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Исследование"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.investigation_name"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Статус"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Статус"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.status"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Тара"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Тара"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.tape"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Отклонение"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Отклонение"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.deviation"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Штрих-код"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Штрих-код"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.bar_code"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Пункт забора крови"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Пункт забора крови"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.bcp_name"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Дата приема"
+          labelPlacement="stacked"
+          type="date"
+          placeholder="Дата приема"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.date_direction"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Завершено"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Завершено"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.completed"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="ID Пациента"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Дата приема"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.patient_id"
+        ></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-select label="Stacked label" label-placement="stacked">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+
+<!--Create testing-->
+<ion-modal trigger="open-test-modal" #investigationModal (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+        </ion-buttons>
+        <ion-title>Заявка на лабораторное исследование</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm(tableService.selectedItem, 'edit')" [strong]="true">Сохранить</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+      <ion-item>
+        <ion-input
+          label="Номер направления"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Номер направления"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.direction_number"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Дата направления"
+          labelPlacement="stacked"
+          type="date"
+          placeholder="Дата направления"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.direction_date"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Кем направлен"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.policy_number"
+          (ngModelChange)="updateField('policy_number', $event)"
+          label-placement="stacked">
+          <ion-select-option value="obstetrics">Отделение акушерства и гинекологии</ion-select-option>
+          <ion-select-option value="surgery">Хирургическое отдление</ion-select-option>
+          <ion-select-option value="cardiology">Кардиологическое отделение</ion-select-option>
+          <ion-select-option value="traumatology">Травматологическое отделение</ion-select-option>
+          <ion-select-option value="neurology">Неврологическое отделение</ion-select-option>
+          <ion-select-option value="neurosurgical">Нейрохирургическое отделение</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Направивший врач"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Направивший врач"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.doctor_fio"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox>
+          Cito!
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Комментарий"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Комментарий"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem.comment"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Вид оплаты" label-placement="stacked">
+          <ion-select-option value="OMS">ОМС</ion-select-option>
+          <ion-select-option value="budget">Бюджет</ion-select-option>
+          <ion-select-option value="paid">Платные услуги</ion-select-option>
+          <ion-select-option value="DMS">ДМС</ion-select-option>
+          <ion-select-option value="agreement">Договор</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Регистрационный номер"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Регистрационный номер"
+          [(ngModel)]="tableService.selectedItem && tableService.selectedItem"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Исследование" label-placement="stacked">
+          <ion-select-option value="A26.01.018"> A26.01.018 Cоскоб с кожи на клещей</ion-select-option>
+          <ion-select-option value="A09.28.018">A09.28.018 Анализ минерального состава мочевых камней</ion-select-option>
+          <ion-select-option value=">A26.05.008.003">A26.05.008.003 Исследование биологического материала на КУМ</ion-select-option>
+          <ion-select-option value="B03.016.006">B03.016.006 Общий (клинический) анализ мочи</ion-select-option>
+          <ion-select-option value="B03.016.012">B03.016.012 Общий (клинический) анализ плевральной жидкости</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+

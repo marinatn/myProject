@@ -8,6 +8,8 @@ import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
 import {RouterModule} from "@angular/router";
+import {MainTableService} from "../main/main-table.service";
+import {TableModule} from "../../modules/table/table.module";
 
 @NgModule({
   imports: [
@@ -15,9 +17,15 @@ import {RouterModule} from "@angular/router";
     FormsModule,
     IonicModule,
     MainPageRoutingModule,
-    RouterModule.forChild([{ path: '', component: MainPage }])],
+    RouterModule.forChild([{path: '', component: MainPage}]),
+    TableModule
+  ],
 
-  declarations: [MainPage]
+  declarations: [MainPage],
+
+  providers: [
+   MainTableService
+  ]
 })
 
 

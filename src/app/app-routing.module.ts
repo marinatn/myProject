@@ -55,11 +55,11 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   loadChildren: async () => (await import('./pages/profile/profile.module')).ProfilePageModule
   // },
-  {
-    path: APP_ROUTES.schedule_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.SchedulePageModule)
-  },
+  // {
+  //   path: APP_ROUTES.schedule_page,
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.SchedulePageModule)
+  // },
   {
     path: APP_ROUTES.bcp_page,
     canActivate: [AuthGuard],
@@ -118,11 +118,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/researches/list/researches.module').then(m => m.ResearchesModule)
   },
-  {
-    path: APP_ROUTES.research_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/researches/item/research.module').then(m => m.ResearchModule)
-  },
+
+
+  // {
+  //   path: APP_ROUTES.research_page,
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => {
+  //     return import('./pages/researches/item/research.module').then(m => m.ResearchModule);
+ //   }
+  // },
 
   // Patients
   {

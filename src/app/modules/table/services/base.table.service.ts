@@ -13,7 +13,7 @@ export type TableRowOpts = {
   mode: TableRowCRUDMode
 }
 
-export interface ScheduleDataView {
+export interface MainDataView {
   id: number;
   patient_id: string;
   patient_fio: string;
@@ -53,7 +53,7 @@ export class BaseTableService implements TableServiceInterface {
   angularGrid!: AngularGridInstance;
   metrics!: Metrics;
 
-  getTableColumns(): Column<ScheduleDataView>[] {
+  getTableColumns(): Column<MainDataView>[] {
     return [
     ];
   }

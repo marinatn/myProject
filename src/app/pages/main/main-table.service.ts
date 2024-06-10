@@ -14,18 +14,18 @@ import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
 import {CustomInputFilter} from "../../modules/table/filters/custom.input/custom.input";
 import {AlertController} from "@ionic/angular";
-import {BaseTableService, ScheduleDataView} from "../../modules/table/services/base.table.service";
+import {BaseTableService, MainDataView} from "../../modules/table/services/base.table.service";
 
 @Injectable({providedIn: 'root'})
-export class ScheduleTableService extends BaseTableService implements TableServiceInterface {
+export class MainTableService extends BaseTableService implements TableServiceInterface {
   constructor(
     override http: HttpClient,
     protected override translate: TranslateService,
     protected override alertController: AlertController) {
     super(http, translate, alertController);
   }
-  protected override _selectedItem: ScheduleDataView | null = null;
-  override get selectedItem(): ScheduleDataView | null {
+  protected override _selectedItem: MainDataView | null = null;
+  override get selectedItem(): MainDataView | null {
     return this._selectedItem;
   }
 
@@ -100,7 +100,7 @@ export class ScheduleTableService extends BaseTableService implements TableServi
 }
 
 
-const customEnableButtonFormatter: Formatter<ScheduleDataView> = (_row: number, _cell: number, value: any) => {
+const customEnableButtonFormatter: Formatter<MainDataView> = (_row: number, _cell: number, value: any) => {
   return `<span style="margin-left: 5px">
       <button class="btn btn-xs btn-default">
         <i class="fa ${value ? 'fa-check-circle' : 'fa-circle-thin'} fa-lg" style="color: ${value ? 'black' : 'lavender'}"></i>

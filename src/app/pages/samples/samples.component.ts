@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Column, GridOption} from "angular-slickgrid";
 import {IonModal} from "@ionic/angular";
-import {ScheduleDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
+import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {OverlayEventDetail} from "@ionic/core/components";
 import {SamplesDataView, SamplesTableService} from "./samples-table.service";
 
