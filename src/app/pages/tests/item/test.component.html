@@ -1,0 +1,52 @@
+<!--
+<ion-title class="title">
+  Медицинские специалисты клинической лаборатории
+</ion-title>
+-->
+
+<ion-toast
+  [isOpen]="itemService.isOpenToast"
+  message="{{itemService.toastMsg}}"
+  [duration]="5000"
+  (didDismiss)="itemService.setOpenToast(false)"
+></ion-toast>
+
+
+<div class="ion-padding">
+  Справочник рисков
+  <ion-item [button]="true" *ngIf="itemService?.id > 0">
+    <ion-button
+      class="btn btn-danger"
+      (click)="itemService.deleteAlert(APP_ROUTES.patients_page)">
+      Удалить
+    </ion-button>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button
+      class="btn btn-link"
+      [routerLink]="['/' + APP_ROUTES.risks_page]">
+      К списку
+    </ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Название риска"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="Название риска"
+      [(ngModel)]="itemService.item.name"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button (click)="itemService.save(APP_ROUTES.risk_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
+    </ion-button>
+  </ion-item>
+</div>
+
+
+
+
+

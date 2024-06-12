@@ -8,7 +8,6 @@ import {APP_ROUTES} from "../../../app-routing.module";
 })
 
 export class RiskComponent implements OnInit {
-  @ViewChild('risksModal') risksModal: any;
   protected itemUrl: string = 'http://localhost:8000/api/risk/';
 
   constructor(public itemService: RiskItemService) {

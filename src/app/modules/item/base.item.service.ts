@@ -60,7 +60,7 @@ export class BaseItemService {
     } else {
       this.httpClient.put(this.itemUrl, preparedItem).subscribe((res: any) => {
         this.toastMsg = "Запись обновлена";
-        this.item = res;
+        this.applyItem(res);
         this.setOpenToast(true);
       }, (err: any) => {
         this.toastMsg = err;

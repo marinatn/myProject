@@ -8,14 +8,21 @@ import {BaseTableService} from "../../../modules/table/services/base.table.servi
 import {VocabularyService} from "src/app/helpers/vocabulary";
 import {Router} from "@angular/router";
 import {APP_ROUTES} from "../../../app-routing.module";
+import {RisksTableService} from "../../risks/list/risks.table.service";
 
 @Injectable({providedIn: 'root'})
 export class PatientsTableService extends BaseTableService implements TableServiceInterface {
-  private availableRisks: any = [];
+  public availableRisks: any = [];
 
-  constructor(override http: HttpClient, protected override translate: TranslateService, protected override alertController: AlertController, protected vocabulary: VocabularyService, private router: Router) {
+  constructor(
+    override http: HttpClient,
+    protected override translate: TranslateService,
+    protected override alertController: AlertController,
+    protected vocabulary: VocabularyService,
+    private router: Router,
+    private risksService: RisksTableService
+  ) {
     super(http, translate, alertController);
-    this.availableRisks = this.vocabulary.getRiskCategories();
   }
 
   override getTableColumns = (): Column[] => [{
@@ -66,7 +73,7 @@ export class PatientsTableService extends BaseTableService implements TableServi
       maxWidth: 350,
       type: FieldType.string,
       filterable: true,
-      formatter: this.riskIdToValueFormatter,
+      formatter: this.risksService.riskIdToValueFormatter,
       filter: {model: Filters.compoundInputText}
     },
 
@@ -80,17 +87,5 @@ export class PatientsTableService extends BaseTableService implements TableServi
     });
   }
 
-  protected riskIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
-    let str = '';
-    JSON.parse(value).forEach((k: string) => {
-      let risk = this.availableRisks.find((risk: { value: string; }) => {
-        let res = risk.value === k;
-        return res
-      })
-      str = str + risk.text + '; ';
-    })
 
-    return str;
-    // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
-  };
 }

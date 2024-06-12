@@ -21,9 +21,8 @@ export class TestsComponent implements OnInit {
   //   this.tableService.prepareGrid(this.indexUrl);
   // }
 
-  @ViewChild('referencesModal') referencesModal: any;
-  protected itemUrl: string = 'http://localhost:8000/api/reference/';
-  protected indexUrl: string = 'http://localhost:8000/api/references';
+  @ViewChild('risksModal') referencesModal: any;
+  protected indexUrl: string = 'http://localhost:8000/api/tests';
   selectedReferencesText = 'Референсные значений не выбраны';
 
 

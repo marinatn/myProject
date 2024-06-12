@@ -23,7 +23,7 @@ export class TypeaheadComponent implements OnInit {
   }
 
   trackItems(index: number, item: Item) {
-    return item.value;
+    return item.id;
   }
 
   cancelChanges() {
@@ -59,7 +59,7 @@ export class TypeaheadComponent implements OnInit {
        */
       const normalizedQuery = searchQuery.toLowerCase();
       this.filteredItems = this.items.filter((item) => {
-        return item.text.toLowerCase().includes(normalizedQuery);
+        return item.name.toLowerCase().includes(normalizedQuery);
       });
     }
   }

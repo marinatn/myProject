@@ -4,8 +4,8 @@ import { ReferencesComponent } from './references.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import {TableModule} from "../../modules/table/table.module";
-import {TypeaheadModule} from "../../modules/typeahead/typeahead.module";
+import {TypeaheadModule} from "../../../modules/typeahead/typeahead.module";
+import {TableModule} from "../../../modules/table/table.module";
 
 const routes: Routes = [
   {

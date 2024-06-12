@@ -1,0 +1,22 @@
+
+<div class="container-buttons">
+  <ion-button [routerLink]="['/' + APP_ROUTES.reference_page]">Добавить</ion-button>
+</div>
+
+
+<app-table
+  [columns]="tableService.gridColumns"
+  [options]="tableService.gridOptions"
+  [data]="tableService.gridData"
+  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+>
+</app-table>
+
+
+
+
+

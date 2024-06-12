@@ -1,11 +1,11 @@
-import {TableServiceInterface} from "../../interfaces/tableServiceInterface";
+import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
 import {Column, FieldType, Filters, Formatter} from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
 import {AlertController} from "@ionic/angular";
-import {BaseTableService} from "../../modules/table/services/base.table.service";
-import {VocabularyService} from "../../helpers/vocabulary";
+import {BaseTableService} from "../../../modules/table/services/base.table.service";
+import {VocabularyService} from "../../../helpers/vocabulary";
 
 
 export interface TimingDataView {

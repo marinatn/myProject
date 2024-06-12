@@ -1,0 +1,99 @@
+<!--
+<ion-title class="title">
+  Медицинские специалисты клинической лаборатории
+</ion-title>
+-->
+
+<ion-toast
+  [isOpen]="itemService.isOpenToast"
+  message="{{itemService.toastMsg}}"
+  [duration]="5000"
+  (didDismiss)="itemService.setOpenToast(false)"
+></ion-toast>
+
+
+
+<div class="ion-padding">
+  Референсные значения
+  <ion-item [button]="true" *ngIf="itemService?.id > 0">
+    <ion-button
+      class="btn btn-danger"
+      (click)="itemService.deleteAlert(APP_ROUTES.references_page)">
+      Удалить
+    </ion-button>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button
+      class="btn btn-link"
+      [routerLink]="['/' + APP_ROUTES.references_page]">
+      К списку
+    </ion-button>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-input
+      label="Название значения"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="Название значения"
+      [(ngModel)]="itemService.item.name"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Минимально допустимое"
+      labelPlacement="stacked"
+      type="number"
+      placeholder="Минимально допустимое"
+      [(ngModel)]="itemService.item.min"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Максимально допустимое"
+      labelPlacement="stacked"
+      type="number"
+      placeholder="Максимально допустимое"
+      [(ngModel)]="itemService.item.max"
+    ></ion-input>
+  </ion-item>
+
+
+  <ion-item [button]="true" [detail]="false" id="select-risks">
+    <ion-label>Группы риска</ion-label>
+    <div slot="end" id="selected-risks">{{ itemService.selectedRisksText }}</div>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button (click)="itemService.save(APP_ROUTES.reference_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
+    </ion-button>
+  </ion-item>
+
+</div>
+
+
+<ion-modal trigger="select-risks" #risksModal>
+  <ng-template>
+    <!--     (selectionChange)="fruitSelectionChanged($event)" -->
+    <app-typeahead
+      class="ion-page"
+      title="Риски"
+      [items]="itemService.availableRisks"
+      [selectedItems]="itemService.item.risks"
+      (selectionChange)="itemService.onChangeRisks($event);risksModal.dismiss();"
+      (selectionCancel)="risksModal.dismiss();"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+
+
+
+
+
+
+
