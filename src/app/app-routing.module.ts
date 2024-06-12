@@ -9,8 +9,13 @@ export const APP_ROUTES = {
   'patients_page': 'patients',
   'patient_page': 'patient',
 
-  'researches_page': 'researches',
-  'research_page': 'research',
+  'researches_page': 'researches', // -
+  'research_page': 'research', // -
+
+  'risks_page': 'risks',
+  'risk_page': 'risk',
+
+
 
   'login_page': 'login',
   'main_page': 'main',
@@ -60,6 +65,7 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.SchedulePageModule)
   // },
+
   {
     path: APP_ROUTES.bcp_page,
     canActivate: [AuthGuard],
@@ -139,6 +145,19 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/patients/item/patient.module').then(m => m.PatientModule)
+  },
+
+
+  // Risks
+  {
+    path: APP_ROUTES.risks_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/risks/list/risks.module').then(m => m.RisksModule)
+  },
+  {
+    path: APP_ROUTES.risk_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/risks/item/risk.module').then(m => m.RiskModule)
   },
   // {
   //   path: APP_ROUTES.login_page2,

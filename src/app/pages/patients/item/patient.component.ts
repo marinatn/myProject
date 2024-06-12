@@ -21,5 +21,5 @@ export class PatientComponent implements OnInit {
   // ngAfterViewInit() {
   //   debugger
   // }
-  protected readonly APP_ROUTES = APP_ROUTES;
+  protected readonly APP_ROUTES = {...APP_ROUTES};
 }
