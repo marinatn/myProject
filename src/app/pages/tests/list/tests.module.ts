@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {TestsComponent} from "./tests.component";
-import {RouterModule, Routes} from "@angular/router";
-import {IonicModule} from "@ionic/angular";
-import {TableModule} from "../../../modules/table/table.module";
-import {FormsModule} from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TestsComponent } from './tests.component';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import {TypeaheadModule} from "../../../modules/typeahead/typeahead.module";
-
+import {TableModule} from "../../../modules/table/table.module";
 
 const routes: Routes = [
   {
@@ -14,18 +14,16 @@ const routes: Routes = [
   }
 ];
 
-
 @NgModule({
-  declarations: [
-    TestsComponent
-  ],
   imports: [
-    RouterModule.forChild(routes),
     IonicModule,
     FormsModule,
+    CommonModule,
+    RouterModule.forChild(routes),
     TypeaheadModule,
     TableModule,
   ],
-  exports: [RouterModule],
+  declarations: [TestsComponent],
+  exports: [TestsComponent],
 })
-export class TestsModule { }
+export class TestsModule {}

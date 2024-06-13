@@ -4,6 +4,7 @@ import {BaseItemService} from "../../../modules/item/base.item.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {VocabularyService} from "../../../helpers/vocabulary";
 import {AlertController} from "@ionic/angular";
+import {RisksTableService} from "../../risks/list/risks.table.service";
 
 @Injectable({providedIn: 'root'})
 export class PatientItemService extends BaseItemService {
@@ -23,20 +24,19 @@ export class PatientItemService extends BaseItemService {
     protected override httpClient: HttpClient,
     protected vocabulary: VocabularyService,
     protected override router: Router,
-    protected override alertController: AlertController
+    protected override alertController: AlertController,
+    private risksService: RisksTableService
   ) {
     super(route, httpClient, router, alertController);
-    this.availableRisks = this.vocabulary.getRiskCategories();
+    this.risksService.fetchRisks().subscribe((res:any) => {
+      this.availableRisks = res;
+    });
   }
 
   override applyItem(res: any) {
     this.item = res;
     this.item.risks = res.risks ? JSON.parse(res.risks) : [];
-    this.selectedRisksText = this.formatData(this.item.risks.map((i: number) => {
-      return this.availableRisks.find((risk: { value: number; }) => {
-        return risk.value === i
-      });
-    }))
+    this.selectedRisksText = this.risksService.formatData(this.item.risks);
   }
 
   override prepareToSave(item:any) {
@@ -46,18 +46,8 @@ export class PatientItemService extends BaseItemService {
     return item;
   }
 
-
   onChangeRisks(risks: string[]) {
     this.item.risks = [...risks];
-    this.selectedRisksText = this.formatData(risks);
-  }
-
-  private formatData(data: string[]) {
-    if (data.length === 1) {
-      const risk = this.availableRisks.find((risk: { value: string; text: string }) => risk.value === data[0]);
-      return risk.text;
-    }
-
-    return `${data.length} группы риска для пациента`;
+    this.selectedRisksText = this.risksService.formatData(risks);
   }
 }

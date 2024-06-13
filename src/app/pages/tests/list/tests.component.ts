@@ -1,51 +1,32 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {TestsTableService} from "./tests-table.service";
-
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {TestsTableService} from "./tests.table.service";
+import {APP_ROUTES} from "../../../app-routing.module";
+import {RisksTableService} from "../../risks/list/risks.table.service";
+import {ReferencesTableService} from "../../references/list/references.table.service";
 
 @Component({
-  selector: 'app-page-tests',
+  selector: 'app-tests-page',
   templateUrl: './tests.component.html',
-  styleUrls: ['./tests.component.scss'],
 })
-export class TestsComponent implements OnInit {
-  // @ViewChild('newModal') newModal: IonModal | any;
-  // @ViewChild('editModal') editModal: IonModal | any;
-  //
-  // protected itemUrl: string = 'http://localhost:8000/api/test/';
-  // protected indexUrl: string = 'http://localhost:8000/api/tests';
-  //
-  // constructor(public tableService: TestsTableService) {
-  // }
-  //
-  // ngOnInit() {
-  //   this.tableService.prepareGrid(this.indexUrl);
-  // }
 
-  @ViewChild('risksModal') referencesModal: any;
+export class TestsComponent implements OnInit{
   protected indexUrl: string = 'http://localhost:8000/api/tests';
-  selectedReferencesText = 'Референсные значений не выбраны';
+  protected readonly APP_ROUTES = {...APP_ROUTES};
 
+  constructor(
+    public tableService: TestsTableService,
+    protected route: ActivatedRoute,
+    private refsService: ReferencesTableService) {
+    route.params.subscribe(val => {
+      this.refsService.fetchRefs().subscribe((refs) => {
+        this.tableService.availableRefs = refs;
+      })
+    });
 
-  constructor(public tableService: TestsTableService) {
   }
 
   ngOnInit() {
-    this.tableService.prepareGrid(this.indexUrl);
+    this.tableService.prepareGrid(this.indexUrl)
   }
-
-  private formatData(data: string[]) {
-    if (data.length === 1) {
-      const reference = this.tableService.references.find((reference) => reference.value === data[0]);
-      return reference.text;
-    }
-
-    return `${data.length} референсных значений`;
-  }
-
-  onChangeRisks(references: string[]) {
-    this.tableService.item.references = [...references];
-    this.selectedReferencesText = this.formatData(references);
-    this.referencesModal.dismiss();
-  }
-
 }

@@ -131,8 +131,7 @@ const routes: Routes = [
 
   // Tests
   {
-    path: APP_ROUTES.tests_page
-    ,
+    path: APP_ROUTES.tests_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tests/list/tests.module').then(m => m.TestsModule)
   },
@@ -174,12 +173,6 @@ const routes: Routes = [
 
 
 
-
-  {
-    path: APP_ROUTES.tests_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/tests/list/tests.module').then(m => m.TestsModule)
-  },
 
   // Researches
   {

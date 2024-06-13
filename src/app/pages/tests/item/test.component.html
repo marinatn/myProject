@@ -12,12 +12,13 @@
 ></ion-toast>
 
 
+
 <div class="ion-padding">
-  Справочник рисков
+  Справочник тестов
   <ion-item [button]="true" *ngIf="itemService?.id > 0">
     <ion-button
       class="btn btn-danger"
-      (click)="itemService.deleteAlert(APP_ROUTES.patients_page)">
+      (click)="itemService.deleteAlert(APP_ROUTES.tests_page)">
       Удалить
     </ion-button>
   </ion-item>
@@ -25,26 +26,61 @@
   <ion-item [button]="true">
     <ion-button
       class="btn btn-link"
-      [routerLink]="['/' + APP_ROUTES.risks_page]">
+      [routerLink]="['/' + APP_ROUTES.tests_page]">
       К списку
     </ion-button>
   </ion-item>
 
+
   <ion-item>
     <ion-input
-      label="Название риска"
+      label="Название теста"
       labelPlacement="stacked"
       type="string"
-      placeholder="Название риска"
+      placeholder="Название теста"
       [(ngModel)]="itemService.item.name"
     ></ion-input>
   </ion-item>
 
+  <ion-item>
+    <ion-input
+      label="Код услуги"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="Код услуги"
+      [(ngModel)]="itemService.item.code"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item [button]="true" [detail]="false" id="select-risks">
+    <ion-label>Референсные значения </ion-label>
+    <div slot="end" id="selected-risks">{{ itemService.selectedReferencesText }}</div>
+  </ion-item>
+
   <ion-item [button]="true">
-    <ion-button (click)="itemService.save(APP_ROUTES.risk_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
+    <ion-button (click)="itemService.save(APP_ROUTES.test_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
     </ion-button>
   </ion-item>
+
 </div>
+
+
+<ion-modal trigger="select-risks" #refsModal>
+  <ng-template>
+    <!--     (selectionChange)="fruitSelectionChanged($event)" -->
+    <app-typeahead
+      class="ion-page"
+      title="Риски"
+      [items]="itemService.availableRefs"
+      [selectedItems]="itemService.item.refs"
+      (selectionChange)="itemService.onChangeRefs($event);refsModal.dismiss();"
+      (selectionCancel)="refsModal.dismiss();"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+
+
 
 
 

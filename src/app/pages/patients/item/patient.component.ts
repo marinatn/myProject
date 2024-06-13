@@ -20,6 +20,7 @@ export class PatientComponent {
 
   constructor(public itemService: PatientItemService, protected route: ActivatedRoute,) {
     route.params.subscribe(val => {
+      this.itemService.selectedRisksText = ''
       this.itemService.initItem(this.itemUrl, APP_ROUTES.patient_page);
     });
   }
