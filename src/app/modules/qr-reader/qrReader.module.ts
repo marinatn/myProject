@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {QrReaderComponent} from "./qr-reader.component";
+import {QrReaderComponent} from "./qrReader.component";
 import {RouterModule, Routes} from "@angular/router";
 import {IonicModule} from "@ionic/angular";
 import {NgForOf} from "@angular/common";

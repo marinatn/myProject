@@ -9,7 +9,7 @@ import {PatientsTableService} from "../../patients/list/patients.table.service";
 import {forkJoin} from "rxjs";
 
 @Component ({
-  selector: 'app-researches-page',
+  selector: 'app-orders-page',
   templateUrl: './orders.component.html',
 })
 

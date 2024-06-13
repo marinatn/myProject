@@ -4,7 +4,7 @@ import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-test-page',
+  selector: 'app-order-page',
   templateUrl: './order.component.html',
 })
 

@@ -28,6 +28,9 @@ export const APP_ROUTES = {
   'risks_page': 'risks',
   'risk_page': 'risk',
 
+  // qr reader
+  'qr_reader_page': 'qr',
+
 
   'login_page': 'login',
   'main_page': 'main',
@@ -64,6 +67,13 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: async () => (await import('./pages/main/main.module')).MainPageModule
+  },
+
+  {
+    path: APP_ROUTES.qr_reader_page,
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/qr_reader/qrReader.module').then(m => m.QrReaderModule)
   },
 
 
