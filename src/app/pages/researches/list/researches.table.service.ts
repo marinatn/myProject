@@ -22,11 +22,13 @@ export class ResearchesTableService extends BaseTableService implements TableSer
   fetchResearches(): Observable<any> {
     return new Observable((observer) => {
       if (this.availableResearches.length > 0) {
-        return observer.next(this.availableResearches);
+        observer.next(this.availableResearches);
+        return observer.complete()
       } else {
         return this.http.get('http://localhost:8000/api/researches').subscribe((researches: any) => {
           this.availableResearches = researches;
           observer.next(researches);
+          return observer.complete()
         })
       }
     })

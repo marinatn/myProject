@@ -18,11 +18,13 @@ export class ReferencesTableService extends BaseTableService implements TableSer
   fetchRefs(): Observable<any> {
     return new Observable((observer) => {
       if (this.availableRefs.length > 0) {
-        return observer.next(this.availableRefs);
+        observer.next(this.availableRefs);
+        return observer.complete();
       } else {
         return this.http.get('http://localhost:8000/api/references').subscribe((risks: any) => {
           this.availableRefs = risks;
           observer.next(risks);
+          return observer.complete();
         })
       }
     })

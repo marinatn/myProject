@@ -29,11 +29,15 @@ export class PatientsTableService extends BaseTableService implements TableServi
   fetchPatients(): Observable<any> {
     return new Observable((observer) => {
       if (this.availablePatients.length > 0) {
-        return observer.next(this.availablePatients);
+        observer.next(this.availablePatients);
+        observer.complete();
+        return observer;
       } else {
         return this.http.get('http://localhost:8000/api/patients').subscribe((patients: any) => {
           this.availablePatients = patients;
           observer.next(patients);
+          observer.complete();
+          return observer;
         })
       }
     })

@@ -21,11 +21,13 @@ export class RisksTableService extends BaseTableService implements TableServiceI
   fetchRisks(): Observable<any> {
     return new Observable((observer) => {
       if (this.availableRisks.length > 0) {
-        return observer.next(this.availableRisks);
+        observer.next(this.availableRisks);
+        return observer.complete();
       } else {
         return this.http.get('http://localhost:8000/api/risks').subscribe((risks: any) => {
           this.availableRisks = risks;
           observer.next(risks);
+          observer.complete();
         })
       }
     })

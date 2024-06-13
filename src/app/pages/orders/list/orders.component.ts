@@ -22,7 +22,7 @@ export class OrdersComponent implements OnInit {
     private researchService: ResearchesTableService,
     private patientService: PatientsTableService) {
     route.params.subscribe(val => {
-      forkJoin(this.researchService.fetchResearches(), this.patientService.fetchPatients()).subscribe((res) => {
+      forkJoin([this.researchService.fetchResearches(), this.patientService.fetchPatients()]).subscribe((res) => {
         this.tableService.updateGridData(this.indexUrl);
       })
     });
