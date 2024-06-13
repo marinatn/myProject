@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {TypeaheadModule} from "../../../modules/typeahead/typeahead.module";
+import {QrCreatorModule} from "../../../modules/qr-creator/qr-creator.module";
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     TypeaheadModule,
+    QrCreatorModule,
   ],
   declarations: [OrderComponent],
   exports: [OrderComponent],

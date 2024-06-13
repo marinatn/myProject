@@ -18,7 +18,8 @@ export class OrderItemService extends BaseItemService {
     id: -1,
     patient_id: '',
     is_cito: true,
-    researches: []
+    researches: [],
+    bar_code: ''
   };
 
   constructor(

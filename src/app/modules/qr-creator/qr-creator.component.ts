@@ -10,22 +10,22 @@ export class QrCreatorComponent implements AfterViewInit {
   px2mmFactor: number;
   @Input() data = (new Date).getTime();
   ngAfterViewInit() {
-    // this.px2mmFactor = this.calcPx2MmFactor();
+    this.px2mmFactor = this.calcPx2MmFactor();
     JsBarcode('#barcode', this.data.toString(), {
       format: 'code128', // default
-      // height: 10 * this.px2mmFactor, // 10mm
-      width: 2.3,
-      displayValue: true,
-      text: '-' + this.data.toString() + '-',
-      background: 'rgba(0,0,0,0.1)',
+      height: 50,
+      width: 2,
+      displayValue: false,
+      text: this.data.toString(),
+      background: 'rgba(255,255,255,1)',
       font: 'monospace',
-      fontOptions: 'bold',
-      fontSize: 16,
-      lineColor: 'darkblue',
-      // margin: 5 * this.px2mmFactor, // 5mm
-      // textMargin: 2 * this.px2mmFactor, // 2mm
-      textAlign: 'right',
-      textPosition: 'top',
+      fontOptions: 'regular',
+      fontSize: 18,
+      lineColor: 'blackwhite',
+      margin: 5,
+      textMargin: 1,
+      textAlign: 'center',
+      textPosition: 'bottom',
     });
   }
 
