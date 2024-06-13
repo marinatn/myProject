@@ -10,8 +10,8 @@ export const APP_ROUTES = {
   'patient_page': 'patient',
 
   // researches
-  'researches_page': 'researches', // -
-  'research_page': 'research', // -
+  'researches_page': 'researches',
+  'research_page': 'research',
 
   // tests
   'tests_page': 'tests',
@@ -129,6 +129,20 @@ const routes: Routes = [
     loadChildren: () => import('./pages/patients/item/patient.module').then(m => m.PatientModule)
   },
 
+
+
+  // Researches
+  {
+    path: APP_ROUTES.researches_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/researches/list/researches.module').then(m => m.ResearchesModule)
+  },
+  {
+    path: APP_ROUTES.research_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/researches/item/research.module').then(m => m.ResearchModule)
+  },
+
   // Tests
   {
     path: APP_ROUTES.tests_page,
@@ -153,7 +167,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/references/item/reference.module').then(m => m.ReferenceModule)
   },
 
-
   // Risks
   {
     path: APP_ROUTES.risks_page,
@@ -166,38 +179,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/risks/item/risk.module').then(m => m.RiskModule)
   },
 
-
-
-
-
-
-
-
-
-  // Researches
-  {
-    path: APP_ROUTES.researches_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/researches/list/researches.module').then(m => m.ResearchesModule)
-  },
-
-
-  // {
-  //   path: APP_ROUTES.research_page,
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => {
-  //     return import('./pages/researches/item/research.module').then(m => m.ResearchModule);
-  //   }
-  // },
-  // {
-  //   path: APP_ROUTES.login_page2,
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginModule)
-  // },
-  // {
-  //   path: 'login123',
-  //   loadChildren: () => import('./pages/login123/login123.module').then( m => m.LoginPageModule)
-  // },
 
 ];
 @NgModule({

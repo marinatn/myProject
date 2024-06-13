@@ -207,6 +207,10 @@ export class BaseTableService implements TableServiceInterface {
   prepareGrid(url:string) {
     this.gridColumns = this.getTableColumns();
     this.gridOptions = this.getTableOptions();
+    this.updateGridData(url);
+  }
+
+  updateGridData(url:string) {
     this.getTableData(url).subscribe((data: any[]) => {
       this.gridData = data;
     });

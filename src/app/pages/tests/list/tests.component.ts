@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {TestsTableService} from "./tests.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
-import {RisksTableService} from "../../risks/list/risks.table.service";
 import {ReferencesTableService} from "../../references/list/references.table.service";
 
 @Component({
@@ -10,7 +9,7 @@ import {ReferencesTableService} from "../../references/list/references.table.ser
   templateUrl: './tests.component.html',
 })
 
-export class TestsComponent implements OnInit{
+export class TestsComponent implements OnInit {
   protected indexUrl: string = 'http://localhost:8000/api/tests';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
@@ -20,8 +19,8 @@ export class TestsComponent implements OnInit{
     private refsService: ReferencesTableService) {
     route.params.subscribe(val => {
       this.refsService.fetchRefs().subscribe((refs) => {
-        this.tableService.availableRefs = refs;
-      })
+        this.tableService.updateGridData(this.indexUrl);
+      });
     });
 
   }

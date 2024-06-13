@@ -19,7 +19,7 @@ export class PatientsComponent {
     private risksService: RisksTableService) {
     route.params.subscribe(val => this.tableService.prepareGrid(this.indexUrl));
     this.risksService.fetchRisks().subscribe((risks) => {
-      this.tableService.availableRisks = risks;
+      this.tableService.updateGridData(this.indexUrl);
 
     })
   }

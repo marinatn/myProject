@@ -19,7 +19,7 @@ export class ReferencesComponent implements OnInit{
     private risksService: RisksTableService) {
     route.params.subscribe(val => {
       this.risksService.fetchRisks().subscribe((risks) => {
-        this.tableService.availableRefs = risks;
+        this.tableService.updateGridData(this.indexUrl);
       })
     });
 

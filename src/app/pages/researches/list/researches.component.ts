@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ResearchesTableService} from "./researches.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
+import {TestsTableService} from "../../tests/list/tests.table.service";
+import {ActivatedRoute} from "@angular/router";
+import {ReferencesTableService} from "../../references/list/references.table.service";
 
 @Component ({
   selector: 'app-researches-page',
@@ -8,31 +11,23 @@ import {APP_ROUTES} from "../../../app-routing.module";
 })
 
 export class ResearchesComponent implements OnInit {
-  @ViewChild('testsModal') testsModal: any;
-  protected itemUrl: string = 'http://localhost:8000/api/research/';
   protected indexUrl: string = 'http://localhost:8000/api/researches';
   selectedTestsText = 'Тесты не выбраны';
 
-  constructor(public tableService: ResearchesTableService) {
+  constructor(
+    public tableService: ResearchesTableService,
+    protected route: ActivatedRoute,
+    private testsService: TestsTableService) {
+    route.params.subscribe(val => {
+      this.testsService.fetchTests().subscribe((tests) => {
+        this.tableService.updateGridData(this.indexUrl);
+      })
+    });
+
   }
 
   ngOnInit() {
     this.tableService.prepareGrid(this.indexUrl);
-  }
-
-  private formatData(data: string[]) {
-    if (data.length === 1) {
-      const test = this.tableService.tests.find((test) => test.value === data[0]);
-      return test.text;
-    }
-
-    return `${data.length} выбранных тестов`;
-  }
-
-  onChangeRisks(tests: string[]) {
-    this.tableService.item.tests = [...tests];
-    this.selectedTestsText = this.formatData(tests);
-    this.testsModal.dismiss();
   }
 
   protected readonly APP_ROUTES = APP_ROUTES;
