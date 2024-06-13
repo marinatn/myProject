@@ -20,7 +20,6 @@ export class PatientsComponent {
     route.params.subscribe(val => this.tableService.prepareGrid(this.indexUrl));
     this.risksService.fetchRisks().subscribe((risks) => {
       this.tableService.updateGridData(this.indexUrl);
-
-    })
+    });
   }
 }

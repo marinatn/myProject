@@ -10,6 +10,8 @@ export class TypeaheadComponent implements OnInit {
   @Input() items: Item[] = [];
   @Input() selectedItems: string[] = [];
   @Input() title = 'Select Items';
+  @Input() multiselect: boolean = true;
+  @Input() valueField:string = 'name'
 
   @Output() selectionCancel = new EventEmitter<void>();
   @Output() selectionChange = new EventEmitter<string[]>();
@@ -58,8 +60,8 @@ export class TypeaheadComponent implements OnInit {
        * contain the search query as a substring.
        */
       const normalizedQuery = searchQuery.toLowerCase();
-      this.filteredItems = this.items.filter((item) => {
-        return item.name.toLowerCase().includes(normalizedQuery);
+      this.filteredItems = this.items.filter((item: any) => {
+        return item[this.valueField].toLowerCase().includes(normalizedQuery);
       });
     }
   }
@@ -70,6 +72,9 @@ export class TypeaheadComponent implements OnInit {
 
   checkboxChange(ev:any) {
     const { checked, value } = ev.detail;
+    if (!this.multiselect) {
+      this.workingSelectedValues = [];
+    }
 
     if (checked) {
       this.workingSelectedValues = [...this.workingSelectedValues, value];

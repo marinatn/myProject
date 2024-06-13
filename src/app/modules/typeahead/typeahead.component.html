@@ -17,7 +17,7 @@
     <ion-list id="modal-list" [inset]="true">
       <ion-item *ngFor="let item of filteredItems; trackBy: trackItems">
         <ion-checkbox [value]="item.id" [checked]="isChecked(item.id)" (ionChange)="checkboxChange($event)"
-          >{{ item.name }}</ion-checkbox
+          >{{ item[valueField] }}</ion-checkbox
         >
       </ion-item>
     </ion-list>

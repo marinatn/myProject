@@ -79,7 +79,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'Идентификатор',
       field: 'id',
       sortable: true,
-      width: 30,
+      maxWidth: 30,
       type: FieldType.number,
     },
     {
@@ -87,7 +87,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'Наименование набора',
       field: 'name',
       sortable: true,
-      width: 150,
+      minWidth: 150,
       type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
@@ -98,7 +98,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'min.',
       field: 'min',
       sortable: true,
-      width: 50,
+      maxWidth: 50,
       type: FieldType.float,
     },
     {
@@ -106,7 +106,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'max.',
       field: 'max',
       sortable: true,
-      width: 50,
+      maxWidth: 30,
       type: FieldType.float,
     },
     {

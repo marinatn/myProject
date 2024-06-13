@@ -1,0 +1,90 @@
+<!--
+<ion-title class="title">
+  Медицинские специалисты клинической лаборатории
+</ion-title>
+-->
+
+<ion-toast
+  [isOpen]="itemService.isOpenToast"
+  message="{{itemService.toastMsg}}"
+  [duration]="5000"
+  (didDismiss)="itemService.setOpenToast(false)"
+></ion-toast>
+
+
+
+<div class="ion-padding">
+  Справочник тестов
+  <ion-item [button]="true" *ngIf="itemService?.id > 0">
+    <ion-button
+      class="btn btn-danger"
+      (click)="itemService.deleteAlert(APP_ROUTES.orders_page)">
+      Удалить
+    </ion-button>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button
+      class="btn btn-link"
+      [routerLink]="['/' + APP_ROUTES.orders_page]">
+      К списку
+    </ion-button>
+  </ion-item>
+
+  <ion-item [button]="true" [detail]="false" id="select-patient">
+    <ion-label>Пациент </ion-label>
+    <div slot="end" id="selected-patient">{{ itemService.selectedPatientText }}</div>
+  </ion-item>
+
+  <ion-item>
+    <ion-checkbox justify="start" [(ngModel)]="itemService.item.is_cito">CITO</ion-checkbox>
+  </ion-item>
+
+  <ion-item [button]="true" [detail]="false" id="select-researches">
+    <ion-label>Исследования </ion-label>
+    <div slot="end" id="selected-researches">{{ itemService.selectedResearchesText }}</div>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button (click)="itemService.save(APP_ROUTES.order_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
+    </ion-button>
+  </ion-item>
+
+</div>
+
+
+<ion-modal trigger="select-researches" #researchesModal>
+  <ng-template>
+    <app-typeahead
+      class="ion-page"
+      title="Тесты"
+      [items]="itemService.availableResearches"
+      [selectedItems]="itemService.item.researches"
+      (selectionChange)="itemService.onChangeResearches($event);researchesModal.dismiss();"
+      (selectionCancel)="researchesModal.dismiss();"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="select-patient" #patientModal>
+  <ng-template>
+    <app-typeahead
+      class="ion-page"
+      title="Тесты"
+      [items]="itemService.availablePatients"
+      [selectedItems]="itemService.item.patient_id"
+      (selectionChange)="itemService.onChangePatient($event);patientModal.dismiss();"
+      (selectionCancel)="patientModal.dismiss();"
+      [multiselect]="false"
+      [valueField]="'fio'"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+
+
+
+
+
+
+

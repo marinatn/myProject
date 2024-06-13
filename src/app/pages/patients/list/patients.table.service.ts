@@ -9,10 +9,11 @@ import {VocabularyService} from "src/app/helpers/vocabulary";
 import {Router} from "@angular/router";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {RisksTableService} from "../../risks/list/risks.table.service";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class PatientsTableService extends BaseTableService implements TableServiceInterface {
-  public availableRisks: any = [];
+  public availablePatients: any = [];
 
   constructor(
     override http: HttpClient,
@@ -24,6 +25,51 @@ export class PatientsTableService extends BaseTableService implements TableServi
   ) {
     super(http, translate, alertController);
   }
+
+  fetchPatients(): Observable<any> {
+    return new Observable((observer) => {
+      if (this.availablePatients.length > 0) {
+        return observer.next(this.availablePatients);
+      } else {
+        return this.http.get('http://localhost:8000/api/patients').subscribe((patients: any) => {
+          this.availablePatients = patients;
+          observer.next(patients);
+        })
+      }
+    })
+  }
+
+  getPatientsByIds(risks: any[]) {
+    return risks.map((i: number) => {
+      return this.availablePatients.find((risk: { id: number; }) => {
+        return risk.id === i
+      });
+    })
+  }
+
+  formatData(data: string[]) {
+    if (data.length === 1) {
+      const risk = this.availablePatients.find((risk: { id: string; fio: string }) => risk.id === data[0]);
+      return risk.fio;
+    }
+
+    return `${data.length} реф. значений`;
+  }
+
+  patientIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+    let str = '';
+    let patient = this.availablePatients.find((patient: { id: number; fio: string }) => {
+      return patient.id === value
+    })
+    if (patient) {
+      str = str + patient.fio + '; ';
+    } else {
+      str = value + ';';
+    }
+
+    return str;
+    // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
+  };
 
   override getTableColumns = (): Column[] => [{
     id: 0, name: 'ID', field: 'id', sortable: true, minWidth: 100, maxWidth: 150, type: FieldType.number, // filterable: true,

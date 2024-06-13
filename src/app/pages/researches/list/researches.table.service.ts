@@ -1,5 +1,5 @@
 import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
-import {Column, FieldType, Filters,} from "angular-slickgrid";
+import {Column, FieldType, Filters, Formatter,} from "angular-slickgrid";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
@@ -8,14 +8,63 @@ import {BaseTableService} from "../../../modules/table/services/base.table.servi
 import {Router} from "@angular/router";
 import {TestsTableService} from "../../tests/list/tests.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class ResearchesTableService extends BaseTableService implements TableServiceInterface {
-  public availableTests: any[] = [];
+  public availableResearches: any[] = [];
+
   public override item: any = {
     tests: []
   };
 
+
+  fetchResearches(): Observable<any> {
+    return new Observable((observer) => {
+      if (this.availableResearches.length > 0) {
+        return observer.next(this.availableResearches);
+      } else {
+        return this.http.get('http://localhost:8000/api/researches').subscribe((researches: any) => {
+          this.availableResearches = researches;
+          observer.next(researches);
+        })
+      }
+    })
+  }
+
+  getRefsByIds(risks: any[]) {
+    return risks.map((i: number) => {
+      return this.availableResearches.find((risk: { id: number; }) => {
+        return risk.id === i
+      });
+    })
+  }
+
+  formatData(data: string[]) {
+    if (data.length === 1) {
+      const risk = this.availableResearches.find((risk: { id: string; name: string }) => risk.id === data[0]);
+      return risk.name;
+    }
+
+    return `${data.length} реф. значений`;
+  }
+
+  researchIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+    let str = '';
+    JSON.parse(value).forEach((k: number) => {
+      let risk = this.availableResearches.find((risk: { id: number; name:string }) => {
+        return risk.id === k
+      })
+      if (risk) {
+        str = str + risk.name + '; ';
+      } else {
+        str = value + ';';
+      }
+    })
+
+    return str;
+    // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
+  };
 
   constructor(
     protected override http: HttpClient,
@@ -65,18 +114,6 @@ export class ResearchesTableService extends BaseTableService implements TableSer
       type: FieldType.string,
       formatter: this.testsService.testIdToValueFormatter,
     },
-
-    // { !!!
-    //   id: 1,
-    //   name: 'Штрихкод пробы',
-    //   field: 'barCode',
-    //   sortable: true,
-    //   minWidth: 200,
-    //   maxWidth: 200,
-    //   type: FieldType.string,
-    //   // filterable: true,
-    //   // filter: {model: Filters.compoundInputText}
-    // },
   ];
 
   override async onRowClick(item: any) {
