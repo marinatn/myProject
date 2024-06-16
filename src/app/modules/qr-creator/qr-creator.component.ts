@@ -11,21 +11,22 @@ export class QrCreatorComponent implements AfterViewInit {
   @Input() data = (new Date).getTime();
   ngAfterViewInit() {
     this.px2mmFactor = this.calcPx2MmFactor();
+    debugger
     JsBarcode('#barcode', this.data.toString(), {
       format: 'code128', // default
-      height: 50,
-      width: 2,
-      displayValue: false,
-      text: this.data.toString(),
-      background: 'rgba(255,255,255,1)',
-      font: 'monospace',
-      fontOptions: 'regular',
-      fontSize: 18,
-      lineColor: 'blackwhite',
-      margin: 5,
-      textMargin: 1,
-      textAlign: 'center',
-      textPosition: 'bottom',
+      // height: 50,
+      // width: 2,
+      // displayValue: true,
+      // text: this.data.toString(),
+      // background: 'rgba(255,255,255,1)',
+      // font: 'monospace',
+      // fontOptions: 'regular',
+      // fontSize: 18,
+      // lineColor: 'blackwhite',
+      // margin: 5,
+      // textMargin: 1,
+      // textAlign: 'center',
+      // textPosition: 'bottom',
     });
   }
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
+import {BarcodeFormat, BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
 import {AlertController} from "@ionic/angular";
 
 @Component({
@@ -30,7 +30,9 @@ export class QrReaderComponent implements OnInit {
       await this.presentAlert();
       return;
     }
-    const { barcodes } = await BarcodeScanner.scan();
+    const { barcodes } = await BarcodeScanner.scan({
+      formats: [BarcodeFormat.Code128],
+    });
     this.barcodes.push(...barcodes);
     this.scanCode.emit(barcodes[0]);
   }

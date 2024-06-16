@@ -9,6 +9,7 @@ import {APP_ROUTES} from "../../app-routing.module";
   styleUrls: ['./qr.reader.page.component.scss'],
 })
 export class QrReaderPageComponent implements AfterViewInit{
+  protected scannedId = '';
   constructor(private router: Router, private alertController: AlertController,) {
 
   }
@@ -21,11 +22,15 @@ export class QrReaderPageComponent implements AfterViewInit{
   }
 
   async scannedCode($event: { format: string, rawValue: string }) {
-    await this.router.navigate([APP_ROUTES.order_page], {
-      queryParams: {
-        id: $event.rawValue
-      }
-    });
+    const data = $event.rawValue?.split('|');
+    if (data) {
+      this.scannedId = data[0];
+    }
+    // await this.router.navigate([APP_ROUTES.order_page], {
+    //   queryParams: {
+    //     id: this.scannedId
+    //   }
+    // });
   }
 
 }
