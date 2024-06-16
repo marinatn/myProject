@@ -10,11 +10,11 @@ import {AlertController} from "@ionic/angular";
 export class QrReaderComponent implements OnInit {
   @Output() scanCode = new EventEmitter<{format: string, rawValue: string}>();
   isSupported = false;
-  barcodes: /*Barcode*/any[] = [
+  barcodes: /*Barcode*/any[] = [/*
     {format: 'format', rawValue: 'rawValue'},
     {format: 'format', rawValue: 'rawValue'},
-    {format: 'format', rawValue: 'rawValue'}
-  ];
+
+  */];
 
   constructor(private alertController: AlertController) {}
 

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 import {AuthGuard} from "./guards";
+import {QrReaderPageModule} from "./pages/qr_reader/qr.reader.page.module";
 
 export const APP_ROUTES = {
   // orders
@@ -73,7 +74,7 @@ const routes: Routes = [
     path: APP_ROUTES.qr_reader_page,
     pathMatch: 'full',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/qr_reader/qrReader.module').then(m => m.QrReaderModule)
+    loadChildren: () => import('./pages/qr_reader/qr.reader.page.module').then(m => m.QrReaderPageModule)
   },
 
 
