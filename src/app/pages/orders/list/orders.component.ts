@@ -14,7 +14,7 @@ import {forkJoin} from "rxjs";
 })
 
 export class OrdersComponent implements OnInit {
-  protected indexUrl: string = 'http://localhost:8000/api/orders';
+  protected indexUrl: string = 'http://45.141.100.40/api/orders';
 
   constructor(
     public tableService: OrdersTableService,

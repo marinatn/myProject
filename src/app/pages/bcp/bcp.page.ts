@@ -15,8 +15,8 @@ export class BcpPage implements OnInit {
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
 
-  protected itemUrl: string = 'http://localhost:8000/api/research/';
-  protected indexUrl: string = 'http://localhost:8000/api/researches';
+  protected itemUrl: string = 'http://45.141.100.40/api/research/';
+  protected indexUrl: string = 'http://45.141.100.40/api/researches';
 
   ngOnInit() {
     this.tableService.prepareGrid(this.indexUrl);

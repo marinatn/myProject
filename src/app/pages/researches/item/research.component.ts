@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class ResearchComponent {
-  protected itemUrl: string = 'http://localhost:8000/api/research/';
+  protected itemUrl: string = 'http://45.141.100.40/api/research/';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(public itemService: ResearchItemService, protected route: ActivatedRoute,) {

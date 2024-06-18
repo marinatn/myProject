@@ -11,7 +11,7 @@ import {ReferencesTableService} from "../../references/list/references.table.ser
 })
 
 export class ResearchesComponent implements OnInit {
-  protected indexUrl: string = 'http://localhost:8000/api/researches';
+  protected indexUrl: string = 'http://45.141.100.40/api/researches';
   selectedTestsText = 'Тесты не выбраны';
 
   constructor(

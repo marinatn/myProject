@@ -8,7 +8,7 @@ import {APP_ROUTES} from "../../../app-routing.module";
 })
 
 export class RiskComponent implements OnInit {
-  protected itemUrl: string = 'http://localhost:8000/api/risk/';
+  protected itemUrl: string = 'http://45.141.100.40/api/risk/';
 
   constructor(public itemService: RiskItemService) {
   }

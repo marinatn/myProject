@@ -10,7 +10,7 @@ import {ReferencesTableService} from "../../references/list/references.table.ser
 })
 
 export class TestsComponent implements OnInit {
-  protected indexUrl: string = 'http://localhost:8000/api/tests';
+  protected indexUrl: string = 'http://45.141.100.40/api/tests';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(

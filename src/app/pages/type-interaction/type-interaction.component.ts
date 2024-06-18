@@ -36,7 +36,7 @@ export class TypeInteractionComponent  implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.getTableData('http://localhost:8000/api/interactions').subscribe((data: any) => {
+    this.tableService.getTableData('http://45.141.100.40/api/interactions').subscribe((data: any) => {
       this.gridData = data;
     });
   }

@@ -10,7 +10,7 @@ import {RisksTableService} from "../../risks/list/risks.table.service";
 })
 
 export class ReferencesComponent implements OnInit{
-  protected indexUrl: string = 'http://localhost:8000/api/references';
+  protected indexUrl: string = 'http://45.141.100.40/api/references';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(

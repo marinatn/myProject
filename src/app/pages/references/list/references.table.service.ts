@@ -21,7 +21,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
         observer.next(this.availableRefs);
         return observer.complete();
       } else {
-        return this.http.get('http://localhost:8000/api/references').subscribe((risks: any) => {
+        return this.http.get('http://45.141.100.40/api/references').subscribe((risks: any) => {
           this.availableRefs = risks;
           observer.next(risks);
           return observer.complete();

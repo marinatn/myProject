@@ -25,7 +25,7 @@ export class ResearchesTableService extends BaseTableService implements TableSer
         observer.next(this.availableResearches);
         return observer.complete()
       } else {
-        return this.http.get('http://localhost:8000/api/researches').subscribe((researches: any) => {
+        return this.http.get('http://45.141.100.40/api/researches').subscribe((researches: any) => {
           this.availableResearches = researches;
           observer.next(researches);
           return observer.complete()

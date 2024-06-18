@@ -7,8 +7,8 @@ import {ApplicationsTableService} from "./applications.table.service";
 })
 
 export class ApplicationsComponent implements OnInit {
-  protected itemUrl: string = 'http://localhost:8000/api/doctor/';
-  protected indexUrl: string = 'http://localhost:8000/api/doctors';
+  protected itemUrl: string = 'http://45.141.100.40/api/doctor/';
+  protected indexUrl: string = 'http://45.141.100.40/api/doctors';
 
 
   selectedRisksText = '0 Items';

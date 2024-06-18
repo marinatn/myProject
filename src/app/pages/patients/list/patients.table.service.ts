@@ -33,7 +33,7 @@ export class PatientsTableService extends BaseTableService implements TableServi
         observer.complete();
         return observer;
       } else {
-        return this.http.get('http://localhost:8000/api/patients').subscribe((patients: any) => {
+        return this.http.get('http://45.141.100.40/api/patients').subscribe((patients: any) => {
           this.availablePatients = patients;
           observer.next(patients);
           observer.complete();

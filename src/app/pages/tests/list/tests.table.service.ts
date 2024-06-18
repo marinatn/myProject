@@ -19,7 +19,7 @@ export class TestsTableService extends BaseTableService implements TableServiceI
       if (this.availableTests.length > 0) {
         return observer.next(this.availableTests);
       } else {
-        return this.http.get('http://localhost:8000/api/tests').subscribe((risks: any) => {
+        return this.http.get('http://45.141.100.40/api/tests').subscribe((risks: any) => {
           this.availableTests = risks;
           observer.next(risks);
         })
