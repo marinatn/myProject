@@ -1,0 +1,126 @@
+<!--
+<ion-title class="title">
+  Медицинские специалисты клинической лаборатории
+</ion-title>
+-->
+
+<ion-toast
+  [isOpen]="itemService.isOpenToast"
+  message="{{itemService.toastMsg}}"
+  [duration]="5000"
+  (didDismiss)="itemService.setOpenToast(false)"
+></ion-toast>
+
+
+
+<!--<ion-content class="ion-padding">
+  Доктор
+
+  <ion-item>
+    <ion-input
+      label="ФИО"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="ФИО"
+      [(ngModel)]="tableService.item && tableService.item.fio"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="СНИЛС"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="СНИЛС"
+      [(ngModel)]="tableService.item && tableService.item.snils"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    &lt;!&ndash; (ngModelChange)="onSelectChange($event)" &ndash;&gt;
+    <ion-select
+      [(ngModel)]="tableService.item.post"
+      label-placement="floating"
+      placeholder="Выберете должность">
+      <div slot="label">
+        Роль
+        &lt;!&ndash; <ion-text color="danger">*</ion-text> &ndash;&gt;
+      </div>
+      <ion-select-option
+        *ngFor="let post of tableService.posts"
+        value="{{post.id}}"
+      >
+        {{post.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>-->
+
+
+
+<div class="ion-padding">
+  Сотрудники
+  <ion-item [button]="true" *ngIf="itemService?.id > 0">
+    <ion-button
+      class="btn btn-danger"
+      (click)="itemService.deleteAlert(APP_ROUTES.doctors_page)">
+      Удалить
+    </ion-button>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button
+      class="btn btn-link"
+      [routerLink]="['/' + APP_ROUTES.doctors_page]">
+      К списку
+    </ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="ФИО"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="ФИО"
+      [(ngModel)]="itemService.item.fio"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="СНИЛС"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="СНИЛС"
+      [(ngModel)]="itemService.item.snils"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+<!--    (ngModelChange)="onSelectChange($event)-->
+    <ion-select
+      [(ngModel)]="itemService.item.post"
+      label-placement="floating"
+      placeholder="Должность">
+      <div slot="label">
+        Должность
+      </div>
+      <ion-select-option
+        *ngFor="let post of itemService.posts"
+        value="{{post.id}}"
+      >
+        {{post.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item [button]="true">
+    <ion-button (click)="itemService.save(APP_ROUTES.doctor_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
+    </ion-button>
+  </ion-item>
+</div>
+
+
+
+
+

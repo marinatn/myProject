@@ -29,8 +29,13 @@ export const APP_ROUTES = {
   'risks_page': 'risks',
   'risk_page': 'risk',
 
+  // doctors
+  'doctors_page': 'doctors',
+  'doctor_page': 'doctor',
+
   // qr reader
   'qr_reader_page': 'qr',
+
 
 
   'login_page': 'login',
@@ -42,7 +47,6 @@ export const APP_ROUTES = {
   'tabs_page': 'tabs',
   'analysers_page': 'analysers',
   'type_interaction_page': 'interaction',
-  'doctors_page': 'doctors',
   'equipment_page': 'equipment',
   'apps_page': 'apps',
 
@@ -154,6 +158,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/risks/item/risk.module').then(m => m.RiskModule)
   },
 
+  // Doctors
+  {
+    path: APP_ROUTES.doctors_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/doctors/list/doctors.module').then(m => m.DoctorsModule)
+  },
+  {
+    path: APP_ROUTES.doctor_page,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/doctors/item/doctor.module').then(m => m.DoctorModule)
+  },
+
 
   // hz
   // {
@@ -174,12 +190,6 @@ const routes: Routes = [
     path: APP_ROUTES.type_interaction_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/type-interaction/type-interaction.module').then(m => m.TypeInteractionModule)
-  },
-
-  {
-    path: APP_ROUTES.doctors_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/doctors/doctors.module').then(m => m.DoctorsModule)
   },
 
   {
