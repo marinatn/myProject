@@ -11,7 +11,6 @@ export class QrCreatorComponent implements AfterViewInit {
   @Input() data = (new Date).getTime();
   ngAfterViewInit() {
     this.px2mmFactor = this.calcPx2MmFactor();
-    debugger
     JsBarcode('#barcode', this.data.toString(), {
       format: 'code128', // default
       // height: 50,

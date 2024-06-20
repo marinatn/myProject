@@ -77,7 +77,7 @@ export class PatientsTableService extends BaseTableService implements TableServi
   };
 
   override getTableColumns = (): Column[] => [{
-    id: 0, name: 'ID', field: 'id', sortable: true, minWidth: 100, maxWidth: 150, type: FieldType.number, // filterable: true,
+    id: 0, name: 'ID', field: 'id', sortable: true, maxWidth: 30, type: FieldType.number, // filterable: true,
     // filter: {model: Filters.compoundInputText}
   },
 
@@ -86,8 +86,7 @@ export class PatientsTableService extends BaseTableService implements TableServi
       name: 'ФИОs',
       field: 'fio',
       sortable: true,
-      minWidth: 350,
-      maxWidth: 500,
+      maxWidth: 200,
       type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
@@ -97,18 +96,14 @@ export class PatientsTableService extends BaseTableService implements TableServi
       id: 3,
       name: 'СНИЛС',
       field: 'snils_code',
-      sortable: true,
-      minWidth: 150,
       maxWidth: 150,
       type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
     }, {
       id: 4,
-      name: 'police_code',
+      name: 'Полис',
       field: 'police_code',
-      sortable: true,
-      minWidth: 150,
       maxWidth: 150,
       type: FieldType.string,
       filterable: true,
@@ -120,8 +115,6 @@ export class PatientsTableService extends BaseTableService implements TableServi
       name: 'Группа риска',
       field: 'risks',
       sortable: true,
-      minWidth: 300,
-      maxWidth: 350,
       type: FieldType.string,
       filterable: true,
       formatter: this.risksService.riskIdToValueFormatter,

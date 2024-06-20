@@ -62,15 +62,38 @@
     ></ion-input>
   </ion-item>
 
+  <ion-item>
+    <ion-select
+      label="Пол"
+      label-placement="stacked"
+      [(ngModel)]="itemService.item.sex">
+      <ion-select-option [value]="'female'">Женский</ion-select-option>
+      <ion-select-option [value]="'male'">Мужской</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      label="Единица измерения"
+      labelPlacement="stacked"
+      type="string"
+      placeholder="Единица измерения"
+      [(ngModel)]="itemService.item.unit"
+    ></ion-input>
+  </ion-item>
 
   <ion-item [button]="true" [detail]="false" id="select-risks">
     <ion-label>Группы риска</ion-label>
     <div slot="end" id="selected-risks">{{ itemService.selectedRisksText }}</div>
   </ion-item>
 
-  <ion-item [button]="true">
-    <ion-button (click)="itemService.save(APP_ROUTES.reference_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
-    </ion-button>
+  <ion-item [button]="true" *ngIf="itemService.id">
+    <ion-button (click)="itemService.save(APP_ROUTES.reference_page)">Обновить</ion-button> или
+    <ion-button (click)="itemService.save(APP_ROUTES.reference_page, true)">Создать</ion-button>
+  </ion-item>
+
+  <ion-item [button]="true" *ngIf="!itemService.id">
+    <ion-button (click)="itemService.save(APP_ROUTES.reference_page, true)">Создать</ion-button>
   </ion-item>
 
 </div>

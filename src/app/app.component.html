@@ -35,6 +35,12 @@
               Сканер
             </ion-label>
           </ion-menu-toggle>
+          <ion-menu-toggle [routerLink]="[APP_ROUTES.orders_page]">
+            <ion-label class="p-3 content">
+              <ion-icon name="medical-outline"></ion-icon>
+              Заявки на исследование
+            </ion-label>
+          </ion-menu-toggle>
           <ion-accordion value="first">
             <ion-item slot="header" color="light">
               <ion-label>
@@ -65,75 +71,11 @@
             <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">
               Тесты анализатора
             </div>
-            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.analysers_page)">
-              Пункты забора
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.risks_page)">
+              Факторы риска
             </div>
           </ion-accordion>
         </ion-accordion-group>
-<!--
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.samples_page]">
-          <ion-label>
-            <ion-icon name="medical-outline"></ion-icon>
-            Настройки проб и контейнеров
-          </ion-label>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.schedule_page]">
-          <ion-label>
-            <ion-icon name="eyedrop-outline"></ion-icon>
-            Заявки и исследования
-          </ion-label>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
-          <ion-label>
-            <ion-icon name="book-outline"></ion-icon>
-            Журнал отбраковки
-          </ion-label>
-        </ion-menu-toggle>
-
-
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
-          <ion-label>
-            <ion-icon name="document-text-outline"></ion-icon>
-            Отчеты
-          </ion-label>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle [routerLink]="[APP_ROUTES.timing_page]">
-          <ion-label>
-            <ion-icon name="help-buoy-outline"></ion-icon>
-            Отклоненные заявки
-          </ion-label>
-        </ion-menu-toggle>
-
-
-        <ion-accordion-group>
-
-          <ion-accordion value="first">
-            <ion-item slot="header" color="light">
-              <ion-label>
-                <ion-icon name="library-outline"></ion-icon>
-                <div class="accordion-wrapper">
-                  Справочники системы
-                </div>
-              </ion-label>
-            </ion-item>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.doctors_page)">Сотрудники</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Анализаторы</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">Тесты анализатора</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.references_page)">Референсные значения
-            </div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.patients_page)">Исследования</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.patients_page)">Пациенты лаборатории</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">Тесты анализатора</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analizators_page)">Пункты забора</div>
-
-          </ion-accordion>
-        </ion-accordion-group>
--->
-
-
       </ion-list>
 
     </ion-content>

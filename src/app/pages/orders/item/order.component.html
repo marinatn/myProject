@@ -14,7 +14,7 @@
 
 
 <div class="ion-padding">
-  Справочник тестов
+  Заявка на исследование
   <ion-item [button]="true" *ngIf="itemService?.id > 0">
     <ion-button
       class="btn btn-danger"
@@ -49,6 +49,11 @@
     <div slot="end" id="selected-researches">{{ itemService.selectedResearchesText }}</div>
   </ion-item>
 
+  <ion-item [button]="true" [detail]="false" id="select-doctor">
+    <ion-label>Назначил ислледование </ion-label>
+    <div slot="end" id="selected-doctor">{{ itemService.selectedDoctorText }}</div>
+  </ion-item>
+
   <ion-item [button]="true">
     <ion-button (click)="itemService.save(APP_ROUTES.order_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
     </ion-button>
@@ -79,6 +84,21 @@
       [selectedItems]="itemService.item.patient_id"
       (selectionChange)="itemService.onChangePatient($event);patientModal.dismiss();"
       (selectionCancel)="patientModal.dismiss();"
+      [multiselect]="false"
+      [valueField]="'fio'"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="select-doctor" #doctorModal>
+  <ng-template>
+    <app-typeahead
+      class="ion-page"
+      title="Врачи"
+      [items]="itemService.availableDoctors"
+      [selectedItems]="itemService.item.doctor_id"
+      (selectionChange)="itemService.onChangeDoctor($event);doctorModal.dismiss();"
+      (selectionCancel)="doctorModal.dismiss();"
       [multiselect]="false"
       [valueField]="'fio'"
     ></app-typeahead>

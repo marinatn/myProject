@@ -27,9 +27,9 @@ export class DoctorsTableService extends BaseTableService implements TableServic
         observer.next(this.availableDoctors);
         return observer.complete();
       } else {
-        return this.http.get(APP_API_URL + '/doctors').subscribe((risks: any) => {
-          this.availableDoctors = risks;
-          observer.next(risks);
+        return this.http.get(APP_API_URL + '/doctors').subscribe((doctors: any) => {
+          this.availableDoctors = doctors;
+          observer.next(doctors);
           observer.complete();
         })
       }
@@ -47,15 +47,15 @@ export class DoctorsTableService extends BaseTableService implements TableServic
   formatData(data: string[]) {
     if (data.length === 1) {
       const doctor = this.availableDoctors.find((risk: { id: string; fio: string }) => risk.id === data[0]);
-      return doctor.name;
+      return doctor.fio;
     }
 
-    return `${data.length} группы риска для реф. значения`;
+    return 'Врач не выбран';
   }
 
   doctorIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     let str = '';
-    JSON.parse(value).forEach((k: number) => {
+    // JSON.parse(value).forEach((k: number) => {
       let doctor = this.availableDoctors.find((doctor: { id: number; fio: string }) => {
         return doctor.id === value
       })
@@ -64,7 +64,7 @@ export class DoctorsTableService extends BaseTableService implements TableServic
       } else {
         str = value + ';';
       }
-    })
+    // })
 
     return str;
   };

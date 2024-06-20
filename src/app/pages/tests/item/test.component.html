@@ -14,7 +14,7 @@
 
 
 <div class="ion-padding">
-  Справочник тестов
+  Тест
   <ion-item [button]="true" *ngIf="itemService?.id > 0">
     <ion-button
       class="btn btn-danger"
@@ -70,7 +70,7 @@
     <!--     (selectionChange)="fruitSelectionChanged($event)" -->
     <app-typeahead
       class="ion-page"
-      title="Риски"
+      title="Референсные значения"
       [items]="itemService.availableRefs"
       [selectedItems]="itemService.item.refs"
       (selectionChange)="itemService.onChangeRefs($event);refsModal.dismiss();"

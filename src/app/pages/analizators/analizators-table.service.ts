@@ -11,6 +11,8 @@ import {Injectable} from "@angular/core";
 import {AlertController} from "@ionic/angular";
 import {BaseTableService} from "../../modules/table/services/base.table.service";
 import {VocabularyService} from "src/app/helpers/vocabulary";
+import {Observable} from "rxjs";
+import {APP_API_URL} from "../../app.component";
 
 export interface AnalizatorsDataView{
   id: number,
@@ -21,6 +23,7 @@ export interface AnalizatorsDataView{
 }
 @Injectable({providedIn: 'root'})
 export class AnalizatorsTableService extends BaseTableService implements TableServiceInterface {
+  availableAnalysers: any[] = [];
   override item:any = {
     id: -1,
     name: '',
@@ -39,11 +42,60 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
     this.type_interactions = this.vocabulary.getTypesInteraction();
     this.type_equipments = this.vocabulary.getTypeEquipments();
   }
+
+  fetchAnalysers(): Observable<any> {
+    return new Observable((observer) => {
+      if (this.availableAnalysers.length > 0) {
+        observer.next(this.availableAnalysers);
+        return observer.complete();
+      } else {
+        return this.http.get(APP_API_URL + '/analizators').subscribe((analysers: any) => {
+          this.availableAnalysers = analysers;
+          observer.next(analysers);
+          observer.complete();
+        })
+      }
+    })
+  }
+
+  getDoctorsByIds(analysers: any[]) {
+    return analysers.map((i: number) => {
+      return this.availableAnalysers.find((analyser: { id: number; }) => {
+        return analyser.id === i
+      });
+    })
+  }
+
+  formatData(data: string[]) {
+    if (data.length === 1) {
+      const analyser = this.availableAnalysers.find((analyser: { id: string; name: string }) => analyser.id === data[0]);
+      return analyser.name;
+    }
+
+    return 'Анализатор не выбран';
+  }
+
+  doctorIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+    let str = '';
+    JSON.parse(value).forEach((k: number) => {
+      let doctor = this.availableAnalysers.find((doctor: { id: number; name: string }) => {
+        return doctor.id === value
+      })
+      if (doctor) {
+        str = str + doctor.name + '; ';
+      } else {
+        str = value + ';';
+      }
+    })
+
+    return str;
+  };
+
   protected override _selectedItem: AnalizatorsDataView | null = null;
   protected interactionIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     return this.type_interactions[value] ? this.type_interactions[value].name || 'Схема взаимодействия не определена':value;
   };
-  protected equpmentIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
+  protected equipmentIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     return this.type_equipments[value] ? this.type_equipments[value].name || 'Оборудование не определена':value;
   };
   override get selectedItem(): AnalizatorsDataView | null {
@@ -83,7 +135,7 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
       // sortable: true,
       minWidth: 55,
       maxWidth: 200,
-      formatter: this.equpmentIdToValueFormatter,
+      formatter: this.equipmentIdToValueFormatter,
       type: FieldType.string,
       // filterable: true,
       // filter: {model: Filters.compoundInputText}
@@ -102,8 +154,6 @@ export class AnalizatorsTableService extends BaseTableService implements TableSe
       // filter: {model: Filters.compoundInputText}
     },
   ];
-
-
 }
 
 

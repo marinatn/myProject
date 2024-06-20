@@ -9,6 +9,7 @@ export class BaseItemService {
   defaultItem: any = {};
   toastMsg: string = '';
   isOpenToast: boolean = false;
+  protected baseItemUrl: string = APP_API_URL + '/item/';
   protected itemUrl: string = APP_API_URL + '/item/';
 
   constructor(
@@ -22,6 +23,7 @@ export class BaseItemService {
 
   initItem(url: string, path: string) {
     this.itemUrl = url;
+    this.baseItemUrl = this.itemUrl;
     this.defaultItem = {...this.item};
     this.route.queryParams.subscribe((params: Params) => {
       if (params['id'] > 0) {
@@ -41,11 +43,15 @@ export class BaseItemService {
     }
   }
 
-  async save(redirectPath: string) {
+  async save(redirectPath: string, asNew: boolean = false) {
     const preparedItem = this.prepareToSave({...this.item});
     // item.id = this._dataset.length + 1;
     // delete item.id;
-    if (!preparedItem.id || preparedItem.id <= 0) {
+    if (!preparedItem.id || preparedItem.id <= 0 || asNew) {
+      // if (asNew) {
+        preparedItem.id = -1;
+        this.itemUrl = this.baseItemUrl;
+      // }
       this.httpClient.post(this.itemUrl, preparedItem).subscribe((res: any) => {
         this.router.navigate([redirectPath], {queryParams: {id: res.id}});
         this.id = res.id;

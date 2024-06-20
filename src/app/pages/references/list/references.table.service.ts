@@ -33,9 +33,13 @@ export class ReferencesTableService extends BaseTableService implements TableSer
         observer.next(this.availableRefs);
         return observer.complete();
       } else {
-        return this.http.get(APP_API_URL + '/references').subscribe((risks: any) => {
-          this.availableRefs = risks;
-          observer.next(risks);
+        return this.http.get(APP_API_URL + '/references').subscribe((refs: any) => {
+          refs = refs.map((ref: any) => {
+            ref.name = ref.name + ' ('+this.sexToValue(null, null, ref.sex)+')';
+            return ref;
+          })
+          this.availableRefs = refs;
+          observer.next(refs);
           return observer.complete();
         })
       }
@@ -52,8 +56,8 @@ export class ReferencesTableService extends BaseTableService implements TableSer
 
   formatData(data: string[]) {
     if (data.length === 1) {
-      const risk = this.availableRefs.find((risk: { id: string; name: string }) => risk.id === data[0]);
-      return risk.name;
+      const ref = this.availableRefs.find((ref: { id: string; name: string }) => ref.id === data[0]);
+      return ref.name;
     }
 
     return `${data.length} реф. значений`;
@@ -76,6 +80,10 @@ export class ReferencesTableService extends BaseTableService implements TableSer
     // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
   };
 
+  private sexToValue = (_row:any, _cell:any, value:any) => {
+    return value === 'male'?'Мужской':value === 'female'?'Женский':'не определен';
+  }
+
   override getTableColumns = (): Column[] => [
     {
       id: 0,
@@ -90,7 +98,6 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'Наименование набора',
       field: 'name',
       sortable: true,
-      minWidth: 150,
       type: FieldType.string,
       filterable: true,
       filter: {model: Filters.compoundInputText}
@@ -101,7 +108,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'min.',
       field: 'min',
       sortable: true,
-      maxWidth: 50,
+      maxWidth: 80,
       type: FieldType.float,
     },
     {
@@ -109,17 +116,33 @@ export class ReferencesTableService extends BaseTableService implements TableSer
       name: 'max.',
       field: 'max',
       sortable: true,
-      maxWidth: 30,
+      maxWidth: 80,
       type: FieldType.float,
     },
     {
+      id: 4,
+      name: 'Ед. изм.',
+      field: 'unit',
+      sortable: true,
+      maxWidth: 60,
+      type: FieldType.string,
+    },
+    {
       id: 5,
+      name: 'Пол',
+      field: 'sex',
+      sortable: true,
+      maxWidth: 100,
+      type: FieldType.string,
+      formatter: this.sexToValue
+    },
+    {
+      id: 6,
       name: 'Группа риска',
       field: 'risks',
       type: FieldType.string,
       formatter: this.risksService.riskIdToValueFormatter,
     },
-
   ];
 
   override async onRowClick(item: any) {

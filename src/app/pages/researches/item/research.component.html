@@ -14,7 +14,7 @@
 
 
 <div class="ion-padding">
-  Справочник тестов
+  Исследование
   <ion-item [button]="true" *ngIf="itemService?.id > 0">
     <ion-button
       class="btn btn-danger"
@@ -57,6 +57,11 @@
     <div slot="end" id="selected-risks">{{ itemService.selectedTestsText }}</div>
   </ion-item>
 
+  <ion-item [button]="true" [detail]="false" id="select-analyser">
+    <ion-label>Анализатор для исследования </ion-label>
+    <div slot="end" id="selected-analyser">{{ itemService.selectedAnalyserText }}</div>
+  </ion-item>
+
   <ion-item [button]="true">
     <ion-button (click)="itemService.save(APP_ROUTES.research_page)">{{ itemService.id ? 'Обновить' : 'Создать' }}
     </ion-button>
@@ -67,7 +72,6 @@
 
 <ion-modal trigger="select-tests" #testsModal>
   <ng-template>
-    <!--     (selectionChange)="fruitSelectionChanged($event)" -->
     <app-typeahead
       class="ion-page"
       title="Тесты"
@@ -75,6 +79,21 @@
       [selectedItems]="itemService.item.tests"
       (selectionChange)="itemService.onChangeTests($event);testsModal.dismiss();"
       (selectionCancel)="testsModal.dismiss();"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="select-analyser" #analyserModal>
+  <ng-template>
+    <app-typeahead
+      class="ion-page"
+      title="Анализатор"
+      [items]="itemService.availableAnalysers"
+      [selectedItems]="itemService.item.analyser_id"
+      (selectionChange)="itemService.onChangeAnalyser($event);analyserModal.dismiss();"
+      (selectionCancel)="analyserModal.dismiss();"
+      [multiselect]="false"
+      [valueField]="'name'"
     ></app-typeahead>
   </ng-template>
 </ion-modal>

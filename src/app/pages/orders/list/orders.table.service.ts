@@ -10,6 +10,7 @@ import {TestsTableService} from "../../tests/list/tests.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ResearchesTableService} from "../../researches/list/researches.table.service";
 import {PatientsTableService} from "../../patients/list/patients.table.service";
+import {DoctorsTableService} from "../../doctors/list/doctors.table.service";
 
 @Injectable({providedIn: 'root'})
 export class OrdersTableService extends BaseTableService implements TableServiceInterface {
@@ -20,7 +21,8 @@ export class OrdersTableService extends BaseTableService implements TableService
     protected override alertController: AlertController,
     private router: Router,
     private researchService: ResearchesTableService,
-    private patientService: PatientsTableService
+    private patientService: PatientsTableService,
+    private doctorService: DoctorsTableService
   ) {
     super(http, translate, alertController);
   }
@@ -47,6 +49,17 @@ export class OrdersTableService extends BaseTableService implements TableService
     },
     {
       id: 1,
+      name: 'Врач',
+      field: 'doctor_id',
+      sortable: true,
+      width: 80,
+      type: FieldType.number,
+      filterable: true,
+      filter: {model: Filters.compoundInputText},
+      formatter: this.doctorService.doctorIdToValueFormatter,
+    },
+    {
+      id: 3,
       name: 'Исследования',
       field: 'researches',
       sortable: true,

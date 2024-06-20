@@ -48,23 +48,21 @@
       <ion-select-option [value]="'female'">Женский</ion-select-option>
       <ion-select-option [value]="'male'">Мужской</ion-select-option>
     </ion-select>
+  </ion-item>
+  <ion-item>
+    <!--      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>-->
+  </ion-item>
 
-    <ion-item>
-      <!--      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>-->
-    </ion-item>
 
-
-    <ion-item>
-      <!--      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>-->
-      <ion-input
-        label="Дата рождения"
-        labelPlacement="stacked"
-        type="date"
-        placeholder="Дата приема"
-        [(ngModel)]="itemService.item.bith_date"
-      ></ion-input>
-    </ion-item>
-
+  <ion-item>
+    <!--      <ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>-->
+    <ion-input
+      label="Дата рождения"
+      labelPlacement="stacked"
+      type="date"
+      placeholder="Дата приема"
+      [(ngModel)]="itemService.item.bith_date"
+    ></ion-input>
   </ion-item>
 
   <ion-item>

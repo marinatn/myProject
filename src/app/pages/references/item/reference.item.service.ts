@@ -15,7 +15,9 @@ export class ReferenceItemService extends BaseItemService {
     name: '',
     min: 0,
     max: 1,
-    risks: []
+    risks: [],
+    unit: '',
+    sex: 'male'
 
   };
 
