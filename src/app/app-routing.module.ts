@@ -40,7 +40,7 @@ export const APP_ROUTES = {
   'schedule_page': 'schedule',
   'bcp_page': 'bcp',
   'tabs_page': 'tabs',
-  'analizators_page': 'analizators',
+  'analysers_page': 'analysers',
   'type_interaction_page': 'interaction',
   'doctors_page': 'doctors',
   'equipment_page': 'equipment',
@@ -171,7 +171,7 @@ const routes: Routes = [
   },
 
   {
-    path: APP_ROUTES.analizators_page,
+    path: APP_ROUTES.analysers_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/analizators/analizators.module').then(m => m.AnalizatorsModule)
   },
