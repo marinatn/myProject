@@ -9,14 +9,15 @@ import {VocabularyService} from "src/app/helpers/vocabulary";
 import {Router} from "@angular/router";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {Observable} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Injectable({providedIn: 'root'})
 export class RisksTableService extends BaseTableService implements TableServiceInterface {
+  availableRisks: any[] = [];
+
   constructor(override http: HttpClient, protected override translate: TranslateService, protected override alertController: AlertController, protected vocabulary: VocabularyService, private router: Router) {
     super(http, translate, alertController);
   }
-
-  availableRisks: any[] = [];
 
   fetchRisks(): Observable<any> {
     return new Observable((observer) => {
@@ -24,7 +25,7 @@ export class RisksTableService extends BaseTableService implements TableServiceI
         observer.next(this.availableRisks);
         return observer.complete();
       } else {
-        return this.http.get('http://45.141.100.40/api/risks').subscribe((risks: any) => {
+        return this.http.get(APP_API_URL + '/risks').subscribe((risks: any) => {
           this.availableRisks = risks;
           observer.next(risks);
           observer.complete();
@@ -53,7 +54,7 @@ export class RisksTableService extends BaseTableService implements TableServiceI
   riskIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     let str = '';
     JSON.parse(value).forEach((k: number) => {
-      let risk = this.availableRisks.find((risk: { id: number; name:string }) => {
+      let risk = this.availableRisks.find((risk: { id: number; name: string }) => {
         return risk.id === k
       })
       if (risk) {

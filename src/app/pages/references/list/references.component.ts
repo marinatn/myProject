@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ReferencesTableService} from "./references.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {RisksTableService} from "../../risks/list/risks.table.service";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-references-page',
@@ -10,7 +11,7 @@ import {RisksTableService} from "../../risks/list/risks.table.service";
 })
 
 export class ReferencesComponent implements OnInit{
-  protected indexUrl: string = 'http://45.141.100.40/api/references';
+  protected indexUrl: string = APP_API_URL + '/references';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(

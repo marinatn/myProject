@@ -5,6 +5,7 @@ import {IonModal} from "@ionic/angular";
 import {OverlayEventDetail} from '@ionic/core/components';
 import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {MainTableService} from "./main-table.service";
+import {APP_API_URL} from "../../app.component";
 
 
 @Component({
@@ -52,7 +53,7 @@ export class MainPage implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.getTableData('http://45.141.100.40/api/tests').subscribe((data: any) => {
+    this.tableService.getTableData(APP_API_URL + '/tests').subscribe((data: any) => {
       this.gridData = data;
     });
   }

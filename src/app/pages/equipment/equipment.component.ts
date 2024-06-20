@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Column, GridOption} from "angular-slickgrid";
 import {IonModal} from "@ionic/angular";
-import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
+import {TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {OverlayEventDetail} from "@ionic/core/components";
 import {EquipmentDataView, EquipmentTableService} from "./equipment-table.service";
-
+import {APP_API_URL} from "../../app.component";
 
 
 @Component({
@@ -12,7 +12,7 @@ import {EquipmentDataView, EquipmentTableService} from "./equipment-table.servic
   templateUrl: 'equipment.component.html',
   styleUrls: ['./equipment.component.scss'],
 })
-export class EquipmentComponent  implements OnInit {
+export class EquipmentComponent implements OnInit {
   gridColumns: Column[] = [];
   gridOptions: GridOption = {};
   gridData: any[] = [];
@@ -35,7 +35,7 @@ export class EquipmentComponent  implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.getTableData('http://45.141.100.40/api/equipments').subscribe((data: any) => {
+    this.tableService.getTableData(APP_API_URL + '/equipments').subscribe((data: any) => {
       this.gridData = data;
     });
   }

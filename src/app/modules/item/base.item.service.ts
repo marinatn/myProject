@@ -1,15 +1,15 @@
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {Inject} from "@angular/core";
 import {AlertController} from "@ionic/angular";
+import {APP_API_URL} from "../../app.component";
 
 export class BaseItemService {
   id: number = 0;
   item: any = {};
-  defaultItem:any = {};
+  defaultItem: any = {};
   toastMsg: string = '';
   isOpenToast: boolean = false;
-  protected itemUrl: string = 'http://45.141.100.40/api/item/';
+  protected itemUrl: string = APP_API_URL + '/item/';
 
   constructor(
     protected route: ActivatedRoute,

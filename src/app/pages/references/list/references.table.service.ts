@@ -10,10 +10,22 @@ import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {RisksTableService} from "../../risks/list/risks.table.service";
 import {Observable} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Injectable({providedIn: 'root'})
 export class ReferencesTableService extends BaseTableService implements TableServiceInterface {
   public availableRefs: any[] = [];
+
+  constructor(
+    protected override http: HttpClient,
+    protected override translate: TranslateService,
+    protected override alertController: AlertController,
+    protected vocabulary: VocabularyService,
+    private router: Router,
+    private risksService: RisksTableService
+  ) {
+    super(http, translate, alertController);
+  }
 
   fetchRefs(): Observable<any> {
     return new Observable((observer) => {
@@ -21,7 +33,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
         observer.next(this.availableRefs);
         return observer.complete();
       } else {
-        return this.http.get('http://45.141.100.40/api/references').subscribe((risks: any) => {
+        return this.http.get(APP_API_URL + '/references').subscribe((risks: any) => {
           this.availableRefs = risks;
           observer.next(risks);
           return observer.complete();
@@ -50,7 +62,7 @@ export class ReferencesTableService extends BaseTableService implements TableSer
   refIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     let str = '';
     JSON.parse(value).forEach((k: number) => {
-      let risk = this.availableRefs.find((risk: { id: number; name:string }) => {
+      let risk = this.availableRefs.find((risk: { id: number; name: string }) => {
         return risk.id === k
       })
       if (risk) {
@@ -63,17 +75,6 @@ export class ReferencesTableService extends BaseTableService implements TableSer
     return str;
     // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
   };
-
-  constructor(
-    protected override http: HttpClient,
-    protected override translate: TranslateService,
-    protected override alertController: AlertController,
-    protected vocabulary: VocabularyService,
-    private router: Router,
-    private risksService: RisksTableService
-  ) {
-    super(http, translate, alertController);
-  }
 
   override getTableColumns = (): Column[] => [
     {

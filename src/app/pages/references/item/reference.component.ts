@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ReferenceItemService} from "./reference.item.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-reference-page',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class ReferenceComponent {
-  protected itemUrl: string = 'http://45.141.100.40/api/reference/';
+  protected itemUrl: string = APP_API_URL + '/reference/';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(public itemService: ReferenceItemService, protected route: ActivatedRoute,) {

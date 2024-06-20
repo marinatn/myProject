@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationsTableService} from "./applications.table.service";
+import {APP_API_URL} from "../../app.component";
 
 @Component ({
   selector: 'app-applications-page',
@@ -7,8 +8,8 @@ import {ApplicationsTableService} from "./applications.table.service";
 })
 
 export class ApplicationsComponent implements OnInit {
-  protected itemUrl: string = 'http://45.141.100.40/api/doctor/';
-  protected indexUrl: string = 'http://45.141.100.40/api/doctors';
+  protected itemUrl: string = APP_API_URL + '/doctor/';
+  protected indexUrl: string = APP_API_URL + '/doctors';
 
 
   selectedRisksText = '0 Items';

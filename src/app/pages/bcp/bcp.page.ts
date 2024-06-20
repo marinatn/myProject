@@ -4,6 +4,7 @@ import {IonModal} from "@ionic/angular";
 import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {OverlayEventDetail} from "@ionic/core/components";
 import {BcpDataView, BcpTableService} from "./bcp-table.service";
+import {APP_API_URL} from "../../app.component";
 
 @Component({
   selector: 'app-bcp',
@@ -15,8 +16,8 @@ export class BcpPage implements OnInit {
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
 
-  protected itemUrl: string = 'http://45.141.100.40/api/research/';
-  protected indexUrl: string = 'http://45.141.100.40/api/researches';
+  protected itemUrl: string = APP_API_URL + '/research/';
+  protected indexUrl: string = APP_API_URL + '/researches';
 
   ngOnInit() {
     this.tableService.prepareGrid(this.indexUrl);

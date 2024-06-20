@@ -3,6 +3,7 @@ import {PatientsTableService} from "./patients.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
 import {RisksTableService} from "../../risks/list/risks.table.service";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-patients-page',
@@ -10,7 +11,7 @@ import {RisksTableService} from "../../risks/list/risks.table.service";
 })
 
 export class PatientsComponent {
-  protected indexUrl: string = 'http://45.141.100.40/api/patients';
+  protected indexUrl: string = APP_API_URL + '/patients';
   protected readonly APP_ROUTES = APP_ROUTES;
 
   constructor(

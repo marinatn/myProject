@@ -3,6 +3,7 @@ import {IonModal} from "@ionic/angular";
 
 
 import {AnalizatorsTableService} from "./analizators-table.service";
+import {APP_API_URL} from "../../app.component";
 
 @Component({
   selector: 'app-page-analizators',
@@ -13,8 +14,8 @@ export class AnalizatorsComponent implements OnInit {
 
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
-  protected itemUrl: string = 'http://45.141.100.40/api/analizator/';
-  protected indexUrl: string = 'http://45.141.100.40/api/analizators';
+  protected itemUrl: string = APP_API_URL + '/analizator/';
+  protected indexUrl: string = APP_API_URL + '/analizators';
 
   constructor(public tableService: AnalizatorsTableService) {
   }

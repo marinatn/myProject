@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {TestsTableService} from "../../tests/list/tests.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {Observable} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Injectable({providedIn: 'root'})
 export class ResearchesTableService extends BaseTableService implements TableServiceInterface {
@@ -18,6 +19,15 @@ export class ResearchesTableService extends BaseTableService implements TableSer
     tests: []
   };
 
+  constructor(
+    protected override http: HttpClient,
+    protected override translate: TranslateService,
+    protected override alertController: AlertController,
+    private router: Router,
+    private testsService: TestsTableService
+  ) {
+    super(http, translate, alertController);
+  }
 
   fetchResearches(): Observable<any> {
     return new Observable((observer) => {
@@ -25,7 +35,7 @@ export class ResearchesTableService extends BaseTableService implements TableSer
         observer.next(this.availableResearches);
         return observer.complete()
       } else {
-        return this.http.get('http://45.141.100.40/api/researches').subscribe((researches: any) => {
+        return this.http.get(APP_API_URL + '/researches').subscribe((researches: any) => {
           this.availableResearches = researches;
           observer.next(researches);
           return observer.complete()
@@ -54,7 +64,7 @@ export class ResearchesTableService extends BaseTableService implements TableSer
   researchIdToValueFormatter: Formatter<any> = (_row, _cell, value) => {
     let str = '';
     JSON.parse(value).forEach((k: number) => {
-      let risk = this.availableResearches.find((risk: { id: number; name:string }) => {
+      let risk = this.availableResearches.find((risk: { id: number; name: string }) => {
         return risk.id === k
       })
       if (risk) {
@@ -67,16 +77,6 @@ export class ResearchesTableService extends BaseTableService implements TableSer
     return str;
     // return this.risks[value] ? this.risks[value].name || 'Категория риска не определена':value;
   };
-
-  constructor(
-    protected override http: HttpClient,
-    protected override translate: TranslateService,
-    protected override alertController: AlertController,
-    private router: Router,
-    private testsService: TestsTableService
-  ) {
-    super(http, translate, alertController);
-  }
 
   override getTableColumns = (): Column[] => [
     {

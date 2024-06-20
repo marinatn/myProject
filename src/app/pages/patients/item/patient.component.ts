@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {PatientItemService} from "./patient.item.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-patient-page',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 
 export class PatientComponent {
   @ViewChild('risksModal') risksModal: any;
-  protected itemUrl: string = 'http://45.141.100.40/api/patient/';
+  protected itemUrl: string = APP_API_URL + '/patient/';
   // }
   protected readonly APP_ROUTES = {...APP_ROUTES};
 

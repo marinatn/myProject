@@ -9,6 +9,7 @@ import {TableServiceInterface} from "../../../interfaces/tableServiceInterface";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ReferencesTableService} from "../../references/list/references.table.service";
 import {Observable} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Injectable({providedIn: 'root'})
 export class TestsTableService extends BaseTableService implements TableServiceInterface {
@@ -19,7 +20,7 @@ export class TestsTableService extends BaseTableService implements TableServiceI
       if (this.availableTests.length > 0) {
         return observer.next(this.availableTests);
       } else {
-        return this.http.get('http://45.141.100.40/api/tests').subscribe((risks: any) => {
+        return this.http.get(APP_API_URL + '/tests').subscribe((risks: any) => {
           this.availableTests = risks;
           observer.next(risks);
         })

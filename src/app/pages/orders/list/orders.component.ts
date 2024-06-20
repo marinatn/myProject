@@ -7,6 +7,7 @@ import {ReferencesTableService} from "../../references/list/references.table.ser
 import {ResearchesTableService} from "../../researches/list/researches.table.service";
 import {PatientsTableService} from "../../patients/list/patients.table.service";
 import {forkJoin} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Component ({
   selector: 'app-orders-page',
@@ -14,7 +15,7 @@ import {forkJoin} from "rxjs";
 })
 
 export class OrdersComponent implements OnInit {
-  protected indexUrl: string = 'http://45.141.100.40/api/orders';
+  protected indexUrl: string = APP_API_URL + '/orders';
 
   constructor(
     public tableService: OrdersTableService,

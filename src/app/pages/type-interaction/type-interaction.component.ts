@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Column, GridOption} from "angular-slickgrid";
 import {IonModal} from "@ionic/angular";
-import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
+import {TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
 import {OverlayEventDetail} from "@ionic/core/components";
 import {TypeInteractionDataView, TypeInteractionTableService} from "./type-interaction-table.service";
-import {from} from "rxjs";
-
+import {APP_API_URL} from "../../app.component";
 
 
 @Component({
@@ -13,7 +12,7 @@ import {from} from "rxjs";
   templateUrl: 'type-interaction.component.html',
   styleUrls: ['./type-interaction.component.scss'],
 })
-export class TypeInteractionComponent  implements OnInit {
+export class TypeInteractionComponent implements OnInit {
   gridColumns: Column[] = [];
   gridOptions: GridOption = {};
   gridData: any[] = [];
@@ -36,7 +35,7 @@ export class TypeInteractionComponent  implements OnInit {
   prepareGrid() {
     this.gridColumns = this.tableService.getTableColumns();
     this.gridOptions = this.tableService.getTableOptions();
-    this.tableService.getTableData('http://45.141.100.40/api/interactions').subscribe((data: any) => {
+    this.tableService.getTableData(APP_API_URL + '/interactions').subscribe((data: any) => {
       this.gridData = data;
     });
   }

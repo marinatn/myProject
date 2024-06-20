@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {RisksTableService} from "../../risks/list/risks.table.service";
 import {Observable} from "rxjs";
+import {APP_API_URL} from "../../../app.component";
 
 @Injectable({providedIn: 'root'})
 export class PatientsTableService extends BaseTableService implements TableServiceInterface {
@@ -33,7 +34,7 @@ export class PatientsTableService extends BaseTableService implements TableServi
         observer.complete();
         return observer;
       } else {
-        return this.http.get('http://45.141.100.40/api/patients').subscribe((patients: any) => {
+        return this.http.get(APP_API_URL + '/patients').subscribe((patients: any) => {
           this.availablePatients = patients;
           observer.next(patients);
           observer.complete();

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ResearchItemService} from "./research.item.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-test-page',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class ResearchComponent {
-  protected itemUrl: string = 'http://45.141.100.40/api/research/';
+  protected itemUrl: string = APP_API_URL + '/research/';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(public itemService: ResearchItemService, protected route: ActivatedRoute,) {

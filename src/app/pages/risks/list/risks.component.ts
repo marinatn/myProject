@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {RisksTableService} from "./risks.table.service";
 import {APP_ROUTES} from "../../../app-routing.module";
 import {ActivatedRoute} from "@angular/router";
+import {APP_API_URL} from "../../../app.component";
 
 @Component({
   selector: 'app-risks-page',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class RisksComponent {
-  protected indexUrl: string = 'http://45.141.100.40/api/risks';
+  protected indexUrl: string = APP_API_URL + '/risks';
   protected readonly APP_ROUTES = APP_ROUTES;
 
   constructor(public tableService: RisksTableService, protected route: ActivatedRoute,) {

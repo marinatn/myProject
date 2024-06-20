@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Column, GridOption} from "angular-slickgrid";
 import {IonModal} from "@ionic/angular";
-import {MainDataView, TableRowCRUDMode, TableRowOpts} from "../../modules/table/services/base.table.service";
-import {OverlayEventDetail} from "@ionic/core/components";
-import {DoctorsDataView, DoctorsTableService} from "./doctors-table.service";
+import {DoctorsTableService} from "./doctors-table.service";
+import {APP_API_URL} from "../../app.component";
 
 
 @Component({
@@ -15,8 +13,8 @@ export class DoctorsComponent implements OnInit {
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
 
-  protected itemUrl: string = 'http://45.141.100.40/api/doctor/';
-  protected indexUrl: string = 'http://45.141.100.40/api/doctors';
+  protected itemUrl: string = APP_API_URL + '/doctor/';
+  protected indexUrl: string = APP_API_URL + '/doctors';
 
   constructor(public tableService: DoctorsTableService) {
   }
