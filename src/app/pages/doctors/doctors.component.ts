@@ -15,8 +15,8 @@ export class DoctorsComponent implements OnInit {
   @ViewChild('newModal') newModal: IonModal | any;
   @ViewChild('editModal') editModal: IonModal | any;
 
-  protected itemUrl: string = 'http://localhost:8000/api/doctor/';
-  protected indexUrl: string = 'http://localhost:8000/api/doctors';
+  protected itemUrl: string = 'http://45.141.100.40/api/doctor/';
+  protected indexUrl: string = 'http://45.141.100.40/api/doctors';
 
   constructor(public tableService: DoctorsTableService) {
   }

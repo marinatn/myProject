@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 
 export class PatientComponent {
   @ViewChild('risksModal') risksModal: any;
-  protected itemUrl: string = 'http://localhost:8000/api/patient/';
+  protected itemUrl: string = 'http://45.141.100.40/api/patient/';
   // }
   protected readonly APP_ROUTES = {...APP_ROUTES};
 

@@ -9,7 +9,7 @@ export class BaseItemService {
   defaultItem:any = {};
   toastMsg: string = '';
   isOpenToast: boolean = false;
-  protected itemUrl: string = 'http://localhost:8000/api/item/';
+  protected itemUrl: string = 'http://45.141.100.40/api/item/';
 
   constructor(
     protected route: ActivatedRoute,

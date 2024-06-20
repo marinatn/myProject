@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 
 export class OrderComponent {
-  protected itemUrl: string = 'http://localhost:8000/api/order/';
+  protected itemUrl: string = 'http://45.141.100.40/api/order/';
   protected readonly APP_ROUTES = {...APP_ROUTES};
 
   constructor(public itemService: OrderItemService, protected route: ActivatedRoute,) {

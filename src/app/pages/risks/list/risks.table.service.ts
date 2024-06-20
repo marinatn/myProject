@@ -24,7 +24,7 @@ export class RisksTableService extends BaseTableService implements TableServiceI
         observer.next(this.availableRisks);
         return observer.complete();
       } else {
-        return this.http.get('http://localhost:8000/api/risks').subscribe((risks: any) => {
+        return this.http.get('http://45.141.100.40/api/risks').subscribe((risks: any) => {
           this.availableRisks = risks;
           observer.next(risks);
           observer.complete();
