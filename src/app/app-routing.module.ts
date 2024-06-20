@@ -164,11 +164,6 @@ const routes: Routes = [
   // },
 
 
-  {
-    path: APP_ROUTES.bcp_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/bcp/bcp.module').then(m => m.BCPPageModule)
-  },
 
   {
     path: APP_ROUTES.analysers_page,
@@ -186,21 +181,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/doctors/doctors.module').then(m => m.DoctorsModule)
   },
-  {
-    path: APP_ROUTES.apps_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/applications/applications.module').then(m => m.ApplicationsModule)
-  },
+
   {
     path: APP_ROUTES.equipment_page,
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/equipment/equipment.module').then(m => m.EquipmentModule)
-  },
-
-  {
-    path: APP_ROUTES.samples_page,
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/samples/samples.module').then(m => m.SamplesModule)
   },
 
 ];

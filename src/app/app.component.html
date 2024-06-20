@@ -30,7 +30,7 @@
 
         <ion-accordion-group>
           <ion-menu-toggle [routerLink]="[APP_ROUTES.qr_reader_page]">
-            <ion-label>
+            <ion-label class="p-3 content">
               <ion-icon name="medical-outline"></ion-icon>
               Сканер
             </ion-label>
@@ -44,16 +44,30 @@
                 </div>
               </ion-label>
             </ion-item>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.doctors_page)">Сотрудники</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analysers_page)">Анализаторы</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">Тесты анализатора</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.references_page)">Референсные значения
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.doctors_page)">
+              Сотрудники
             </div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.patients_page)">Исследования</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.patients_page)">Пациенты лаборатории</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">Тесты анализатора</div>
-            <div class="content" slot="content" (click)="goToPage(APP_ROUTES.analysers_page)">Пункты забора</div>
-
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.analysers_page)">
+              Анализаторы
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">
+              Тесты анализатора
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.references_page)">
+              Референсные значения
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.researches_page)">
+              Исследования
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.patients_page)">
+              Пациенты лаборатории
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.tests_page)">
+              Тесты анализатора
+            </div>
+            <div class="p-3 content" slot="content" (click)="goToPage(APP_ROUTES.analysers_page)">
+              Пункты забора
+            </div>
           </ion-accordion>
         </ion-accordion-group>
 <!--
