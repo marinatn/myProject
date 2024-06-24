@@ -1,16 +1,18 @@
-<div class="container">
-  <div *ngIf="patientId && orderId">
-    Полученный номер заявки: {{orderId}} b<br>
-    Полученный номер пациента: {{patientId}} <br>
-    Дата создания исследования: {{timestamp|date}} <br>
+<ion-content>
+  <div class="container">
+    <div *ngIf="patientId && orderId">
+      Полученный номер заявки: {{orderId}} b<br>
+      Полученный номер пациента: {{patientId}} <br>
+      Дата создания исследования: {{timestamp|date}} <br>
 
-    <ion-button expand="block" (click)="goToOrder()">Перейти в заявку на исследование</ion-button>
-    <br>
-    <ion-button expand="block" (click)="showAnalyzerResults()">Показать результаты с анализатора</ion-button>
+      <ion-button expand="block" (click)="goToOrder()">Перейти в заявку на исследование</ion-button>
+      <br>
+      <ion-button expand="block" (click)="showAnalyzerResults()">Показать результаты с анализатора</ion-button>
 
+    </div>
+    ЗДЕСЬ МОЖНО ПИХНУТЬ ИНСТРУКЦИЮ КАК ПОЛЬЗОВАТЬСЯ СКАНЕРОМ  <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor laoreet ante non ornare. Fusce urna mauris, iaculis non porta sit amet, porta eu arcu. Suspendisse et condimentum leo. Ut a quam hendrerit lectus cursus pulvinar vel vitae tellus. Morbi id arcu quis elit dignissim dapibus. In erat elit, condimentum vel nunc accumsan, ornare tempor felis. Vivamus a euismod urna. Morbi tincidunt erat sed nunc feugiat, ut sodales felis mattis. Nunc id pharetra lorem. Proin placerat varius enim id scelerisque.
   </div>
-  ЗДЕСЬ МОЖНО ПИХНУТЬ ИНСТРУКЦИЮ КАК ПОЛЬЗОВАТЬСЯ СКАНЕРОМ  <br>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor laoreet ante non ornare. Fusce urna mauris, iaculis non porta sit amet, porta eu arcu. Suspendisse et condimentum leo. Ut a quam hendrerit lectus cursus pulvinar vel vitae tellus. Morbi id arcu quis elit dignissim dapibus. In erat elit, condimentum vel nunc accumsan, ornare tempor felis. Vivamus a euismod urna. Morbi tincidunt erat sed nunc feugiat, ut sodales felis mattis. Nunc id pharetra lorem. Proin placerat varius enim id scelerisque.
-</div>
 
+</ion-content>
 <app-qr-reader (scanCode)="scannedCode($event)"></app-qr-reader>

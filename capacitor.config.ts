@@ -2,11 +2,16 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'myProject',
+  appName: 'МАРИШКА-КАКАШКа',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http',
+  },
+  android: {
+    allowMixedContent: true,
+
   }
+
 };
 
 export default config;

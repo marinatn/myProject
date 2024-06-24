@@ -25,7 +25,7 @@ export class QrReaderPageComponent implements AfterViewInit {
     // }, 5000);
   }
 
-  async scannedCode($event: { format: string, rawValue: string }) {
+  scannedCode($event: { format: string, rawValue: string }) {
     // check format at \App\Http\Controllers\Api\ResearchOrderController::getBarCode on server side
     const data = $event.rawValue?.split('  ');
     if (data) {
@@ -33,6 +33,11 @@ export class QrReaderPageComponent implements AfterViewInit {
       this.patientId = parseInt(data[1]);
       this.investigations = data[2].replace(' ', '; ');
       this.timestamp = data[3];
+
+      setTimeout(() => {
+        this.goToOrder();
+      }, 3000)
+
     }
 
   }
@@ -41,11 +46,11 @@ export class QrReaderPageComponent implements AfterViewInit {
 
   }
 
-  async goToOrder() {
-    await this.router.navigate([APP_ROUTES.order_page], {
+  goToOrder() {
+    this.router.navigate([APP_ROUTES.order_page], {
       queryParams: {
         id: this.orderId
       }
-    });
+    }).then();
   }
 }

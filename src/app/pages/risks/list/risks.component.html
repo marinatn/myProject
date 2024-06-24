@@ -1,32 +1,35 @@
-<!-- <ion-title class="title">
+<ion-content>
+  <!-- <ion-title class="title">
   Медицинские специалисты клинической лаборатории
 </ion-title> -->
 
-<div class="container-buttons">
-  <ion-button [routerLink]="['/' + APP_ROUTES.risk_page]">Добавить</ion-button>
-</div>
+  <div class="container-buttons">
+    <ion-button [routerLink]="['/' + APP_ROUTES.risk_page]">Добавить</ion-button>
+  </div>
 
 
-<!--<div class="ion-padding">-->
-<!--  Пациенты лаборатории-->
-<!--</div>-->
+  <!--<div class="ion-padding">-->
+  <!--  Пациенты лаборатории-->
+  <!--</div>-->
 
-Риски <br>
+  Риски <br>
 
-<app-table
-  [gridId]="'risks-page-grid'"
-  [columns]="tableService.gridColumns"
-  [options]="tableService.gridOptions"
-  [data]="tableService.gridData"
-  (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
-  (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
-  (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
-  (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
-  (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
->
-</app-table>
-
-
+  <app-table
+    [gridId]="'risks-page-grid'"
+    [columns]="tableService.gridColumns"
+    [options]="tableService.gridOptions"
+    [data]="tableService.gridData"
+    (onAngularGridCreated)="tableService.angularGridReady($event.detail)"
+    (onGridStateChanged)="tableService.gridStateChanged($event.detail)"
+    (onBeforeGridDestroy)="tableService.saveCurrentGridState()"
+    (onRowCountChanged)="tableService.refreshMetrics($event.detail.eventData, $event.detail.args)"
+    (onSelectedRowsChanged)="tableService.onSelectedRowsChanged($event)"
+  >
+  </app-table>
 
 
 
+
+
+
+</ion-content>
