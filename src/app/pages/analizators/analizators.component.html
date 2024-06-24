@@ -9,6 +9,7 @@
 </div>
 
 <app-table
+  [gridId]="'analysers-page-grid'"
   [columns]="tableService.gridColumns"
   [options]="tableService.gridOptions"
   [data]="tableService.gridData"
@@ -65,7 +66,7 @@
           [(ngModel)]="tableService.item && tableService.item.type_equipment"
           (ngModelChange)="tableService.updateField('type_equipment', $event)"
           label-placement="stacked">
-          <ion-select-option 
+          <ion-select-option
             *ngFor="let equipment of tableService.type_equipments"
             value="{{equipment.id}}">
               {{equipment.name}}
@@ -81,7 +82,7 @@
             [(ngModel)]="tableService.item && tableService.item.type_interaction"
             (ngModelChange)="tableService.updateField('type_interaction', $event)"
             label-placement="stacked">
-            <ion-select-option 
+            <ion-select-option
             *ngFor="let interaction of tableService.type_interactions"
             value="{{interaction.id}}">
               {{interaction.name}}
@@ -138,7 +139,7 @@
           [(ngModel)]="tableService.selectedItem && tableService.selectedItem.type_equipment"
           (ngModelChange)="tableService.updateField('type_equipment', $event)"
           label-placement="stacked">
-          <ion-select-option 
+          <ion-select-option
             *ngFor="let equipment of tableService.type_equipments"
             value="{{equipment.id}}">
               {{equipment.name}}
@@ -154,7 +155,7 @@
             [(ngModel)]="tableService.selectedItem && tableService.selectedItem.type_interaction"
             (ngModelChange)="tableService.updateField('type_interaction', $event)"
             label-placement="stacked">
-            <ion-select-option 
+            <ion-select-option
             *ngFor="let interaction of tableService.type_interactions"
             value="{{interaction.id}}">
               {{interaction.name}}

@@ -18,6 +18,7 @@ export class TableComponent {
   @Output() onAngularGridCreated = new EventEmitter<any>();
   @Output() onGridStateChanged = new EventEmitter<any>();
   @Output() onSelectedRowsChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Input() gridId: string;
 
   constructor() {
   }
