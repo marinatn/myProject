@@ -68,3 +68,4 @@ testem.log
 Thumbs.db4
 
 ./package-lock.json
+/package-lock.json
