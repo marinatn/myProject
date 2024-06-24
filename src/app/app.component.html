@@ -29,13 +29,13 @@
       <ion-list [inset]="true">
 
         <ion-accordion-group>
-          <ion-menu-toggle [routerLink]="[APP_ROUTES.qr_reader_page]">
+          <ion-menu-toggle [routerLink]="['/' + APP_ROUTES.qr_reader_page]">
             <ion-label class="p-3 content">
               <ion-icon name="medical-outline"></ion-icon>
               Сканер
             </ion-label>
           </ion-menu-toggle>
-          <ion-menu-toggle [routerLink]="[APP_ROUTES.orders_page]">
+          <ion-menu-toggle [routerLink]="['/' + APP_ROUTES.orders_page]">
             <ion-label class="p-3 content">
               <ion-icon name="medical-outline"></ion-icon>
               Заявки на исследование
